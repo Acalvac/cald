@@ -28,6 +28,84 @@ $(document).on('click','.btneditdb',function(){
                 });
             });
 
+
+/*swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then(function () {
+  swal(
+    'Deleted!',
+    'Your file has been deleted.',
+    'success'
+  )
+})
+*/
+
+
+$(document).on('click','.btneliminardb',function(){
+        var idco=$(this).val(); //obtenemo id de la fila que deceamos eliminar
+        alert(idco);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+
+        swal({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then(function () {
+          swal(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        });
+
+        /*swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+                swal(
+                {
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                },
+                function()
+                    {
+                       $.ajax({
+                        type: "DELETE", //DELETE significa el tipon de metodo que estamos utiliando para la eliminación 
+                        url: 'deletecredito/' + idco, //mandamos el id a la url para que elimine el campo de la DB
+                        success: function (data) {
+                            console.log(data);//cargamos la data
+                            $("#deudas" + idco).remove();//eliminamos la fila de la tabla 
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    }); 
+                    }
+                  );
+            });*/
+    });
+
+
 	$("#btnGuardarD").click(function(e){
         $.ajaxSetup({
             headers: {
