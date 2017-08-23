@@ -1,0 +1,23 @@
+ <!--
+                <div class="form-group">
+                    <select  id="select"  class="form-control select2" data-style="btn-info" data-live-search="true" onchange="buscarempleado();" >
+                        <?php  if(isset($casosel)){ 
+                            $listadocaso=$casosel->nombre; 
+                            $optsel= '<option value="'.$casosel->idcaso.'">'.$casosel->nombre.' </option>';
+                            }else{  
+                                $listadocaso="Todos";
+                                $optsel="";
+                            } ?>
+
+                            <?=  $optsel;  ?>
+                                <option value="0">Todos... </option>
+                                @if(isset($casos))
+                                <?php foreach($casos as $cas){   ?>
+                                <option value="<?= $cas->idcaso; ?>" > <?= $cas->nombre; ?></option>
+                             <?php }  ?>
+                        @endif
+                    </select>
+
+                    <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Buscar..."> 
+                </div>
+                -->
