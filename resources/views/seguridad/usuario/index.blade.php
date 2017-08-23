@@ -37,11 +37,7 @@
 				                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				                    <div><br></div>
 				                    <div class="margin" id="botones_control">
-				                        @role('informatica')
-
-				                        <a href="usuario/create" class="btn btn-xs btn-primary">Agregar Usuarios</a>
 				                        <a href="javascript:void(0);" class="btn btn-xs btn-primary" onclick="cargar_formulario(2);">Roles</a> 
-				                        @endrole
 				                    </div>
 				                    <div><br></div>
 				                </div>

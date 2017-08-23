@@ -30,6 +30,8 @@ use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
 use Intervention\Image\Facades\Image as Image;
 
+
+
 class UController extends Controller
 {
     public function contenedor(Request $request)
@@ -171,20 +173,39 @@ class UController extends Controller
     	return Redirect::to('seguridad/usuario');
     }
 
-    public function cambiar_password(Request $request){
-        $this->validateRequestPassword($request);
-        $id=$request->get('idusuario');
+    public function cambiarclave($id,$password){
         $usuario=User::find($id);
-        $password=$request->input("password");
         $usuario->password=bcrypt($password);
         $r=$usuario->save();
 
         if($r){
-            return response()->json($usuario);
+            $calculo[] = "Se modifico la clave";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
         }
         else
         {
-            return view("mensajes.msj_rechazado")->with("msj","Error al actualizar el password");
+            $calculo[] = "error";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
+        }
+    }
+
+    public function cambiarname($id,$name){
+        $usuario=User::find($id);
+        $usuario->name =$name;
+        $r=$usuario->save();
+
+        if($r){
+            $calculo[] = "Se modifico el usuario".' '.$usuario->name;
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
+        }
+        else
+        {
+            $calculo[] = "error";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
         }
     }
 }

@@ -70,6 +70,13 @@ Route::group(['prefix'=>'seguridad'], function(){
 	Route::get('add','UController@add');
 	Route::post('store','UController@store');
 	Route::get('editar_usuario/{id}', 'UController@editar_usuario');
+	Route::get('cambiarclave/{id}/{clave}','UController@cambiarclave');
+	Route::get('cambiarnombre/{id}/{name}','UController@cambiarname');
+	Route::get('asignar_rol/{idusu}/{idrol}', 'UController@asignar_rol');
+	Route::get('quitar_rol/{idusu}/{idrol}','UController@quitar_rol');
+	Route::get('form_nuevo_rol', 'UController@form_nuevo_rol');
+	Route::post('crear_rol', 'UController@crear_rol');
+
 });
 
 
