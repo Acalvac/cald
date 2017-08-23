@@ -8,8 +8,8 @@
     <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
 
     <!-- Sweet Alert -->
-    <link href="{{asset('assets/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
-
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
     @endsection
 
@@ -241,7 +241,8 @@
     <script src="{{asset('assets/js/empleado/persona.js')}}"></script>
 
     <!-- Sweet alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
     <script>
         $(document).ready(function() {

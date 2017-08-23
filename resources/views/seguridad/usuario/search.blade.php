@@ -35,7 +35,9 @@
                         </div>
         </div>           
     </div>
-</div>
+
+                            </div>
+
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 
 

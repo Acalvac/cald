@@ -32,17 +32,16 @@
 				        </div>
 
 				        @if(count($usuarios) > 0)
-
-				            <div class="row">
-				                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				                    <div><br></div>
-				                    <div class="margin" id="botones_control">
-				                        <a href="javascript:void(0);" class="btn btn-xs btn-primary" onclick="cargar_formulario(2);">Roles</a> 
-				                    </div>
-				                    <div><br></div>
-				                </div>
-				            </div>
-
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="navbar-form navbar-left pull-left">
+                                <div><br></div>
+                                <div class="margin" id="botones_control">
+                                 <button class="btn btn-primary" title="Nuevo Rol" onclick="cargar_formulario(2);">Nuevo Rol</button>
+                                </div>
+                                <div><br></div>
+                                </div>
+                            </div>
+				        </div>
 				            <div class="ibox-content">
                     			<div class="table-responsive">
                         			<table class="table table-striped table-bordered table-condensed table-hover">

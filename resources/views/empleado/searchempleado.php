@@ -2,7 +2,7 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="navbar-form navbar-left pull-left">
-                <a href="add"><button class="btn btn-primary btn-addEmpleado" title="Nuevo Empleado">Nuevo Empleado</button></a>
+                <a href="add"><button class="btn btn-primary btn-addEmpleado" title="Nuevo Empleado" value="addb" id="addEmpleado">Nuevo Empleado</button></a>
             </div>
 
         <div class="navbar-form navbar-right pull-rigth">
@@ -15,6 +15,7 @@
             </div>            
         </div>
     </div>
+    
 
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript"> 
