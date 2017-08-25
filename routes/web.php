@@ -10,15 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-Route::get('/{slug?}','HomeController@index');
 
 Route::get('/', function () {
     return view('auth/login');
 });
-
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index');
+
+
+Auth::routes();
+
+
 
 // se agrega todas las rutas del bienechor, donaciones entre otros
 Route::group(['prefix'=>'bienhechor'], function(){
@@ -59,8 +61,10 @@ Route::group(['prefix'=>'empleado'], function(){
 	Route::get('add','EmpleadoController1@add');
 
 	Route::post('store','EmpleadoController1@store');
-	Route::post('update','EmpleadoController1@edit');
+	Route::get('edit/{id}','EmpleadoController1@edit');
+	Route::post('update/{id}','EmpleadoController1@update');
 	Route::post('delete','EmpleadoController1@modal');
+	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
 
@@ -76,11 +80,12 @@ Route::group(['prefix'=>'seguridad'], function(){
 	Route::get('quitar_rol/{idusu}/{idrol}','UController@quitar_rol');
 	Route::get('form_nuevo_rol', 'UController@form_nuevo_rol');
 	Route::post('crear_rol', 'UController@crear_rol');
-
+	Route::get('/logout', 'Auth\LoginController@logout');
+	Route::get('/{slug?}','HomeController@index');
 });
 
 
-
+Route::get('/{slug?}','HomeController@index');
 
 
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 use Illuminate\Support\Facades\Log;
+use DB;
 
 class EmpleadoController1 extends Controller
 {
@@ -102,13 +103,77 @@ class EmpleadoController1 extends Controller
             
         }
 
-        return json_encode($empleado);
-
-        
+        return json_encode($empleado);    
     }
 
-    public function update()
-    {}
+    public function edit($id)
+    {
+        $puesto = Puesto::all();
+        $empleado = DB::table('empleado as emp')
+        ->join('persona as per','emp.idpersona','=','per.idpersona')
+        ->select('emp.fechainicio','emp.salario','emp.idpuesto','per.nombre','per.apellido','per.direccion','telefono','per.estadocivil','per.nit','per.dpi','per.correo','per.fechanacimiento','emp.idpersona')
+        ->where('emp.idpersona','=',$id)
+        ->first();
+        return view('empleado.edit',["puesto"=>$puesto,"empleado"=>$empleado]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $this->validateRequestEdit($request);
+
+            $idempleado = DB::table('empleado as emp')
+            ->select('emp.idempleado')
+            ->where('emp.idpersona','=',$id)
+            ->first();
+
+            $today = Carbon::now();
+            $year = $today->format('Y');
+
+            $fechanacimiento=$request->get('fecha_nacimiento');
+            $fechanacimiento=Carbon::createFromFormat('d/m/Y',$fechanacimiento);
+            $fechanacimiento=$fechanacimiento->format('Y-m-d');
+
+            $fechainicio=$request->get('fecha_inicio');
+            $fechainicio=Carbon::createFromFormat('d/m/Y',$fechainicio);
+            $fechainicio=$fechainicio->format('Y-m-d');
+
+            $persona =Persona::find($id);
+
+            $persona-> nombre=$request->get('nombre');
+            $persona-> apellido=$request->get('apellido');
+            $persona-> direccion=$request->get('direccion');
+            $persona-> telefono=$request->get('telefono');
+            $persona-> estadocivil=$request->get('estadocivil');
+            $persona-> nit=$request->get('nit');
+            $persona-> dpi=$request->get('dpi');
+            $persona-> imagen=$request->get('imagen');
+            $persona-> correo=$request->get('correo');
+            $persona-> fechanacimiento=$fechanacimiento;
+            $persona-> idstatus=1;
+
+            $persona->save();
+
+
+            $empleado = Empleado::find($idempleado->idempleado);
+
+            $empleado-> fechainicio = $fechainicio;
+
+            $empleado-> tarjetasalud=$request->get('tarjetasalud');
+            $empleado-> salario=$request->get('salario');
+            $empleado-> idpuesto=$request->get('idpuesto');
+            
+            $empleado->save();
+
+
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(array('error'=>'No se ha podido enviar la peticion de agregar nuevo empreado'),404);
+            
+        }
+
+        return json_encode($empleado);
+    }
 
     public function delate()
     {}
@@ -118,6 +183,23 @@ class EmpleadoController1 extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'idtipopersona' => 'required',
+            'correo'=>'required',
+            'fecha_nacimiento'=> 'required',
+            'idpuesto'=>'required',
+            'fecha_inicio'=>'required',   
+        ];
+
+        $messages=[
+            'required' => 'Debe ingresar :attribute.',
+            'max'  => 'La capacidad del campo :attribute es :max'
+        ];
+        $this->validate($request, $rules,$messages);         
+    }
+
+    public function validateRequestEdit($request){                
+        $rules=[
+            'nombre' => 'required',
+            'apellido' => 'required',
             'correo'=>'required',
             'fecha_nacimiento'=> 'required',
             'idpuesto'=>'required',
