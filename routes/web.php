@@ -35,7 +35,8 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::get('listardetallesb/listarupdonativo/{id}','CBienhechor@listarupdonativo');
 	Route::post('listardetallesb/addonativo','CBienhechor@addonativos');
 	Route::put('listardetallesb/updonativo/{id}','CBienhechor@updonativo');
-	//
+	Route::put('deletebi/{id}','CBienhechor@deletebi');
+	
 });
 
 // se agrega todas las rutas del paciente, examen medico, historial entre otros
