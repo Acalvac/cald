@@ -5,7 +5,8 @@
     @parent
         <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
         <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     @endsection
 
 @section ('contenido')
@@ -52,7 +53,7 @@
                                 <td>{{$don->descripcion}}</td>
                                 <td>
                                     <button class="btn  btn-warning btn-md btneditdb" value="{{$don->idbienhechor}}" title="Editar"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-md btneliminardb" value="{{$don->idbienhechor}}" title="Eliminar" ><i class="fa fa-remove"></i></button> 	
+                                    <!--button class="btn btn-danger btn-md btneliminardb" value="{{$don->idbienhechor}}" title="Eliminar" ><i class="fa fa-remove"></i></button--> 	
                                 </td>
                             </tr>
                         @endforeach
@@ -150,7 +151,8 @@
 @parent
 <script src="{{asset('assets/js/bienhechor/donacion.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-<script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
 <script>
     $(document).ready(function() {

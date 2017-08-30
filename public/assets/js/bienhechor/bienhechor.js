@@ -70,7 +70,7 @@
                             item += '<td>'+data.idpersona+'</td>';
                             item += '<td>'+data.nombre+' '+data.apellido+'</td>'+'<td>' +data.direccion+ '</td>'+'<td>'+data.telefono+'</td>'+'<td>'+data.correo+'</td>';
                             item += '<td><button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="'+data.idpersona+'"><i class="fa fa-heart"></i></button>';
-                            item += '<button class="btn btn-primary btn-md btndb" value="'+data.idpersona+'" title="Detalles"><i class="glyphicon glyphicon-zoom-in"></i></button>';
+                            item += '<button class="btn btn-primary btn-md btndb" value="'+data.idpersona+'" title="Detalles"><i class="fa fa-address-card"></i></button>';
                             item += '<button class="btn  btn-warning btn-md btneditb" title="Editar" value="'+data.idpersona+'"><i class="fa fa-pencil"></i></button>';
                             item += '<button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="'+data.idpersona+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
                             //<a c>

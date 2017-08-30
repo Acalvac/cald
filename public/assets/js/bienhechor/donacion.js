@@ -49,14 +49,13 @@ $(document).on('click','.btneditdb',function(){
 
 $(document).on('click','.btneliminardb',function(){
         var idco=$(this).val(); //obtenemo id de la fila que deceamos eliminar
-        alert(idco);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
 
-        swal({
+        /*swal({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
           type: 'warning',
@@ -70,9 +69,9 @@ $(document).on('click','.btneliminardb',function(){
             'Your file has been deleted.',
             'success'
           )
-        });
+        })*/
 
-        /*swal({
+        swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             type: 'warning',
@@ -82,27 +81,27 @@ $(document).on('click','.btneliminardb',function(){
             confirmButtonText: 'Yes, delete it!'
             }).then(function () {
                 swal(
-                {
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                },
-                function()
                     {
-                       $.ajax({
-                        type: "DELETE", //DELETE significa el tipon de metodo que estamos utiliando para la eliminación 
-                        url: 'deletecredito/' + idco, //mandamos el id a la url para que elimine el campo de la DB
-                        success: function (data) {
-                            console.log(data);//cargamos la data
-                            $("#deudas" + idco).remove();//eliminamos la fila de la tabla 
-                        },
-                        error: function (data) {
-                            console.log('Error:', data);
-                        }
-                    }); 
+                        title: "¡Hecho!",
+                        text: "Solicitud rechazada con éxito!!!",
+                        type: "success"
+                    },
+                    function()
+                    {
+                        $.ajax({
+                            type: "DELETE", //DELETE significa el tipon de metodo que estamos utiliando para la eliminación 
+                            url: 'deletecredito/' + idco, //mandamos el id a la url para que elimine el campo de la DB
+                            success: function (data) {
+                                //console.log(data);//cargamos la data
+                                $("#donativo" + idco).remove();//eliminamos la fila de la tabla 
+                            },
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
+                        });
                     }
-                  );
-            });*/
+                );
+            })
     });
 
 
@@ -145,8 +144,8 @@ $(document).on('click','.btneliminardb',function(){
             	var item = '<tr class="even gradeA" id="donativo'+data.idbienhechor+'">';
                     item += '<td>'+data.idbienhechor+'</td>';
                     item += '<td>'+tipodonativo+'</td>'+'<td>'+data.monto+'</td>'+'<td>' +data.fechadonacion+ '</td>'+'<td>'+data.descripcion+'</td>';
-                    item += '<td><button class="btn  btn-warning btn-md btneditdb" title="Editar" value="'+data.idbienhechor+'"><i class="fa fa-pencil"></i></button>';
-                    item += '<button class="btn btn-danger btn-md btneliminardb" value="'+data.idbienhechor+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
+                    item += '<td><button class="btn  btn-warning btn-md btneditdb" title="Editar" value="'+data.idbienhechor+'"><i class="fa fa-pencil"></i></button></td></tr>';
+                    //item += '<button class="btn btn-danger btn-md btneliminardb" value="'+data.idbienhechor+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
                 if (state == "add")
                     {
                         $('#donativos').append(item);
