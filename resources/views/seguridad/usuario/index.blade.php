@@ -88,5 +88,23 @@
 
 @section('fin')
     @parent
+    	<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    	    <script type="text/javascript">
+        document.getElementById('dato_buscado').focus();
+
+    
+        $(document).ready(function() {
+            $(".select2-search-choice-close").select2();
+
+            $('#dato_buscado').keypress(function(e){   
+                if(e.which == 13){      
+                    buscarusuario();
+                    document.getElementById('dato_buscado').focus();
+
+                }   
+            });
+        });
+
+    </script>
 
 @endsection

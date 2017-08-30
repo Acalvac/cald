@@ -164,7 +164,7 @@
                         </div>
 
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                            <table id="detalles" class="table table-striped table-bordered table-hover">
                                 <thead style="background-color:#A9D0F5">
                                     <tr>
                                         <th>Opciones</th>
@@ -172,11 +172,6 @@
                                         <th>Fecha Vencimiento</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tfoot>
                                 <tbody></tbody>
                             </table>
                         </div>
@@ -243,7 +238,7 @@
     
     <!-- Sweet alert -->
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
     <script>
         $(document).ready(function() {

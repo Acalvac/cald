@@ -90,52 +90,49 @@ var cont = 0;
                 function(){
                     window.location.href="/empleado/listado"
                 });*/
-
                 
-                    swal({
-                        title: '¿Desea agregar un usuario?',
-                        text: "Precione si para realizar un nuevo registro, no para cerrar este mensaje.",
-                        type: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si!',
-                        cancelButtonText: 'No!',
-                        confirmButtonClass: 'btn btn-success',
-                        cancelButtonClass: 'btn btn-danger',
-                        buttonsStyling: false
-                        }).then(function () {
-                            var miurl=urlraiz+"/seguridad/add";
-                            var errHTML="";
-                            $.ajax({
-                                url: miurl
-                            }).done( function(resul) 
-                            {
-                                $("#lisadoEmp").html(resul);
-                                $("#idempleado").append(resul);
+                swal({
+                    title: '¿Desea agregar un usuario?',
+                    text: "Precione si para realizar un nuevo registro, no para cerrar este mensaje.",
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si!',
+                    cancelButtonText: 'No!',
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false
+                    }).then(function () {
+                        var miurl=urlraiz+"/seguridad/add";
+                        var errHTML="";
+                        $.ajax({
+                            url: miurl
+                        }).done( function(resul) 
+                        {
+                            $("#lisadoEmp").html(resul);
+                            $("#idempleado").append(resul);
 
-                                $('#inputTitleUsuario').html("Nuevo ingreo de usuario");
-                                $('#formAgregarUsuario').html(resul);
-                                $('#formModalUsuario').modal('show');
-
-                            }).fail(function() 
-                            {
-                                $("#lisadoEmp").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                            $('#inputTitleUsuario').html("Nuevo ingreo de usuario");
+                            $('#formAgregarUsuario').html(resul);
+                            $('#formModalUsuario').modal('show');
+                        }).fail(function() 
+                        {
+                            $("#lisadoEmp").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                        });
+                    }, function (dismiss) {
+                        // dismiss can be 'cancel', 'overlay',
+                        // 'close', and 'timer'
+                        if (dismiss === 'cancel') {
+                            swal({ 
+                                title:"Envio correcto",
+                                text: "Se guardado correctamente un nuevo empleado",
+                                type: "success"
+                            }).then(function(){
+                                window.location.href="/empleado/index"
                             });
-                        }, function (dismiss) {
-                            // dismiss can be 'cancel', 'overlay',
-                            // 'close', and 'timer'
-                              if (dismiss === 'cancel') {
-                                swal({ 
-                                    title:"Envio correcto",
-                                    text: "Se guardado correctamente un nuevo empleado",
-                                    type: "success"
-                                    },
-                                    function(){
-                                    window.location.href="/empleado/index"
-                                    });
-                            }
-                        });                               
+                        }
+                    });                               
             },
             error: function (data) {
                 var errHTML="";
@@ -154,7 +151,7 @@ var cont = 0;
 
     $(document).on('click','.btn-btnUpdateEmpleado',function(e){
         var idpersona=$(this).val();
-                var urlraiz=$("#url_raiz_proyecto").val();
+        var urlraiz=$("#url_raiz_proyecto").val();
         
         var miurl = urlraiz+"/empleado/update/"+idpersona;
         console.log(miurl);
@@ -193,10 +190,8 @@ var cont = 0;
                     title:"Envio correcto",
                     text: "Gracias",
                     type: "success"
-                },
-                function(){
-                    window.location.href="/empleado/index"
-                
+                }).then(function(){
+                    window.location.href="/empleado/index"                
                 });
 
                 /* 
@@ -209,11 +204,7 @@ var cont = 0;
                                     window.location.href="/empleado/index"
                                     });
                             }
-                        });*/
-                
-              
-
-                               
+                        });*/                               
             },
             error: function (data) {
                 var errHTML="";

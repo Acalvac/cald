@@ -1,3 +1,4 @@
+
 <div class="box-header" id="capa">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -8,7 +9,7 @@
 
         <div class="navbar-form navbar-right pull-rigth">                    
                         <div class="input-group">
-                            <select  id="select_filtro_rol" class="form-control select2" data-live-search="true"  onchange="buscarusuario();" >
+                            <select  id="select_filtro_rol" class="select2-search-choice-close" data-live-search="true"  onchange="buscarusuario();" >
                                 <?php  if(isset($rolsel)){ 
                                     $listadopais=$rolsel->name; 
                                     $optsel= '<option value="'.$rolsel->id.'">'.$rolsel->name.' </option>';
@@ -35,8 +36,7 @@
                         </div>
         </div>           
     </div>
-
-                            </div>
+</div>
 
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 
@@ -56,6 +56,8 @@
                 }   
             });
         });
+                $(".select2").select2();
+
     </script>
 
 

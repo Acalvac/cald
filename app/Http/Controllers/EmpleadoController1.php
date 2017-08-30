@@ -19,6 +19,11 @@ use DB;
 
 class EmpleadoController1 extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         $empleado = Persona::all()->where('idtipopersona','=','1');
@@ -158,7 +163,6 @@ class EmpleadoController1 extends Controller
             $empleado = Empleado::find($idempleado->idempleado);
 
             $empleado-> fechainicio = $fechainicio;
-
             $empleado-> tarjetasalud=$request->get('tarjetasalud');
             $empleado-> salario=$request->get('salario');
             $empleado-> idpuesto=$request->get('idpuesto');
@@ -173,6 +177,24 @@ class EmpleadoController1 extends Controller
         }
 
         return json_encode($empleado);
+    }
+
+    public function show($id)
+    {
+        $detalle = DB::table('persona as per')
+        ->join('empleado as emp','per.idpersona','=','emp.idpersona')
+        ->select('emp.idempleado','per.nombre','per.apellido','per.dpi','per.nit','per.direccion','per.telefono','per.correo','per.estadocivil','per.fechanacimiento')
+        ->where('per.idpersona','=',$id)
+        ->first();
+
+        $tramite = DB::table('tramite as tra')
+        ->join('empleado as emp','tra.idempleado','=','emp.idempleado')
+        ->join('tipoantecedente as tip','tra.idtipoantecedente','=','tip.idtipoantecedente')
+        ->select('tra.idtramite','tip.nombreantecedente','tra.fechavencimiento')
+        ->where('tra.idempleado','=',$detalle->idempleado)
+        ->get();
+
+        return view('empleado.detalle',["detalle"=>$detalle,"tramite"=>$tramite]);        
     }
 
     public function delate()

@@ -49,21 +49,23 @@ Route::group(['prefix'=>'paciente'], function(){
 // se agrega todas las rutas del medicamento, proveedor entre otros
 Route::group(['prefix'=>'medicamento'], function(){
 
-	Route::get('add', function () {
-    	return view('');
-	});
+	Route::get('add','MedicamentoController@add');
+	Route::post('store','MedicamentoController@store');
+	Route::get('compra/add','CompraController@add');
+	Route::get('compra/store','CompraController@store');
+	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
 // se agrega toda las rutas del empleado
 Route::group(['prefix'=>'empleado'], function(){
 	Route::get('index','EmpleadoController1@index');
-	//Route::get('add','EmpleadoController1@add');
 	Route::get('add','EmpleadoController1@add');
 
 	Route::post('store','EmpleadoController1@store');
 	Route::get('edit/{id}','EmpleadoController1@edit');
 	Route::post('update/{id}','EmpleadoController1@update');
 	Route::post('delete','EmpleadoController1@modal');
+	Route::get('show{id}','EmpleadoController1@show');
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
@@ -82,6 +84,8 @@ Route::group(['prefix'=>'seguridad'], function(){
 	Route::post('crear_rol', 'UController@crear_rol');
 	Route::get('/logout', 'Auth\LoginController@logout');
 	Route::get('/{slug?}','HomeController@index');
+	//Rutas del Rol
+	Route::get('rol/index','RolController@index');
 });
 
 
