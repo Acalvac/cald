@@ -17,17 +17,24 @@ class CBienhechor extends Controller
 {
     public function index(Request $request)
     {
-    	$bienhechor=DB::table('persona as p')
-    	->join('status as sts','p.idstatus','=','sts.idstatus')
-    	->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
-    	->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo','sts.nombre as snombre')
- 		//->where('sts.nombre','=','Activo')
- 		->where('tp.idtipopersona','=',2)
- 		->paginate(15);
+        if ($request)
+        {
+            $query=trim($request->get('searchText'));
+        	$bienhechor=DB::table('persona as p')
+        	->join('status as sts','p.idstatus','=','sts.idstatus')
+        	->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
+        	->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo','sts.nombre as snombre')
+     		//->where('sts.nombre','=','Activo')
+     		//->where('tp.idtipopersona','=',2)
+            //->orwhere('p.nombre','LIKE','%'.$query.'%')
+     		->where('p.idstatus','=',4)
+            ->where('p.nombre','LIKE','%'.$query.'%')
+            ->paginate(15);
 
- 		$tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
-        $donacion=DB::table('tipodonacion as td')->get();
- 		return view('bienechor.index',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion]);
+     		$tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
+            $donacion=DB::table('tipodonacion as td')->get();
+        }
+ 		return view('bienechor.index',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion,"searchText"=>$query]);
     }
     public function detallesb(Request $request,$id)
     {
@@ -92,7 +99,7 @@ class CBienhechor extends Controller
     	$bienhe-> idtipopersona=$request->get('tipopersona');
     	$bienhe-> nit=$request->get('nit');
     	$bienhe-> correo=$request->get('correo');
-    	$bienhe-> idstatus='1';
+    	$bienhe-> idstatus='4';
         $bienhe-> permanente=$request->get('tipobienhechor');
         $bienhe->save();
         //dd($bienhe);
@@ -109,7 +116,7 @@ class CBienhechor extends Controller
         $bienhe-> idtipopersona=$request->get('tipopersona');
         $bienhe-> nit=$request->get('nit');
         $bienhe-> correo=$request->get('correo');
-        $bienhe-> idstatus='1';
+        $bienhe-> idstatus='4';
         $bienhe-> permanente=$request->get('tipobienhechor');
         $bienhe->save();
         return response()->json($bienhe);
@@ -149,6 +156,15 @@ class CBienhechor extends Controller
         $donar-> descripcion=$request->get('observaciones');
         $donar->save();
         return response()->json($donar);
+    }
+
+    public function deletebi($id)
+    {
+        $st=Persona::findOrFail($id);
+        $st-> idstatus='5';
+        $st->update();
+        return response()->json($st);
+        //return Redirect::to('empleado/listadoen');
     }
 
     public function validabienhechor($request){
