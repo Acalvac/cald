@@ -8,8 +8,8 @@
     <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
 
     <!-- Sweet Alert -->
-    <link href="{{asset('assets/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
-
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
     @endsection
 
@@ -164,7 +164,7 @@
                         </div>
 
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                            <table id="detalles" class="table table-striped table-bordered table-hover">
                                 <thead style="background-color:#A9D0F5">
                                     <tr>
                                         <th>Opciones</th>
@@ -172,11 +172,6 @@
                                         <th>Fecha Vencimiento</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tfoot>
                                 <tbody></tbody>
                             </table>
                         </div>
@@ -239,9 +234,11 @@
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
     <script src="{{asset('assets/js/empleado/persona.js')}}"></script>
-
+    <script src="{{asset('assets/js/validacion.js')}}"></script>
+    
     <!-- Sweet alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
     <script>
         $(document).ready(function() {

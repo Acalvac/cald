@@ -94,10 +94,10 @@
                         </div>
                     </form>
 
-                    <script type="text/javascript">
+<script type="text/javascript">
                         var cont = 0;
 
-function agregar(){
+    function agregar(){
 
         idrol =$("#idrol option:selected").val(); 
         rol =$("#idrol option:selected").text();
@@ -119,4 +119,4 @@ function agregar(){
        $("#rol" + index).remove();
        cont--;
    }
-                    </script>
+</script>

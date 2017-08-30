@@ -46,9 +46,11 @@
                                         <td>{{$em->telefono}}</td>
                                         <td>{{$em->correo}}</td>
                                         <td>
-
-                                            <button class="btn btn-primary btn-md btndb" title="Detalles" value="{{$em->idpersona}}"><i class="fa fa-address-card"></i></button>
-                                            <button class="btn  btn-warning btn-md btneditb" title="Editar" value="{{$em->idpersona}}"><i class="fa fa-pencil"></i></button>
+                                            <a href="{{URL::action('EmpleadoController1@show',$em->idpersona)}}">
+                                            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles" value="{{$em->idpersona}}"><i class="fa fa-address-card"></i></button>
+                                            </a>
+                                            <a href="{{URL::action('EmpleadoController1@edit',$em->idpersona)}}">
+                                            <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar" value="{{$em->idpersona}}"><i class="fa fa-pencil"></i></button></a>
                                             <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$em->idpersona}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>
@@ -70,6 +72,7 @@
 
 @section('fin')
     @parent
+
 
     <script type="text/javascript">
         $(document).ready(function(){

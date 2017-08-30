@@ -1,4 +1,4 @@
-<div class="col-lg-12" id="listadoEmp">
+<div class="col-lg-12" id="modales">
     <div class="modal fade" id="formModalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

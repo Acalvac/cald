@@ -13,6 +13,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="cache-control" content="max-age-0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store"/>
+    <meta http-equiv="cache-control" content="must-revalidate"/>
+    <meta http-equiv="expieres" content="0"/>
+    <meta http-equiv="expieres" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+
 
     <title>HNMHP</title>
 
@@ -28,9 +36,22 @@
 
     <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" />
+
+       <!-- Sweet Alert -->
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Date Picker-->
+
+    <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+
+
     @show
 </head>
 
+<!--<body class="md-skin">-->
 <body>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -56,7 +77,7 @@
                             HNMHP
                         </div>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a>
                     </li>
                     
@@ -71,8 +92,10 @@
                     <li>
                         <a href="#"><i class="fa fa-medkit"></i> <span class="nav-label">Medicamentos</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">Ingreso de medicamento</a></li>
-                            <li><a href="graph_morris.html">Ingreso de proveedores</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(2);">Ingreso medicamento</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(3);">Ingreso Inventario</a></li>
+
+                            <li><a href="graph_morris.html">Ingreso Proveedores</a></li>
                         </ul>
                    
                     </li>
@@ -98,6 +121,7 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{url('/seguridad/index')}}">Listado</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(1);">Ingreso Usuario</a></li>
+                            <li><a href="{{url('/seguridad/rol/index')}}">Listado Rol</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -156,7 +180,8 @@
         </div>
     </div>
 
-    @include('seguridad.usuario.create')
+
+    <div id="modales"></div>
     
 
     <input type="hidden"  id="url_raiz_proyecto" value="{{ url("/") }}" />

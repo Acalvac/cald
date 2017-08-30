@@ -30,8 +30,15 @@ use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
 use Intervention\Image\Facades\Image as Image;
 
+
+
 class UController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function contenedor(Request $request)
     {
         return view('seguridad.usuario.contenedor');
@@ -39,13 +46,11 @@ class UController extends Controller
     public function index(Request $request)
     {
       
-            $usuarios = User::name($request->get('name'))->orderBy('id','DESC')->paginate(15);
-            $roles=Role::all();
-            $persona=Persona::all();
+        $usuarios = User::name($request->get('name'))->orderBy('id','DESC')->paginate(15);
+        $roles=Role::all();
+        $persona=Persona::all();
 
-            return view('seguridad.usuario.index',compact('usuarios','roles','persona'));  
-
-
+        return view('seguridad.usuario.index',compact('usuarios','roles','persona'));  
     }
 
     public function buscar_usuarios($rol,$dato="")
@@ -65,11 +70,8 @@ class UController extends Controller
         $role=Role::all();
         $persona = DB::table('persona as per')->select('per.nombre','per.apellido','per.idpersona')->where('per.idtipopersona','=',1)->get();
 
-        return view("seguridad.usuario.modalcreate",array('usuario'=>$usuario,'persona'=>$persona,'role'=>$role));
+        return view("seguridad.usuario.create",array('usuario'=>$usuario,'persona'=>$persona,'role'=>$role));
         //return view('seguridad.usuario.modalcreate',['usuario'=>$usuario,'persona'=>$persona]);
-
-
-
     }
      
 
@@ -171,20 +173,39 @@ class UController extends Controller
     	return Redirect::to('seguridad/usuario');
     }
 
-    public function cambiar_password(Request $request){
-        $this->validateRequestPassword($request);
-        $id=$request->get('idusuario');
+    public function cambiarclave($id,$password){
         $usuario=User::find($id);
-        $password=$request->input("password");
         $usuario->password=bcrypt($password);
         $r=$usuario->save();
 
         if($r){
-            return response()->json($usuario);
+            $calculo[] = "Se modifico la clave";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
         }
         else
         {
-            return view("mensajes.msj_rechazado")->with("msj","Error al actualizar el password");
+            $calculo[] = "error";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
+        }
+    }
+
+    public function cambiarname($id,$name){
+        $usuario=User::find($id);
+        $usuario->name =$name;
+        $r=$usuario->save();
+
+        if($r){
+            $calculo[] = "Se modifico el usuario".' '.$usuario->name;
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
+        }
+        else
+        {
+            $calculo[] = "error";
+            $usuario = Collection::make($calculo);
+            return json_encode ($usuario);
         }
     }
 }

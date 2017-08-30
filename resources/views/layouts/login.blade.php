@@ -6,6 +6,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="cache-control" content="max-age-0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store"/>
+    <meta http-equiv="cache-control" content="must-revalidate"/>
+    <meta http-equiv="expieres" content="0"/>
+    <meta http-equiv="expieres" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+
     <title>Inicio</title>
 
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
