@@ -1,11 +1,11 @@
-<form role="form" id="formAgregarMedicamento">
+<form role="form" id="formAgregarCompra">
         <div class="modal-header">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Medicamento</label>
                 <select  id="idmedicamento" class="form-control select2" data-live-search="true">
                 @if (isset($medicamento))
                     @foreach($medicamento as $med)
-                        <option value="{{$med->idmedicamento}}">{{$med->medicamento}}</option>
+                        <option value="{{$med->idmedicamento}}">{{$med->medicamento.' '. $med->marca.' '.$med->tipomedic}}</option>
                     @endforeach
                 @endif
                 </select>
@@ -13,7 +13,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="divENF">
                 <label>Proveedor</label>
-                <select id="proveedor" class="form-control select2" data-live-search="true">
+                <select id="idproveedor" class="form-control select2" data-live-search="true">
                 @if (isset($proveedor))
                 @foreach($proveedor as $pro)
                     <option value="{{$pro->idproveedor}}">{{$pro->proveedor}}</option>
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label class="control-label">Fecha compra</label>
                     <div class="input-group date">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="buy_date" type="text" class="form-control" value="dd/mm/yyyy">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="buy_date" type="text" class="form-control" placeholder="dd/mm/yyyy">
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label class="control-label">Fecha vencimiento</label>
                     <div class="input-group date">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="expiration_date" type="text" class="form-control" value="dd/mm/yyyy">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="expiration_date" type="text" class="form-control" placeholder="dd/mm/yyyy">
                     </div>
                 </div>
             </div>

@@ -64,6 +64,8 @@ class UController extends Controller
             ->with("roles", $roles );       
     } 
 
+    
+
     public function add()
     {
         $usuario = user::all();

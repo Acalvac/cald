@@ -6,9 +6,28 @@ use Illuminate\Http\Request;
 use App\Marca;
 use App\TipoMedicamento;
 use App\Medicamento;
-
+use DB;
 class MedicamentoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    public function index()
+    {
+        return view('medicamento.medicamento.index');
+    }
+
+    public function medicamento()
+    {
+        $medicamentos = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
+        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
+        ->paginate(15);
+        return view('medicamento.medicamento.medicamentos',["medicamentos"=>$medicamentos]);
+    }
     public function add(Request $request)
     {
 

@@ -11,7 +11,7 @@
         <li class="active" data-toggle="tab" aria-expanded="false">
             <a data-toggle="tab" aria-expanded="false" onclick="cargar_formulario(4);">
                 <span class="visible-xs"><i class="md md-perm-contact-cal"></i></span>
-                <span class="hidden-xs">Listado de empleados</span>
+                <span class="hidden-xs">Empleado</span>
             </a>
         </li>
     </ul>
@@ -22,7 +22,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     @include('empleado.searchempleado')
                     </div>
-                    <div><br></div>   
+                      
                 </div>
                 <div><br></div>            
         

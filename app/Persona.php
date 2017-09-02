@@ -26,4 +26,11 @@ class Persona extends Model
     	'idstatus',
         'permanente',
     ];
+
+    public function scopePersona($query,$dato="")
+    {
+        return $query->where('nombre','like','%'.$dato.'%')
+            ->orwhere('apellido','like','%'.$dato.'%')
+            ->orwhere(\DB::raw("CONCAT(nombre,' ',apellido)"),'like','%'.$dato.'%');
+    }
 }
