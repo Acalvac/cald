@@ -78,7 +78,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a>
+                        <a href="{{ url('/home')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a>
                     </li>
                     
                     <li>
@@ -175,8 +175,8 @@
             <div class="row">
                 <div class="wrapper wrapper-content">
                     @yield('contenido')
-                        <div id="capa_modal" class="div_modal" ></div>
-                        <div id="capa_formularios" class="div_contenido" "></div>
+                    <div id="capa_modal" class="div_modal" ></div>
+                    <div id="capa_formularios" class="div_contenido" "></div>
                     
                 </div>
 

@@ -5,29 +5,42 @@
                 <input type="text" id="medicamento" class="form-control" placeholder="">
             </div>
         </div>
-
         <div class="modal-header">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                <label>Marca</label>
-                <select id="idmarca" class="form-control select2" data-live-search="true">
-                @if (isset($marca))
-                    @foreach($marca as $mar)
-                        <option value="{{$mar->idmarca}}">{{$mar->marca}}</option>
-                    @endforeach
-                @endif
-                </select>
+
+          
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="marca" class="col-md-2 control-label">Marca</label>
+                <div class="col-md-6">
+                        <select id="idmarca" class="form-control select2" data-live-search="true">
+                        @if (isset($marca))
+                            @foreach($marca as $mar)
+                                <option value="{{$mar->idmarca}}">{{$mar->marca}}</option>
+                            @endforeach
+                        @endif
+                        </select>
+                </div>
+                <div class="col-md-4"><button>nuevo</button></div>
             </div>
 
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="divENF">
-                <label>Tipo</label>
-                <select id="idtipo" class="form-control select2" data-live-search="true">
-                @if (isset($tipomedicamento))
-                @foreach($tipomedicamento as $tip)
-                    <option value="{{$tip->idtipo}}">{{$tip->tipomedic}}</option>
-                @endforeach
-                @endif
-                </select>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div><br></div>
+
+                <label class="col-lg-2">Tipo</label>
+                <div class="col-md-6">
+                    <select id="idtipo" class="form-control select2" data-live-search="true">
+                    @if (isset($tipomedicamento))
+                    @foreach($tipomedicamento as $tip)
+                        <option value="{{$tip->idtipo}}">{{$tip->tipomedic}}</option>
+                    @endforeach
+                    @endif
+                    </select>
+                </div>
+                                <div class="col-md-4"><button>nuevo</button></div>
+
             </div>
+
+            
         </div>
     </form>
 <script type="text/javascript">

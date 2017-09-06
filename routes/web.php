@@ -15,11 +15,15 @@ Route::get('/', function () {
     return view('auth/login');
 });
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/home', 'HomeController@index');
-
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/', 'HomeController@index');
+	Route::get('/home', 'HomeController@index');
+	Route::get('/{slug?}','HomeController@index');
+
+});
 
 
 // se agrega todas las rutas del bienechor, donaciones entre otros
@@ -49,15 +53,26 @@ Route::group(['prefix'=>'paciente'], function(){
 
 // se agrega todas las rutas del medicamento, proveedor entre otros
 Route::group(['prefix'=>'medicamento'], function(){
+	//Medicamento
 	Route::get('index','MedicamentoController@index');
 	Route::get('medicamentoindex','MedicamentoController@medicamento');
 	Route::get('add','MedicamentoController@add');
 	Route::post('store','MedicamentoController@store');
+	//Compra
 	Route::get('compra/index','CompraController@index');
 	Route::get('compra/compraindex','CompraController@compra');
 	Route::get('compra/add','CompraController@add');
 	Route::post('compra/store','CompraController@store');
+	//Proveedor
 	Route::get('proveedor/index','ProveedorController@index');
+
+	//Marca
+	Route::get('marca/index','MarcaController@index');
+	Route::get('marca/add','MarcaController@add');
+
+	//Tipo Medicamento
+	Route::get('tipo/index','TipoMedicamentoController@index');
+	Route::get('tipo/add','TipoMedicamentoController@add');
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
