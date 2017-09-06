@@ -1,7 +1,3 @@
-@extends ('layouts.index')
-
-@section('estilos')
-    @parent
 
 
     <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
@@ -11,16 +7,15 @@
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
-    @endsection
-
-@section ('contenido')
 
 
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
-        <div class="box-header with-border my-box-header">
-            <h2 class="box-title"><strong>Agregar nuevo empleado</strong></h2>
-        </div>
+        <h4 class="box-title" align="center">Nuevo Empleado</h4> 
+        <a href="javascript:void(0);" onclick="cargarindex(1);">
+            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Listado Empleado"><i class="fa fa-arrow-circle-left"></i></button>
+        </a>
+        <hr style="border-color:black;"/>
 
                 <div class="panel-body">
                     <div class="row">
@@ -223,12 +218,7 @@
     </div>
 </div>
 
-@include('seguridad.usuario.create')
 
-@endsection
-
-@section('fin')
-    @parent
 
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
@@ -276,4 +266,3 @@
     </script>
 
 
-@endsection

@@ -19,13 +19,12 @@
     </div>
     
 
-    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
     <script type="text/javascript"> 
 
     var $ = jQuery;
     $(document).ready(function() {
 
-            $(".select2").select2();
 
             $('#searchText').keypress(function(e){   
                if(e.which == 13){      

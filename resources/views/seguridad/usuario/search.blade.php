@@ -4,7 +4,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
         <div class="navbar-form navbar-left pull-left">
-            <button class="btn btn-primary btn-addB" title="Nuevo usuario" onclick="cargarmodalempleado(1);">Nuevo Usuario</button>
+            <button class="btn btn-primary btn-addB" title="Nuevo usuario" onclick="cargarmodalempleado(1);">Nuevo</button>
         </div>
 
         <div class="navbar-form navbar-right pull-rigth">                    

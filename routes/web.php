@@ -57,6 +57,7 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get('compra/compraindex','CompraController@compra');
 	Route::get('compra/add','CompraController@add');
 	Route::post('compra/store','CompraController@store');
+	Route::get('proveedor/index','ProveedorController@index');
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
@@ -69,7 +70,7 @@ Route::group(['prefix'=>'empleado'], function(){
 	Route::get('edit/{id}','EmpleadoController1@edit');
 	Route::post('update/{id}','EmpleadoController1@update');
 	Route::post('delete','EmpleadoController1@modal');
-	Route::get('show{id}','EmpleadoController1@show');
+	Route::get('show/{id}','EmpleadoController1@show');
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
 

@@ -92,15 +92,16 @@ function borrar_rol(idrol){
 }
 
 function buscarusuario(){
+  var urlraiz=$("#url_raiz_proyecto").val();
   var rol=$("#select_filtro_rol").val();
   var dato=$("#dato_buscado").val();
   if(dato == "")
   {
-    var url="buscar_usuarios/"+rol+"";
+    var url=urlraiz+"/seguridad/buscar_usuarios/"+rol+"";
   }
   else
   {
-    var url="buscar_usuarios/"+rol+"/"+dato+"";
+    var url=urlraiz+"/seguridad/buscar_usuarios/"+rol+"/"+dato+"";
   }
 
   $("#contentsecundario").html($("#cargador_empresa").html());

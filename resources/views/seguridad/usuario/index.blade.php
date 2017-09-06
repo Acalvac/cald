@@ -1,21 +1,16 @@
-@extends ('layouts.index')
 
-@section('estilos')
-    @parent
         <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> 
-    @endsection
-
-@section ('contenido')
+   
 
 <div class="tabs-container">
-    <ul class="nav nav-tabs">
+    <!--<ul class="nav nav-tabs">
         <li class="active" data-toggle="tab" aria-expanded="false">
-            <a data-toggle="tab" aria-expanded="false" onclick="cargar_formulario(4);">
+            <a data-toggle="tab" aria-expanded="false">
                 <span class="visible-xs"><i class="md md-perm-contact-cal"></i></span>
                 <span class="hidden-xs">Listado de usuarios</span>
             </a>
         </li>
-    </ul> 
+    </ul> -->
     <div class="tab-content" id="contentsecundario">
         <div id="tab-1" class="tab-pane active">
             <div class="panel-body">
@@ -84,10 +79,7 @@
 </div>
 
 
-@endsection
 
-@section('fin')
-    @parent
     	<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     	    <script type="text/javascript">
         document.getElementById('dato_buscado').focus();
@@ -107,4 +99,3 @@
 
     </script>
 
-@endsection

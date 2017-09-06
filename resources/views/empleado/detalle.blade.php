@@ -1,17 +1,12 @@
-@extends ('layouts.index')
-
-@section('estilos')
-    @parent
         <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
         <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
         <link href="{{asset('assets/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css" />
-    @endsection
 
-@section ('contenido')
 <div class="tabs-container" id="contentsecundario">
 	<div class="row">
 	    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-	    <h3 class="text-center">Datos del empleado</h3>
+            <h3 class="box-title" align="center">Datos del empleado</h3>
+            <hr style="border-color:black;"/>
 	        <h4><strong>Nombre Empleado:</strong>&nbsp;&nbsp;&nbsp;{{$detalle->nombre.' '.$detalle->apellido}}</h4>
 	        <h4><strong>Teléfono:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$detalle->telefono}}</h4>
 	        <h4><strong>Correo electronico:</strong>&nbsp;&nbsp;&nbsp;{{$detalle->correo}}</h4>
@@ -25,6 +20,13 @@
 	        
 	    </div>
 	</div>
+
+    <div class="row">
+                <a href="javascript:void(0);" onclick="cargarindex(1);">
+            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Listado Empleado"><i class="fa fa-arrow-circle-left"></i></button>
+        </a>
+
+    </div>
     <!--
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -135,12 +137,9 @@
         </div>
       </div>
     </div>
-@endsection
 
-@section('fin')
 <meta name="_token" content="{!! csrf_token() !!}" />
 
-@parent
 <script src="{{asset('assets/js/bienhechor/donacion.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
@@ -166,5 +165,4 @@
              });
     });
 </script>
-@endsection
 
