@@ -10,7 +10,7 @@
 
             $(document).on('click','.btneditb',function(){
                 var idb=$(this).val();
-                var miurl="listarupbienhe";
+                var miurl="/bienhechor/listarupbienhe";
                 $.get(miurl+'/'+ idb,function(data){
                     $('#idb').val(data.idpersona);
                     $('#nombreb').val(data.nombre);
@@ -50,13 +50,13 @@
                 if (state == "addb") 
                     {
                         type="POST";
-                        miurl = 'add';
+                        miurl = '/bienhechor/add';
                     }
 
                 if (state == "up") 
                     {
                         type="PUT";
-                        miurl='upbienhe/'+idb;
+                        miurl='/bienhechor/upbienhe/'+idb;
                     }
 
                 $.ajax({
@@ -70,7 +70,7 @@
                             item += '<td>'+data.idpersona+'</td>';
                             item += '<td>'+data.nombre+' '+data.apellido+'</td>'+'<td>' +data.direccion+ '</td>'+'<td>'+data.telefono+'</td>'+'<td>'+data.correo+'</td>';
                             item += '<td><button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="'+data.idpersona+'"><i class="fa fa-heart"></i></button>';
-                            item += '<button class="btn btn-primary btn-md btndb" value="'+data.idpersona+'" title="Detalles"><i class="fa fa-address-card"></i></button>';
+                            item += '<a href="javascript:void(0);" onclick="detalle(20,'+data.idpersona+');"><button class="btn btn-primary btn-md" title="Detalles"><i class="fa fa-address-card"></i></button></a>';
                             item += '<button class="btn  btn-warning btn-md btneditb" title="Editar" value="'+data.idpersona+'"><i class="fa fa-pencil"></i></button>';
                             item += '<button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="'+data.idpersona+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
                             //<a c>
@@ -91,7 +91,7 @@
                               buttonsStyling: false
                             }).then(function () {
                                 var idbi=data.idpersona;
-                                var miurl="listarbienhe";
+                                var miurl="/bienhechor/listarbienhe";
                                 $.get(miurl+'/'+ idbi,function(data){
                                     $('#idbi').val(data.idpersona);
                                     $('#nombreD').val(data.nombre+' '+data.apellido);
@@ -146,7 +146,7 @@
         $("#observaciones").val("");
 
         var idbi=$(this).val();
-        var miurl="listarbienhe";
+        var miurl="/bienhechor/listarbienhe";
         $.get(miurl+'/'+ idbi,function(data){
             $('#idbi').val(data.idpersona);
             $('#nombreD').val(data.nombre+' '+data.apellido);
@@ -161,7 +161,7 @@
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
-        var miurl="addonativo";
+        var miurl="/bienhechor/addonativo";
         var type="POST";
         var formData = {
                 fechadona:$("#fechadona").val(),
@@ -204,7 +204,7 @@
 //Detalles de bienhechor
     $(document).on('click','.btndb',function(){
         var idbi=$(this).val();
-        location.href="listardetallesb/"+idbi;
+        location.href="/bienhechor/listardetallesb/"+idbi;
 
     });
 //Eliminar un bienhechor

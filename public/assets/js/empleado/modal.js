@@ -6,6 +6,9 @@ function cargarmodalempleado(arg){
   	if(arg==3){var miurl=urlraiz+"/medicamento/compra/add"; var titulo="Nuevo ingreo de medicamento" ; }
   	if(arg==4){var miurl=urlraiz+"/medicamento/marca/add"; var titulo="Nuevo ingreo de una marca"; $('#nuevomarca').val('add');}
 
+
+
+
   	console.log($('#nuevomarca').val());
 
 	var errHTML="";
@@ -60,7 +63,8 @@ function cargarindex(arg){
 	if(arg==5){var miurl=urlraiz+"/medicamento/compra/index";}
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/index";}
 
- 
+	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
+ 	
     $.ajax({
     url: miurl
     }).done( function(resul) 
@@ -102,6 +106,8 @@ function detalle(arg,id)
 	if(arg==2){var miurl=urlraiz+"/empleado/add";}
 	if(arg==3){var miurl=urlraiz+"/seguridad/index";}
 
+
+	if(arg==20){var miurl=urlraiz+"/bienhechor/listardetallesb/"+id+"";}
 	$.ajax({
 		url: miurl
     }).done( function(resul) 

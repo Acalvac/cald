@@ -3,7 +3,7 @@ $(document).on('click','.btn-addDB',function(){
     $("#cantidad").val("");
     $("#observaciones").val("");
     var idbi=$(this).val();
-    var miurl="listarbienhe";
+    var miurl="/bienhechor/listarbienhe";
     $.get(miurl+'/'+ idbi,function(data){
         $('#idbi').val(data.idpersona);
         $('#nombreD').val(data.nombre+' '+data.apellido);
@@ -15,7 +15,8 @@ $(document).on('click','.btn-addDB',function(){
 
 $(document).on('click','.btneditdb',function(){
                 var idb=$(this).val();
-                var miurl="listarupdonativo";
+                var miurl="/bienhechor/listardetallesb/listarupdonativo";
+                //  Route::put('listardetallesb/updonativo/{id}','CBienhechor@updonativo');
                 $.get(miurl+'/'+ idb,function(data){
                 	$('#iddona').val(data.idbienhechor);
                     $('#fechadona').val(data.fechadonacion);
@@ -125,13 +126,13 @@ $(document).on('click','.btneliminardb',function(){
         if (state == "add") 
             {
                 type="POST";
-                miurl = 'addonativo';
+                miurl = '/bienhechor/addonativo';
             }
 
         if (state == "upd") 
             {
                 type="PUT";
-                miurl='updonativo/'+idbd;
+                miurl='/bienhechor/updonativo/'+idbd;
             }
          tipodonativo=$("#tipodonativo option:selected").text(),
         $.ajax({

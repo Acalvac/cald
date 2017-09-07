@@ -38,7 +38,7 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::get('listardetallesb/listarbienhe/{id1}','CBienhechor@listarbienhe');
 	Route::get('listardetallesb/listarupdonativo/{id}','CBienhechor@listarupdonativo');
 	Route::post('listardetallesb/addonativo','CBienhechor@addonativos');
-	Route::put('listardetallesb/updonativo/{id}','CBienhechor@updonativo');
+	Route::put('updonativo/{id}','CBienhechor@updonativo');
 	Route::put('deletebi/{id}','CBienhechor@deletebi');
 	
 });

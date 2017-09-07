@@ -1,15 +1,9 @@
-@extends ('layouts.index')
 
-@section('estilos')
-    @parent
         <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
         <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 
-    @endsection
-
-@section ('contenido')
 
     <div class="tabs-container" id="contentsecundario">
  
@@ -53,7 +47,9 @@
                                         <td>{{$em->correo}}</td>
                                         <td>
                                             <button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="{{$em->idpersona}}"><i class="fa fa-heart fa-plus-circle"></i></button>
-                                            <button class="btn btn-primary btn-md btndb" title="Detalles" value="{{$em->idpersona}}"><i class="fa fa-address-card"></i></button>
+
+                                             <a href="javascript:void(0);" onclick="detalle(20,{{$em->idpersona}});"><button class="btn btn-primary btn-md" title="Detalles" ><i class="fa fa-address-card"></i></button></a>
+
                                             <button class="btn  btn-warning btn-md btneditb" title="Editar" value="{{$em->idpersona}}"><i class="fa fa-pencil"></i></button>
                                             <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$em->idpersona}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
@@ -226,12 +222,9 @@
         </div>
       </div>
     </div>
-@endsection
 
-@section('fin')
 <meta name="_token" content="{!! csrf_token() !!}" />
 
-@parent
 <script src="{{asset('assets/js/bienhechor/bienhechor.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
@@ -258,7 +251,7 @@
              });
     });
 </script>
-@endsection
+
 
 
 

@@ -1,15 +1,9 @@
 
-@extends ('layouts.index')
-
-@section('estilos')
-    @parent
         <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
         <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
-    @endsection
 
-@section ('contenido')
 <div class="tabs-container" id="contentsecundario">
 	<div class="row">
 	    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -143,12 +137,9 @@
         </div>
       </div>
     </div>
-@endsection
 
-@section('fin')
 <meta name="_token" content="{!! csrf_token() !!}" />
 
-@parent
 <script src="{{asset('assets/js/bienhechor/donacion.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
@@ -175,5 +166,5 @@
              });
     });
 </script>
-@endsection
+
 
