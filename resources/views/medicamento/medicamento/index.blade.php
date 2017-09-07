@@ -4,6 +4,9 @@
             <div class="panel-body">
                 <div class="tab-pan active" id="contentsecundario">
                     @if(isset($medicamentos))
+
+                    @if(count($medicamentos) > 0)
+
                     <h4 class="box-title" align="center">Listado Medicamento</h4>
                     <hr style="border-color:black;"/>
 
@@ -40,6 +43,7 @@
                     </div>
                     @else
                         <br><div class="rechazado"><label style='color:#FA206A'>..No se ha encontrado ningun medicamento</label></div>
+                    @endif
                     @endif
                 </div>
             </div>

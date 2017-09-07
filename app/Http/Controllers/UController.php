@@ -30,7 +30,10 @@ use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
 use Intervention\Image\Facades\Image as Image;
 
+/* 
+INSERT INTO `usuario` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `idpersona`, `estado`) VALUES(NULL,'Admin', 'admin@gmail.com','$2y$10$rSx2gd/BOl9/.waAXsfiLeVPTVwxNm.HRtZ2hZ0JfZ.JTtd/p1zxO','Z1W3F1iPRlOvax1KhE5RgiPmABv507npI2wBticUHeKBNEbiBFZ8OoeyXBhh', '2017-05-26 20:12:20', '2017-05-23 13:49:32','null','1');
 
+INSERT INTO `usuario` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `estado`, `idpersona`) VALUES (NULL, 'admin', 'admin@gmail.com', '$2y$10$rSx2gd/BOl9/.waAXsfiLeVPTVwxNm.HRtZ2hZ0JfZ.JTtd/p1zxO', NULL, CURRENT_TIMESTAMP, '0000-00-00 00:00:00.000000', b'1', NULL);*/
 
 class UController extends Controller
 {

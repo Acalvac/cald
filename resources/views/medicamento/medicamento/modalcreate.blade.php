@@ -19,9 +19,6 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                 <button type="button" >fsd</button>
-                <li><a href="javascript:void(0);" onclick="cargarmodal(4);">Ingreso Marca</a></li>
-
                     <a href="javascript:void(0);" onclick="cargarmodal(4);">
 
                         <button type="button" class="btn btn-primary btn-md " id="nuevomarca" title="Nueva marca" value=""><i class="fa fa-plus-square"></i></button>

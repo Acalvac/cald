@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="btnGuardarMarca">Guardar</button>
+                        <button type="button" class="btn btn-primary btn-btnGuardarMarca" id="btnGuardarMarca">Guardar</button>
                     </div>
                 </div>
             </div>

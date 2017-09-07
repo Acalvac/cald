@@ -4,6 +4,8 @@
             <div class="panel-body">
                 <div class="tab-pan active" id="contentsecundario">
                     @if(isset($proveedores))
+                    @if(count($proveedores) > 0)
+
                         <h4 class="box-title" align="center">Listado Proveedores</h4>
                         <hr style="border-color:black;"/>
                         
@@ -47,7 +49,8 @@
                     </div>
                 </div>
                     @else
-                        <br><div class="rechazado"><label style='color:#FA206A'>..No se ha encontrado ninguna compra</label></div>
+                        <br><div class="rechazado"><label style='color:#FA206A'>..No se ha encontrado ningun proveedor</label></div>
+                    @endif
                     @endif
                 </div>
             </div>

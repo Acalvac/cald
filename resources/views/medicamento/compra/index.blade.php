@@ -4,12 +4,14 @@
             <div class="panel-body">
                 <div class="tab-pan active" id="contentsecundario">
                     @if(isset($compras))
+
+                    @if(count($compras) > 0)
+
                     <h4 class="box-title" align="center">Listado Compra Medicamento</h4>
                     <hr style="border-color:black;"/>
 
-                        
-                        <div class="ibox-content" style="border-color:black;">
-                            <div class="table-responsive">
+                    <div class="ibox-content" style="border-color:black;">
+                        <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                         <th style="width: 5%">Id</th>
@@ -42,14 +44,14 @@
                                             <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$com->idcompra}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-
-                        </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
                     @else
                         <br><div class="rechazado"><label style='color:#FA206A'>..No se ha encontrado ninguna compra</label></div>
+                    @endif
                     @endif
                 </div>
             </div>

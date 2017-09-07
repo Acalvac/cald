@@ -56,7 +56,7 @@ class MarcaController extends Controller
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nueva marca'),404);
         }
-        return json_encode($medicamento);    
+        return json_encode($marca);    
     }
 
      public function validateRequest($request){                
