@@ -69,7 +69,7 @@
                         var item = '<tr class="even gradeA" id="bien'+data.idpersona+'">';
                             item += '<td>'+data.idpersona+'</td>';
                             item += '<td>'+data.nombre+' '+data.apellido+'</td>'+'<td>' +data.direccion+ '</td>'+'<td>'+data.telefono+'</td>'+'<td>'+data.correo+'</td>';
-                            item += '<td><button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="'+data.idpersona+'"><i class="fa fa-heart"></i></button>';
+                            item += '<td><button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="'+data.idpersona+'"><i class="fa fa-heart fa-plus-circle"></i></button>';
                             item += '<a href="javascript:void(0);" onclick="detalle(20,'+data.idpersona+');"><button class="btn btn-primary btn-md" title="Detalles"><i class="fa fa-address-card"></i></button></a>';
                             item += '<button class="btn  btn-warning btn-md btneditb" title="Editar" value="'+data.idpersona+'"><i class="fa fa-pencil"></i></button>';
                             item += '<button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="'+data.idpersona+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
@@ -231,7 +231,7 @@
             }).then(function () {
                 $.ajax({
                     type: "PUT",
-                    url: 'deletebi/' + idbienhe,
+                    url: '/bienhechor/deletebi/' + idbienhe,
                     success: function (data) {
                         console.log(data);
                         $("#bien" + idbienhe).remove();
