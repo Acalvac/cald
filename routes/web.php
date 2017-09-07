@@ -69,7 +69,7 @@ Route::group(['prefix'=>'medicamento'], function(){
 	//Marca
 	Route::get('marca/index','MarcaController@index');
 	Route::get('marca/add','MarcaController@add');
-
+    Route::get('marca/addm','MarcaController@addm');
 	//Tipo Medicamento
 	Route::get('tipo/index','TipoMedicamentoController@index');
 	Route::get('tipo/add','TipoMedicamentoController@add');

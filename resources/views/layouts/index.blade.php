@@ -131,6 +131,8 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="javascript:void(0);" onclick="cargarindex(3);">Listado</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(1);">Ingreso Usuario</a></li>
+                                                        <li><a href="javascript:void(0);" onclick="cargarmodalempleado(4);">Ingreso Marca</a></li>
+
                             <li><a href="{{url('/seguridad/rol/index')}}">Listado Rol</a></li>
                         </ul>
                     </li>
@@ -330,6 +332,9 @@
 
 
     <div id="modales"></div>
+
+    <div id="modales1"></div>
+
     <input type="hidden"  id="url_raiz_proyecto" value="{{ url("/") }}" />
 
 

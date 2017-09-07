@@ -4,6 +4,9 @@ function cargarmodalempleado(arg){
 	if(arg==1){var miurl=urlraiz+"/seguridad/add"; var titulo="Nuevo ingreo de usuario" ;}
 	if(arg==2){var miurl=urlraiz+"/medicamento/add"; var titulo="Nuevo ingreo de medicamento" ; }
   	if(arg==3){var miurl=urlraiz+"/medicamento/compra/add"; var titulo="Nuevo ingreo de medicamento" ; }
+  	if(arg==4){var miurl=urlraiz+"/medicamento/marca/add"; var titulo="Nuevo ingreo de una marca"; $('#nuevomarca').val('add');}
+
+  	console.log($('#nuevomarca').val());
 
 	var errHTML="";
 
@@ -20,6 +23,29 @@ function cargarmodalempleado(arg){
 	}) ;
 }
 
+
+function cargarmodal(arg){
+	var urlraiz=$("#url_raiz_proyecto").val();
+
+	if(arg==1){var miurl=urlraiz+"/seguridad/add"; var titulo="Nuevo ingreo de usuario" ;}
+	if(arg==2){var miurl=urlraiz+"/medicamento/add"; var titulo="Nuevo ingreo de medicamento" ; }
+  	if(arg==3){var miurl=urlraiz+"/medicamento/compra/add"; var titulo="Nuevo ingreo de medicamento" ; }
+  	if(arg==4){var miurl=urlraiz+"/medicamento/marca/addm"; var titulo="Nuevo ingreso de una marca";}
+
+	var errHTML="";
+
+	$.ajax({
+		url: miurl
+	}).done( function(resul) 
+	{
+		$("#modales1").html(resul);
+		$('#inputTitle').html(titulo);
+        $('#formModal').modal('show');
+	}).fail(function() 
+	{
+		$("#modales1").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+	}) ;
+}
 
 function cargarindex(arg){
 	var urlraiz=$("#url_raiz_proyecto").val();
