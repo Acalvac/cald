@@ -12,7 +12,7 @@
                     <h4 class="modal-title" id="inputTitleUsuario"></h4>
                 </div>
                 
-                @include('medicamento.marca.modalcreate')
+                @include('medicamento.tipomedicamento.modalcreate')
 
                 <div class="modal-footer">
                     <div class="col-md-12">

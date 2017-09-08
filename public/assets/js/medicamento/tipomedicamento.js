@@ -1,10 +1,10 @@
-$(document).on('click','.btn-btnGuardarMarca',function(e){
+$(document).on('click','.btn-btnGuardarTMedicamento',function(e){
         var urlraiz=$("#url_raiz_proyecto").val();
-        var miurl = urlraiz+"/medicamento/marca/store";
+        var miurl = urlraiz+"/medicamento/tipomedicamento/store";
 
    
         var formData = {
-            marca: $('#marca').val(),
+            tipo_medicamento: $('#tipomedicamento').val(),
         };
         
         $.ajaxSetup({
@@ -20,9 +20,9 @@ $(document).on('click','.btn-btnGuardarMarca',function(e){
             dataType: 'json',
             
             success: function (data) {
-                var cursos = $("#idmarca");
+                var cursos = $("#idtipo");
                     $(data).each(function(i, v){ // indice, valor
-                        cursos.append('<option value="' + v.idmarca + '">' + v.marca + '</option>');
+                        cursos.append('<option value="' + v.idtipo + '">' + v.tipomedic + '</option>');
                 })
                 /*
                 swal({
@@ -31,9 +31,9 @@ $(document).on('click','.btn-btnGuardarMarca',function(e){
                     type: "success"
                 });
                 */
-                alert('Se registro una nueva marca');
+                alert('Se registro un nuevo tipo de medicamento');
 
-                $('#formAgregarMarca').trigger("reset");
+                $('#formAgregarTMedicamento').trigger("reset");
                 $('#formModal').modal('hide');
 
             },

@@ -1,10 +1,14 @@
-$(document).on('click','.btn-btnGuardarMarca',function(e){
+$(document).on('click','.btn-btnGuardarPro',function(e){
         var urlraiz=$("#url_raiz_proyecto").val();
-        var miurl = urlraiz+"/medicamento/marca/store";
+        var miurl = urlraiz+"/medicamento/proveedor/store";
 
-   
         var formData = {
-            marca: $('#marca').val(),
+            proveedor: $('#proveedor').val(),
+            telefono: $('#telefono').val(),
+            direccion: $('#direccion').val(),
+            nit: $('#nit').val(),
+            cuenta: $('#cuenta').val(),
+            encargado_cheque: $('#cheque').val(),
         };
         
         $.ajaxSetup({
@@ -20,9 +24,9 @@ $(document).on('click','.btn-btnGuardarMarca',function(e){
             dataType: 'json',
             
             success: function (data) {
-                var cursos = $("#idmarca");
+                var cursos = $("#idproveedor");
                     $(data).each(function(i, v){ // indice, valor
-                        cursos.append('<option value="' + v.idmarca + '">' + v.marca + '</option>');
+                        cursos.append('<option value="' + v.idproveedor + '">' + v.proveedor + '</option>');
                 })
                 /*
                 swal({
@@ -31,9 +35,9 @@ $(document).on('click','.btn-btnGuardarMarca',function(e){
                     type: "success"
                 });
                 */
-                alert('Se registro una nueva marca');
+                alert('Se registro un proveedor nuevo');
 
-                $('#formAgregarMarca').trigger("reset");
+                $('#formAgregarProveedor').trigger("reset");
                 $('#formModal').modal('hide');
 
             },

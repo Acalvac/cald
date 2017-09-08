@@ -57,6 +57,8 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get('index','MedicamentoController@index');
 	Route::get('medicamentoindex','MedicamentoController@medicamento');
 	Route::get('add','MedicamentoController@add');
+	Route::get('addm','MedicamentoController@addm');
+
 	Route::post('store','MedicamentoController@store');
 	//Compra
 	Route::get('compra/index','CompraController@index');
@@ -64,7 +66,11 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get('compra/add','CompraController@add');
 	Route::post('compra/store','CompraController@store');
 	//Proveedor
-	Route::get('proveedor/index','ProveedorController@index');
+	Route::get ('proveedor/index','ProveedorController@index');
+	Route::get ('proveedor/add','ProveedorController@add');
+	Route::get ('proveedor/addp','ProveedorController@addp');
+	Route::post('proveedor/store','ProveedorController@store');
+
 
 	//Marca
 	Route::get('marca/index','MarcaController@index');
@@ -72,8 +78,12 @@ Route::group(['prefix'=>'medicamento'], function(){
     Route::get('marca/addm','MarcaController@addm');
     Route::post('marca/store','MarcaController@store');
 	//Tipo Medicamento
-	Route::get('tipo/index','TipoMedicamentoController@index');
-	Route::get('tipo/add','TipoMedicamentoController@add');
+	Route::get('tipomedicamento/index','TipoMedicamentoController@index');
+	Route::get('tipomedicamento/add','TipoMedicamentoController@add');
+	Route::get('tipomedicamento/addt','TipoMedicamentoController@addt');
+	Route::post('tipomedicamento/store','TipoMedicamentoController@store');
+
+
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
 

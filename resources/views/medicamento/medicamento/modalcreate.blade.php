@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="javascript:void(0);" onclick="cargarmodalempleado(1);">
-                        <button class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
+                    <a href="javascript:void(0);" onclick="cargarmodal(5);">
+                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
                     </a>
                 </div>
             </div>

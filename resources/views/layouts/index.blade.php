@@ -418,13 +418,17 @@
     <script src="{{asset('assets/js/empleado/modal.js')}}"></script>
     <script src="{{asset('assets/js/empleado/usuario.js')}}"></script>
     <script src="{{asset('assets/js/medicamento/marca.js')}}"></script>
-
-
+    <script src="{{asset('assets/js/medicamento/tipomedicamento.js')}}"></script>
+    <script src="{{asset('assets/js/medicamento/medicamento.js')}}"></script>
+    <script src="{{asset('assets/js/medicamento/proveedor.js')}}"></script>
 
 
     <script src="{{asset('assets/js/plugins/validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/validate/jquery.validate.js')}}"></script>
     
+
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
 
 

@@ -1,8 +1,7 @@
-$("#btnGuardarMedicamento").click(function(e){
-        var urlraiz=$("#url_raiz_proyecto").val();
+$(document).on('click','.btn-btnGuardarMedicamento',function(e){
+    var urlraiz=$("#url_raiz_proyecto").val();
     var miurl=urlraiz+"/medicamento/store";
-
-    
+ 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -85,11 +84,13 @@ $("#btnGuardarMedicamento").click(function(e){
             $("#erroresContentMedicamento").html(errHTML); 
             $('#erroresModalMedicamento').modal('show');
         }
-    });
-    
-    
+    });    
 });
-/*
+
+$(document).on('click','.btn-btnGuardarMed',function(e){
+    var urlraiz=$("#url_raiz_proyecto").val();
+    var miurl=urlraiz+"/medicamento/store";
+ 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -100,37 +101,47 @@ $("#btnGuardarMedicamento").click(function(e){
     var miurl=urlraiz+"/medicamento/store";
 
     var formData = {
-        name: $("#name").val(),
-        password: $("#password").val(),
-        email: $("#email").val(),
-        idpersona: $("#idpersona").val(),
+        idmarca: $("#idmarca").val(),
+        idtipo: $("#idtipo").val(),
+        medicamento: $("#medicamento").val(),
+
     };
+        
+        $.ajax({
+            type: "POST",
+            url: miurl,
+            data: formData,
+            dataType: 'json',
+            
+            success: function (data) {
+                var cursos = $("#idmedicamento");
+                    $(data).each(function(i, v){ // indice, valor
+                        cursos.append('<option value="' + v.idmedicamento + '">' + v.medicamento +' '+ v.tipo +' '+ v.marca + '</option>');
+                })
+                /*
+                swal({
+                    title:"Se registro una nueva marca",
+                    text: "Gracias",
+                    type: "success"
+                });
+                */
+                alert('Se registro una nuevo medicamento');
 
-    $.ajax({
-        type: "POST",
-        url: miurl,
-        data: formData,
-        dataType: 'json',
+                $('#formAgregarMedicamento').trigger("reset");
+                $('#formModal').modal('hide');
 
-        success: function (data) {
-
-            $('#formAgregarUsuario').trigger("reset");
-            $('#formModalUsuario').modal('hide');
-                            
-        },
-        error: function (data) {
-            $('#loading').modal('hide');
-            var errHTML="";
-            if((typeof data.responseJSON != 'undefined')){
-                for( var er in data.responseJSON){
-                    errHTML+="<li>"+data.responseJSON[er]+"</li>";
-                }
-            }else{
-                errHTML+='<li>Error</li>';
-            }
-
-            $("#erroresContentEmpleado").html(errHTML); 
-            $('#erroresModalEmpleado').modal('show');
-        }
-    });*/
-
+            },
+            error: function (data) {
+                var errHTML="";
+                if((typeof data.responseJSON != 'undefined')){
+                    for( var er in data.responseJSON){
+                        errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                    }
+                    }else{
+                        errHTML+='<li>Error.</li>';
+                    }
+                $("#erroresContentMarca").html(errHTML); 
+                $('#erroresModalMarca').modal('show');
+            },
+        });
+    });

@@ -43,6 +43,15 @@ class MedicamentoController extends Controller
         //return view('empleado.create',["tipopersona"=>$tipopersona,"puesto"=>$puesto,"tipoantecedente"=>$tipoantecedente]);
     }
 
+    public function addm(Request $request)
+    {
+
+        $tipomedicamento = TipoMedicamento::all();
+        $marca = Marca::all();
+        return view('medicamento.medicamento.createm',["tipomedicamento"=>$tipomedicamento,"marca"=>$marca]);
+        //return view('empleado.create',["tipopersona"=>$tipopersona,"puesto"=>$puesto,"tipoantecedente"=>$tipoantecedente]);
+    }
+
     public function store(Request $request)
     {
         try {
@@ -54,14 +63,21 @@ class MedicamentoController extends Controller
             $medicamento-> idtipo =  $request->get('idtipo');
             $medicamento-> idmarca = $request->get('idmarca');
             $medicamento-> medicamento = $request->get('medicamento');
+            $medicamento-> cantidad = 0;
 
             $medicamento->save();
+
+            $medicamentos = DB::table('medicamento as med')
+            ->join('marca as mar','med.idmarca','=','mar.idmarca')
+            ->join('tipo as tip','med.idtipo','=','tip.idtipo')
+            ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
+            ->get();
 
         } catch (Exception $e) {
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo medicamento'),404);
         }
-        return json_encode($medicamento);    
+        return json_encode($medicamentos);
     }
 
     public function validateRequest($request){                

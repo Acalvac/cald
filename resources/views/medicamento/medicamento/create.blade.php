@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="btnGuardarMedicamento">Guardar</button>
+                        <button type="button" class="btn btn-primary btn-btnGuardarMedicamento" id="btnGuardarMedicamento">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,6 @@
 </div>
 
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-<script src="{{asset('assets/js/medicamento/medicamento.js')}}"></script>
 <!-- Sweet alert -->
 <script type="text/javascript">
     $(document).ready(function() {
