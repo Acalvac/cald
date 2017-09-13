@@ -20,6 +20,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div><br></div>
                 <div class="margin" id="botones_control">
+                    <a href="javascript:void(0);" onclick="cargarindex(20);">
+                        <button class="btn btn-primary btn-md" title="Listado de Bienechor"><i class="fa fa-arrow-circle-left"></i></button>
+                    </a>
                     <button class="btn btn-primary btn-addDB" value="{{$bienhechor->idpersona}}" title="Nuevo Bienechor">Nueva Donación</button>
                 </div>
             <div><br></div>
@@ -32,7 +35,7 @@
                     <thead>
                         <th style="width: 2%">Id</th>
                         <th style="width: 10%">Tipo de donación</th>
-                        <th style="width: 10%">Monto(monetario)</th>
+                        <th style="width: 10%">Monto</th>
                         <th style="width: 10%">fecha donativo</th>
                         <th style="width: 35%">Descripción</th>
                         <th style="width: 15%">Opciones</th>
@@ -56,7 +59,6 @@
             </div>
        </div>           
     </div>
-
 </div>
 
 
