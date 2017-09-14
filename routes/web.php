@@ -40,15 +40,12 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::post('listardetallesb/addonativo','CBienhechor@addonativos');
 	Route::put('updonativo/{id}','CBienhechor@updonativo');
 	Route::put('deletebi/{id}','CBienhechor@deletebi');
-	
 });
 
 // se agrega todas las rutas del paciente, examen medico, historial entre otros
 Route::group(['prefix'=>'paciente'], function(){
-
-	Route::get('add', function () {
-    	return view('');
-	});
+	Route::get('index','CPaciente@index');
+	Route::get('nuevo','CPaciente@nuevopas');
 });
 
 // se agrega todas las rutas del medicamento, proveedor entre otros

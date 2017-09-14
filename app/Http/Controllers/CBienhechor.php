@@ -27,7 +27,7 @@ class CBienhechor extends Controller
      		//->where('sts.nombre','=','Activo')
      		//->where('tp.idtipopersona','=',2)
             //->orwhere('p.nombre','LIKE','%'.$query.'%')
-     		->where('p.idstatus','=',4)
+     		->where('p.idstatus','=',3)
             ->where('p.nombre','LIKE','%'.$query.'%')
             ->paginate(15);
 
@@ -99,7 +99,7 @@ class CBienhechor extends Controller
     	$bienhe-> idtipopersona=$request->get('tipopersona');
     	$bienhe-> nit=$request->get('nit');
     	$bienhe-> correo=$request->get('correo');
-    	$bienhe-> idstatus='4';
+    	$bienhe-> idstatus='3';
         $bienhe-> permanente=$request->get('tipobienhechor');
         $bienhe->save();
         //dd($bienhe);
@@ -116,7 +116,7 @@ class CBienhechor extends Controller
         $bienhe-> idtipopersona=$request->get('tipopersona');
         $bienhe-> nit=$request->get('nit');
         $bienhe-> correo=$request->get('correo');
-        $bienhe-> idstatus='4';
+        $bienhe-> idstatus='3';
         $bienhe-> permanente=$request->get('tipobienhechor');
         $bienhe->save();
         return response()->json($bienhe);
@@ -161,7 +161,7 @@ class CBienhechor extends Controller
     public function deletebi($id)
     {
         $st=Persona::findOrFail($id);
-        $st-> idstatus='5';
+        $st-> idstatus='4';
         $st->update();
         return response()->json($st);
         //return Redirect::to('empleado/listadoen');
