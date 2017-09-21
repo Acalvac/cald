@@ -52,10 +52,13 @@
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
 
+    
+
 <script type="text/javascript">
     $(document).ready(function() {
         $(".select2").select2();
     });
+        $('.chosen-select').chosen({width: "100%"});
 
     $('#buy_date').datepicker({
                 todayBtn: "linked",

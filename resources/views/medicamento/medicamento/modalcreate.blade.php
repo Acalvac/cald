@@ -10,7 +10,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <label for="marca" class="col-md-2 control-label">Marca</label>
                 <div class="col-md-6">
-                    <select id="idmarca" class="form-control select2" data-live-search="true">
+                    <select id="idmarca" class="chosen-select" data-live-search="true">
                     @if (isset($marca))
                     @foreach($marca as $mar)
                         <option value="{{$mar->idmarca}}">{{$mar->marca}}</option>
@@ -30,7 +30,7 @@
                 <div><br></div>
                 <label class="col-md-2">Tipo</label>
                 <div class="col-md-6">
-                    <select id="idtipo" class="form-control select2" data-live-search="true">
+                    <select id="idtipo" class="chosen-select" data-live-search="true">
                     @if (isset($tipomedicamento))
                     @foreach($tipomedicamento as $tip)
                         <option value="{{$tip->idtipo}}">{{$tip->tipomedic}}</option>

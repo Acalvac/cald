@@ -38,6 +38,9 @@
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" />
 
+    <link href="{{asset('assets/css/plugins/select2/select2.min.css')}}" rel="stylesheet">
+
+
        <!-- Sweet Alert -->
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -46,6 +49,14 @@
 
     <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+
+        <link href="{{asset('assets/css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
+
+
+
+  
+
+
 
 
     @show
@@ -177,8 +188,11 @@
             <div class="row">
                 <div class="wrapper wrapper-content">
                     @yield('contenido')
+                
+
                     <div id="capa_modal" class="div_modal" ></div>
-                    <div id="capa_formularios" class="div_contenido" "></div>
+                    <div id="capa_formularios" class="div_modal"></div>
+                    <div id="capa_busqueda" class="div_modal"></div>
                     
                 </div>
 
@@ -334,6 +348,8 @@
     <div id="modales"></div>
 
     <div id="modales1"></div>
+    <div id="modales2"></div>
+
 
     <input type="hidden"  id="url_raiz_proyecto" value="{{ url("/") }}" />
 
@@ -411,6 +427,9 @@
     <!-- ChartJS-->
     <script src="{{asset('assets/js/plugins/chartJs/Chart.min.js')}}"></script>
 
+    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
+
+
 
     <!--rutas del empleado-->
     <meta name="_token" content="{!! csrf_token() !!}" />
@@ -429,6 +448,11 @@
 
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
+
+
+    <!-- Chosen -->
+    <script src="{{asset('assets/js/plugins/chosen/chosen.jquery.js')}}"></script>
+
 
 
 
@@ -570,6 +594,7 @@
     // Enable/disable fixed top navbar
     $('#fixednavbar2').click(function (){
         if ($('#fixednavbar2').is(':checked')){
+
             $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
             $("body").removeClass('boxed-layout');
             $("body").addClass('fixed-nav').addClass('fixed-nav-basic');
@@ -759,6 +784,9 @@
             $('#fixedfooter').prop('checked','checked')
         }
     }
+
+        $('.chosen-select').chosen({width: "100%"});
+
     </script>
     @show
 </body>

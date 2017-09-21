@@ -91,7 +91,34 @@ class CompraController extends Controller
         return json_encode($compra);    
     }
 
-    
+    public function modalubicacion()
+    {
+        $ubicacion = DB::table('ubicacion as u')
+        ->select('u.idubicacion','u.habitacion','u.estanteria','u.coordenada')
+        ->get();
+
+        return view('medicamento.ubicacion.modalbuscar',["ubicacion"=>$ubicacion]);
+    }
+
+    public function modalproveedor()
+    {
+        $proveedor = DB::table('proveedor as pro')
+        ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre as cheque')
+        ->get();
+
+        return view('medicamento.proveedor.modalbuscar',["proveedor"=>$proveedor]);
+    }
+
+    public function modalmedicamento()
+    {
+        $medicamento = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
+        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','med.cantidad')
+        ->get();
+
+        return view('medicamento.medicamento.modalbuscar',["medicamento"=>$medicamento]);
+    }
 
     public function validateRequest($request){                
         $rules=[

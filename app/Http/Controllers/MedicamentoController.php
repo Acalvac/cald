@@ -19,7 +19,7 @@ class MedicamentoController extends Controller
         $medicamentos = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
         ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
+        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','med.cantidad')
         ->paginate(15);
 
         return view('medicamento.medicamento.index',["medicamentos"=>$medicamentos]);
@@ -79,6 +79,8 @@ class MedicamentoController extends Controller
         }
         return json_encode($medicamentos);
     }
+
+   
 
     public function validateRequest($request){                
         $rules=[

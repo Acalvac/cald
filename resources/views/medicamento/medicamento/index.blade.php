@@ -18,6 +18,7 @@
                                     <th style="width: 20%">Medicamento</th>
                                     <th style="width: 20%">Marca</th>
                                     <th style="width: 10%">Tipo</th>
+                                    <th style="width: 10%">Cantidad</th>
                                     <th style="width: 20%">Opciones</th>
                                 </thead>
                                 <tbody id="listempleado">
@@ -27,6 +28,7 @@
                                         <td>{{$med->medicamento}}</td>
                                         <td>{{$med->marca}}</td>
                                         <td>{{$med->tipo}}</td>
+                                        <td>{{$med->cantidad}}</td>
                                         <td>
                                             <a href="#">
                                             <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles" value="{{$med->idmedicamento}}"><i class="fa fa-address-card"></i></button>

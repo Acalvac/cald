@@ -55,6 +55,16 @@ class ProveedorController extends Controller
         return json_encode($proveedor);
     }
 
+    public function busqueda($id)
+    {
+        $proveedor = DB::table('proveedor as pro')
+        ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre')
+        ->where('pro.idproveedor','=',$id)
+        ->get();
+
+        return json_encode($proveedor);
+    }
+
     public function validateRequest($request){                
         $rules=[
             'proveedor' => 'required',
