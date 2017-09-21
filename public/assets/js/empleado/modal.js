@@ -68,6 +68,8 @@ function cargarindex(arg){
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/index";}
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
+	if(arg==21){var miurl=urlraiz+"/paciente/index";}
+	if(arg==22){var miurl=urlraiz+"/paciente/nuevo";}
  	
     $.ajax({
     url: miurl

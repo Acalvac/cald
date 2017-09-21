@@ -95,7 +95,8 @@
                     <li>
                         <a href="layouts.html"><i class="fa fa-wheelchair"></i> <span class="nav-label">Paciente</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">Ingreso de paciente</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(21);">Listado de pacientes</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(22);">Ingreso de paciente</a></li>
                             <li><a href="graph_morris.html">otros</a></li>
                         </ul>
                     </li>
