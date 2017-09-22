@@ -21,8 +21,11 @@ class Paciente extends Model
     	'talla',
     	'peso',
     	'procedencia',
+        'lorigen',
     	'idresponsable',
     	'idmunicipio',
-    	'id',
+    	'idusaurio',
+        'idstatus',
+
     ];
 }
