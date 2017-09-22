@@ -4,7 +4,6 @@
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 
-
     <div class="tabs-container" id="contentsecundario">
  
         <div class="row">

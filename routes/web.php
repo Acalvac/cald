@@ -46,6 +46,7 @@ Route::group(['prefix'=>'bienhechor'], function(){
 Route::group(['prefix'=>'paciente'], function(){
 	Route::get('index','CPaciente@index');
 	Route::get('nuevo','CPaciente@nuevopas');
+	Route::post('addpa','CPaciente@addpaciente');
 });
 
 // se agrega todas las rutas del medicamento, proveedor entre otros
