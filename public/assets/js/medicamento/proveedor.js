@@ -50,8 +50,8 @@ $(document).on('click','.btn-btnGuardarPro',function(e){
                     }else{
                         errHTML+='<li>Error.</li>';
                     }
-                $("#erroresContentMarca").html(errHTML); 
-                $('#erroresModalMarca').modal('show');
+                $("#erroresContentProveedor").html(errHTML); 
+                $('#erroresModalProveedor').modal('show');
             },
         });
     });

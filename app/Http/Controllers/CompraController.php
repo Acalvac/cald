@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Compra;
+use App\Medicamento;
+use App\Ubicacion;
+use App\Almacen;
 use Carbon\Carbon;  // para poder usar la fecha y hora
 use Illuminate\Support\Facades\Auth;
 
@@ -74,8 +77,8 @@ class CompraController extends Controller
             $fechavencimiento=$fechavencimiento->format('Y-m-d');
 
             $compra =new Compra;
-            $compra-> idmedicamento =  $request->get('idmedicamento');
-            $compra-> idproveedor = $request->get('idproveedor');
+            $compra-> idmedicamento =  $request->get('medicamento');
+            $compra-> idproveedor = $request->get('proveedor');
             $compra-> fechacompra = $fechacompra;
             $compra-> fechavencimiento = $fechavencimiento;
             $compra-> precio = $request->get('precio');
@@ -83,6 +86,18 @@ class CompraController extends Controller
             $compra-> idusuario = Auth::user()->id;
 
             $compra->save();
+
+            $medicamento = medicamento::find($request->get('medicamento'));
+            $medicamento->cantidad = $medicamento->cantidad + $request->get('cantidad');
+            $medicamento->save();
+
+            $almacen =  new Almacen;
+            $almacen->cantidad = $request->get('cantidad');
+            $almacen->idubicacion = $request->get('ubicacion');
+            $almacen->idcompra = $compra->idcompra;
+            $almacen->save();
+
+
 
         } catch (Exception $e) {
             DB::rollback();
@@ -126,8 +141,9 @@ class CompraController extends Controller
             'cantidad' => 'required',
             'fecha_vencimiento' => 'required',
             'fecha_compra'=>'required',
-            'idproveedor'=>'required',
-            'idmedicamento'=>'required',   
+            'proveedor'=>'required',
+            'medicamento'=>'required',
+            'ubicacion'=>'required',
         ];
 
         $messages=[

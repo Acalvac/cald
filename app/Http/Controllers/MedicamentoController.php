@@ -80,7 +80,17 @@ class MedicamentoController extends Controller
         return json_encode($medicamentos);
     }
 
-   
+    public function busqueda($id)
+    {
+        $medicamento = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
+        ->select('med.idmedicamento','mar.marca','tip.tipomedic','med.medicamento')
+        ->where('med.idmedicamento','=',$id)
+        ->first();
+
+        return view ('medicamento.compra.modalmedicamento',["medicamento"=>$medicamento]);
+    }  
 
     public function validateRequest($request){                
         $rules=[

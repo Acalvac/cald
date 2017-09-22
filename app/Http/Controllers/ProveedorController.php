@@ -52,6 +52,7 @@ class ProveedorController extends Controller
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo proveedor'),404);
         }
+        dd($proveedor);
         return json_encode($proveedor);
     }
 
@@ -60,9 +61,9 @@ class ProveedorController extends Controller
         $proveedor = DB::table('proveedor as pro')
         ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre')
         ->where('pro.idproveedor','=',$id)
-        ->get();
+        ->first();
 
-        return json_encode($proveedor);
+        return view ('medicamento.compra.modalproveedor',["proveedor"=>$proveedor]);
     }
 
     public function validateRequest($request){                

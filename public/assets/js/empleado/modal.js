@@ -31,12 +31,11 @@ function cargarmodal(arg){
 
 	if(arg==1){var miurl=urlraiz+"/seguridad/add"; var titulo="Nuevo ingreo de usuario" ;}
 	if(arg==2){var miurl=urlraiz+"/medicamento/addm"; var titulo="Nuevo ingreo de medicamento" ; }
-	
-  	if(arg==3){var miurl=urlraiz+"/medicamento/compra/addm"; var titulo="Nuevo ingreo de medicamento" ; }
-
-  	if(arg==4){var miurl=urlraiz+"/medicamento/marca/addm"; var titulo="Nuevo ingreso de una marca";}
-  	if(arg==5){var miurl=urlraiz+"/medicamento/tipomedicamento/addt"; var titulo="Nuevo ingreso de un tipo de medicamento";}
-  	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/addp"; var titulo="Nuevo ingreso de un proveedor";}
+	if(arg==3){var miurl=urlraiz+"/medicamento/compra/addm"; var titulo="Nuevo ingreo de medicamento" ; }
+  if(arg==4){var miurl=urlraiz+"/medicamento/marca/addm"; var titulo="Nuevo ingreso de una marca";}
+  if(arg==5){var miurl=urlraiz+"/medicamento/tipomedicamento/addt"; var titulo="Nuevo ingreso de un tipo de medicamento";}
+  if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/addp"; var titulo="Nuevo ingreso de un proveedor";}
+  if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/addu"; var titulo="Nuevo ingreso de una ubicacion";}
 
 
 	var errHTML="";
@@ -146,8 +145,8 @@ function cargarbusqueda(arg){
     }).done( function(resul) 
     {
     	$("#modales2").html(resul);
-		$('#inputTitleBuscar').html(titulo);
-        $('#formModalBuscar').modal('show');
+      $('#inputTitleBuscar').html(titulo);
+      $('#formModalBuscar').modal('show');
     }).fail( function() 
     {
     	$("#modales2").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
@@ -156,15 +155,12 @@ function cargarbusqueda(arg){
 
 function busqueda(arg,id){
 	var urlraiz=$("#url_raiz_proyecto").val();
-	$("#modales2").html($("#cargador_empresa").html());
-
-	var cursos = $("#select6");
 	
 	if(arg==1){var miurl=urlraiz+"/seguridad/busqueda/"+id; }
-	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; }
+	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; var form = $("#medi"); }
 	if(arg==3){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  }
-	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/busqueda/"+id;  }
-	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  }
+	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/busqueda/"+id;  var form = $("#prov"); }
+	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  var form = $("#ubic");}
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 
@@ -173,24 +169,19 @@ function busqueda(arg,id){
     $.ajax({
     url: miurl
     }).done( function(resul) 
-    {    	console.log(resul);
+    {
+      console.log(resul);
 
-/*
-    	$("#select6" ).text(resul.telefono);
-    	$("#select"+arg ).val(resul.idproveedor);*/
-    	$('#formModalBuscar').modal('hide');
-      cursos.find('option').remove();
-      cursos.append('<option value="' + resul.idproveedor + '">' + resul + '</option>');
-            $("select6").find('option').remove();
+      form.html(resul);
+      $('#formModalBuscar').modal('hide');
+      /*
+        $($.parseHTML(resul)).each(function(i, v){ // indice, valor
+          console.log(v.idproveedor);
+          cursos.append('<option value="' + '10' + '">' + 'pruebanara' + '</option>');
+        })
 
-      $("#select6").append('<option value="' + resul.idproveedor + '">' + resul + '</option>');
-
-      $("#car").append(resul);
-      $("#prov").html(resul);
-      console.log($("#car").val());
-      console.log($("#car").text());
-
-
+        console.log(cursos);
+      */
 
     }).fail( function() 
     {

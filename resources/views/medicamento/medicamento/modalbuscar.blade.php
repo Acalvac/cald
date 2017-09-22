@@ -31,8 +31,8 @@
                                         <td>{{$med->tipo}}</td>
                                         <td>{{$med->cantidad}}</td>
                                         <td>
-                                            <a href="#">
-                                            <button class="btn btn-outline btn-primary dim btn-buscar-ubicacion" type="button" title="Agregar" value="{{$med->idmedicamento}}"><i class="fa fa-check"></i></button>
+                                            <a href="javascript:void(0);" onclick="busqueda(2,{{$med->idmedicamento}});">
+                                                <button class="btn btn-outline btn-primary dim btn-buscar-ubicacion" type="button" title="Agregar" value="{{$med->idmedicamento}}"><i class="fa fa-check"></i></button>
                                             </a>
                                         </td>
                                     </tr>

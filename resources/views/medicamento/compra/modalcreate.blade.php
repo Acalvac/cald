@@ -1,15 +1,9 @@
 <form role="form" id="formAgregarCompra">
         <div class="modal-header">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="medi">
                 <label class="col-md-2">Medicamento</label>
                 <div class="col-md-6">
-                    <select  id="idmedicamento" class="chosen-select" data-live-search="true" disabled="">
-                    @if (isset($medicamento))
-                        @foreach($medicamento as $med)
-                            <option value="{{$med->idmedicamento}}">{{$med->medicamento.' '. $med->marca.' '.$med->tipomedic}}</option>
-                        @endforeach
-                    @endif
-                    </select>
+                    <input type="text" name="" placeholder="Medicamento a comprar" class="form-control" disabled="">
                 </div>
 
                 <div class="col-md-4">
@@ -22,40 +16,28 @@
                 </div>
             </div>
 
-            <input type="text" name="" id="car">
-
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="prov">
-                <div><br></div>
+                        <div><br></div>
+                
                 <label class="col-md-2">Proveedor</label>
                 <div class="col-md-6">
-                    <select id="idproveedor" class="chosen-select" data-live-search="true" disabled="">
-                    @if (isset($proveedor))
-                    @foreach($proveedor as $pro)
-                        <option value="{{$pro->idproveedor}}">{{$pro->proveedor}}</option>
-                    @endforeach
-                    @endif
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <select id="select6" class="chosen-select" data-live-search="true" disabled="">
-                    
-                    </select>
+                    <input type="text" name="" placeholder="Proveedor..." class="form-control" disabled="">
+                
                 </div>
 
                 <div class="col-md-4">
                     <a href="javascript:void(0);" onclick="cargarmodal(6);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
+                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Proveedor" value=""><i class="fa fa-plus-square"></i></button>
                     </a>
                     <a href="javascript:void(0);" onclick="cargarbusqueda(6);">
-                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar ubicacion" value=""><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Proveedor" value=""><i class="fa fa-search"></i></button>
                     </a>
                 </div>
             </div>
         </div>
 
         <div class="modal-header">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="ubic">
                 <label class="col-md-2">Ubicacion</label>
                 <div class="col-md-6">
                     <input type="text" name="" id="ubicacion" placeholder="Habitacion-Estanteria-Coordenada" class="form-control" disabled=""> 

@@ -1,7 +1,6 @@
 $("#btnGuardarCompra").click(function(e){
 	var urlraiz=$("#url_raiz_proyecto").val();
-    var miurl=urlraiz+"/medicamento/compra/store";
-
+    var miurl=urlraiz+"/medicamento/ubicacion/store";
     
     $.ajaxSetup({
         headers: {
@@ -10,13 +9,9 @@ $("#btnGuardarCompra").click(function(e){
     });
 
     var formData = {
-        proveedor: $("#idproveedor").val(),
-        medicamento: $("#idmedicamento").val(),
-        fecha_compra: $("#buy_date").val(),
-        fecha_vencimiento: $("#expiration_date").val(),
-        precio: $("#precio").val(),
-        cantidad: $("#cantidad").val(),
-        ubicacion: $("#idubicacion").val(),
+        habitacion: $("#habitacion").val(),
+        estanteria: $("#estanteria").val(),
+        coordenada: $("#coordenada").val(),
     };
 
     $.ajax({
@@ -56,9 +51,9 @@ $("#btnGuardarCompra").click(function(e){
     });
 });
 
-$(document).on('click','.btn-btnGuardarCom',function(e){
+$(document).on('click','.btn-btnGuardarUbi',function(e){
     var urlraiz=$("#url_raiz_proyecto").val();
-    var miurl=urlraiz+"/medicamento/compra/store";
+    var miurl=urlraiz+"/medicamento/ubicacion/store";
 
 
     $.ajaxSetup({
@@ -68,11 +63,10 @@ $(document).on('click','.btn-btnGuardarCom',function(e){
     });
 
     var formData = {
-        idproveedor: $("#idproveedor").val(),
-        idmedicamento: $("#idmedicamento").val(),
-        fecha_compra: $("#buy_date").val(),
-        fecha_vencimiento: $("#expiration_date").val(),
-        precio: $("#precio").val(),
+        habitacion: $("#habitacion").val(),
+        estanteria: $("#estanteria").val(),
+        coordenada: $("#coordenada").val(),
+        valor: 1,
     };
         
         $.ajax({
@@ -82,10 +76,6 @@ $(document).on('click','.btn-btnGuardarCom',function(e){
             dataType: 'json',
             
             success: function (data) {
-                var cursos = $("#idmarca");
-                    $(data).each(function(i, v){ // indice, valor
-                        cursos.append('<option value="' + v.idmarca + '">' + v.marca + '</option>');
-                })
                 /*
                 swal({
                     title:"Se registro una nueva marca",
@@ -93,11 +83,13 @@ $(document).on('click','.btn-btnGuardarCom',function(e){
                     type: "success"
                 });
                 */
-                alert('Se registro una nueva compra');
+                alert('Se registro una nueva ubicacion para un medicamento');
+                console.log(data);
+                console.log(data.habitacion);
 
-                $('#formAgregarCompra').trigger("reset");
+                document.getElementById("ubicacion").value=data.habitacion+' '+data.estanteria+' '+data.coordenada;
+                $('#formAgregarUbicacion').trigger("reset");
                 $('#formModal').modal('hide');
-
             },
             error: function (data) {
                 var errHTML="";
@@ -108,8 +100,8 @@ $(document).on('click','.btn-btnGuardarCom',function(e){
                     }else{
                         errHTML+='<li>Error.</li>';
                     }
-                $("#erroresContentMarca").html(errHTML); 
-                $('#erroresModalMarca').modal('show');
+                $("#erroresContentUbicacion").html(errHTML); 
+                $('#erroresModalUbicacion').modal('show');
             },
         });
     });

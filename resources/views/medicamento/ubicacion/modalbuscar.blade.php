@@ -29,8 +29,8 @@
                                         <td>{{$ubi->estanteria}}</td>
                                         <td>{{$ubi->coordenada}}</td>
                                         <td>
-                                            <a href="#">
-                                            <button class="btn btn-outline btn-primary dim btn-buscar-ubicacion" type="button" title="Detalles" value="{{$ubi->idubicacion}}"><i class="fa fa-check"></i></button>
+                                            <a href="javascript:void(0);" onclick="busqueda(7,{{$ubi->idubicacion}});">
+                                            <button class="btn btn-xs btn-outline btn-primary btn-buscar-ubicacion" type="button" title="Agregar" value="{{$ubi->idubicacion}}"><i class="fa fa-check"></i></button>
                                             </a>
                                         </td>
                                     </tr>
@@ -40,12 +40,10 @@
                         </div>
                     </div>
                 </form>
-
                 <div class="modal-footer">
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-
                     </div>
                 </div>
             </div>

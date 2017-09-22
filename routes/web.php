@@ -55,6 +55,8 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get('medicamentoindex','MedicamentoController@medicamento');
 	Route::get('add','MedicamentoController@add');
 	Route::get('addm','MedicamentoController@addm');
+	Route::get('busqueda/{id}','MedicamentoController@busqueda');
+
 
 	Route::post('store','MedicamentoController@store');
 	//Compra
@@ -84,8 +86,10 @@ Route::group(['prefix'=>'medicamento'], function(){
 	//Ubicacion Medicamento
 	Route::get('ubicacion/index','UbicacionController@index');
 	Route::get('ubicacion/add','UbicacionController@add');
-	Route::get('ubicacion/addt','UbicacionController@addt');
+	Route::get('ubicacion/addu','UbicacionController@addu');
 	Route::post('ubicacion/store','UbicacionController@store');
+	Route::get('ubicacion/busqueda/{id}','UbicacionController@busqueda');
+
 
 	//Carga de modales para una compra
 	Route::get('cargarbusqueda','CompraController@modalmedicamento');
