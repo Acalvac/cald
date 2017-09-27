@@ -15,18 +15,25 @@
 					<thead>
 						<th>Id</th>
 						<th>Nombre</th>
+						<th>Ingreso</th>
 						<th>Encargo</th>
 						<th>Teléfono</th>
 						<th>Opciones</th>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						@foreach ($paciente as $pas)
+                            <tr class="even gradeA">
+                                        <td>{{$pas->idpaciente}}</td>
+                                        <td>{{$pas->nombrepa}}</td>
+                                        <td>{{$pas->fechaingreso}}</td>
+                                        <td>{{$pas->nombre}}</td>
+                                        <td>{{$pas->telefono}}</td>
+                                        <td>
+                                            <a><button class="btn btn-primary btn-md" title="Detalles" ><i class="fa fa-address-card"></i></button></a>
+                                            <button class="btn btn-danger btn-md" id="FWEF" value="" title="Eliminar" ><i class="fa fa-remove"></i></button>
+                                        </td>
+                                    </tr>
+                        @endforeach
 					</tbody>
 				</table>
 			</div>

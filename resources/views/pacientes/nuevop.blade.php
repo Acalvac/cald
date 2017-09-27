@@ -1,6 +1,7 @@
 <link href="{{asset('assets/css/plugins/steps/jquery.steps.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+<link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
@@ -23,16 +24,10 @@
                         <section>
                             <div class="col-lg-12 col-md-12">
                                 <p>Datos del Niño</p>
-                                <div class="col-lg-2 col-md-2">
+                                <div class="col-lg-3 col-md-2">
+                                    <label>Nombres y apellidos</label>
                                     <div class="form-group">
-                                        <label>Nombres *</label>
                                         <input id="nombrep" type="text" class="form-control required">
-                                    </div>
-                                </div>    
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="form-group">
-                                        <label>Apellidos *</label>
-                                        <input id="apellidop" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2">
@@ -71,8 +66,6 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
                                 <div class="col-lg-2 col-md-2">
                                     <div class="form-group">
                                         <label>Peso </label>
@@ -141,7 +134,7 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label>Lenguaje</label>
-                                        <select id="idiomafam" class="form-control">
+                                        <select id="idiomafam" class="form-control" multiple="multiple">
                                             @if (isset($idioma))
                                                 @foreach($idioma as $idi)
                                                     <option value="{{$idi->ididioma}}">{{$idi->nombreid}},&nbsp;&nbsp;</option>
@@ -257,70 +250,121 @@
                         <h3>Antecedentes Perinatales</h3>
                         <section>
                             <div class="col-lg-12">
-                                <p>Datos del Niño</p>
                                 <div class="col-lg-4">
+                                    <label>Infecciones de la madre durante el embarazo&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Infecciones de la madre durante el embarazo</label>
-                                        <input id="nombre" type="text" class="form-control required">
+                                        <label>Si<input type="radio" value="1" onclick="Infecmadre(this)" id="imde" name="imde"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" onclick="Infecmadre(this)" id="imde" name="imde" checked=""></label>
                                     </div>
-                                </div> 
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                    <div class="col-lg-10" id="Div1" style="display: none;">
+                                            <div class="col-lg-10">
+                                            <select id="infecciontipo" class="form-control" >
+                                                @if (isset($tipoinfeccion))
+                                                    @foreach($tipoinfeccion as $inf)
+                                                        <option value="{{$inf->idtipoinfeccion}}">{{$inf->nombre}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <button id="btninfeccion" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>   
                                     </div>
-                                </div>   
+                                </div>  
                                 <div class="col-lg-4">
+                                    <label>Enfermedades Crónicas de la madre&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Enfermedades Crónicas de la madre</label>
-                                        <input id="apellidos" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" onclick="Enfcmadre(this)" id="ecdm" name="ecdm"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" onclick="Enfcmadre(this)" id="ecdm" name="ecdm" checked=""></label>                         
                                     </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>¿Convive la madre con animales domésticos?</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input id="fechanac" type="text" class="form-control" >
+                                    <div class="col-lg-10" id="Div2" style="display: none;">
+                                        <div class="col-lg-10">
+                                            <select id="enfermedadtipo" class="form-control" >
+                                                @if (isset($tipoenfermedad))
+                                                    @foreach($tipoenfermedad as $enf)
+                                                        <option value="{{$enf->idtipoenfermedad}}">{{$enf->nombre}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>¿Qué tipo de personal atendió a la madre en el parto?</label>
-                                        <input id="confirm" name="confirm" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <button id="enftipo" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>   
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                <label>¿Convive la madre con animales domésticos?&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Medicamentos que haya tomado durante su embarazo, incluyendo medicina natural.</label>
-                                        <input id="confirm" name="confirm" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" onclick="Conmadre(this)" id="cmcad" name="cmcad"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" onclick="Conmadre(this)" id="cmcad" name="cmcad" checked=""></label>
+                                    </div>
+                                    <div class="col-lg-10" id="Div3" style="display: none;">
+                                            <div class="col-lg-10">
+                                            <select id="animaltipo" class="form-control" >
+                                                @if (isset($tipoanimal))
+                                                    @foreach($tipoanimal as $ani)
+                                                        <option value="{{$ani->idanimal}}">{{$ani->nombreanimal}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <button id="btnanimal" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>   
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-4">
+                                    <label>¿Qué tipo de personal atendió a la madre en el parto?</label>
                                     <div class="form-group">
-                                        <label></label><br>
-                                        <button class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                        <label>Si<input type="radio" value="1" onclick="Atmadre(this)" id="tpamp" name="tpamp"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" onclick="Atmadre(this)" id="tpamp" name="tpamp" checked=""></label>                         
+                                    </div>
+                                    <div class="col-lg-10" id="Div4" style="display: none;">
+                                        <div class="col-lg-10">
+                                            <select id="personalati" class="form-control" >
+                                                @if (isset($personalat))
+                                                    @foreach($personalat as $ano)
+                                                        <option value="{{$ano->idpersonalatiende}}">{{$ano->nombre}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <button id="btnpersonal" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <label>Medicamentos que haya tomado durante su embarazo, incluyendo medicina natural.</label>
+                                    <div class="form-group">
+                                        <label>Si<input type="radio" value="1" onclick="mtdeimn(this)" id="mednatural" name="mednatural"></label>&nbsp;&nbsp;
+                                        <label>Ninguno<input type="radio" value="0" onclick="mtdeimn(this)" id="mednatural" name="mednatural" checked=""></label>                         
+                                    </div>
+                                    <div class="col-lg-10" id="Div6" style="display: none;">
+                                        <div class="col-lg-10">
+                                            <select id="medicamento" class="form-control" >
+                                                @if (isset($medicina))
+                                                    @foreach($medicina as $ano)
+                                                        <option value="{{$ano->idmedicina}}">{{$ano->nombre}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <button id="btnmedicina" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>   
                                     </div>
                                 </div>
                             </div>
@@ -328,166 +372,322 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>¿Cuánto tiempo duro el trabajo del parto?</label>
-                                        <input id="apellidos" type="text" class="form-control">
+                                        <input id="tparto" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Lloró el niño inmediatamente al nacer? </label>
                                     <div class="form-group">
-                                        <label>¿Lloró el niño inmediatamente al nacer? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="lnin" name="lnin"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="lnin" name="lnin" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Se puso cianótico el niño al nacer? </label>
                                     <div class="form-group">
-                                        <label>¿Se puso cianótico el niño al nacer? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="pcnn" name="pcnn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="pcnn" name="pcnn" checked=""></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="col-lg-4">
+                                    <label>¿Le tuvieron que realizar alguna maniobra al niño para que respirara?</label>
                                     <div class="form-group">
-                                        <label>¿Le tuvieron que realizar alguna maniobra al niño para que respirara?</label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="mnpr" name="mnpr"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="mnpr" name="mnpr" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Se puso el niño ictérico los primeros días de nacido? </label>
                                     <div class="form-group">
-                                        <label>¿Se puso el niño ictérico los primeros días de nacido? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="nipdn" name="nipdn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="nipdn" name="nipdn" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Succionaba bien el pecho, después de nacido? </label>
                                     <div class="form-group">
-                                        <label>¿Succionaba bien el pecho, después de nacido? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="sbpdn" name="sbpdn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="sbpdn" name="sbpdn" checked=""></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="col-lg-4">
+                                    <label>¿Tenía sus manos y pies duros o estaban flacidos? </label>
                                     <div class="form-group">
-                                        <label>¿Tenía sus manos y pies duros o estaban flacidos? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Duros<input type="radio" id="tpym" value="Duros" name="tpym"></label>&nbsp;&nbsp;
+                                        <label>Flacidos<input type="radio" id="tpym" value="Flacidos" name="tpym" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Se infectó el cordón del ombligo antes de caerse? </label>
                                     <div class="form-group">
-                                        <label>¿Se infectó el cordón del ombligo antes de caerse? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" id="icoac" name="icoac"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" id="icoac" name="icoac" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                    <label>¿Tuvo control prenatal? </label>
                                     <div class="form-group">
-                                        <label>¿Tuvo control prenatal? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" onclick="Tcontrolp(this)" id="tcp" name="tcp"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="0" onclick="Tcontrolp(this)" id="tcp" name="tcp" checked=""></label>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                            </div>
+                            <div class="col-lg-12" id="Div5" style="display: none;">
+                                <div class="col-lg-4" >
+                                    <div class="form-group">
+                                        <label>¿Con quien?</label>
+                                        <input id="conquien" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>¿Cuántas veces?</label>
+                                        <input id="veces" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Algún comentario que le hicieron de su embarazo durante su control</label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="comentario" type="text" class="form-control">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="infeccion" style="display: none;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesinfec" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Infecciones de la madre</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="enfcronicas" style="display: none;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesenf" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Enfermedades crónicas de la madre</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="anconvive" style="display: none;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesanimal" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Animales con las que convive la madre</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="personaatendio" style="display: none;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallespersona" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Tipo de personal que atendio a la madre durante el parto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="medicamentos" style="display: none;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesmedicina" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Medicamento que tomó durante su embarazo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </section>
                         <h3>Antecedentes de Crecimiento y Desarrollo</h3>
                         <section>
                             <div class="col-lg-12">
-                                <p>Datos del Niño</p>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿A qué edad sostuvo solo su cabeza el niño?</label>
-                                        <input id="nombre" type="text" class="form-control required">
+                                        <input id="edadscn" type="text" class="form-control required">
                                     </div>
                                 </div>   
                                 <div class="col-lg-3">
+                                    <label>¿A qué edad se sentó solo?</label>
                                     <div class="form-group">
-                                        <label>¿A qué edad se sentó solo?</label>
-                                        <input id="apellidos" type="text" class="form-control">
+                                        <input id="edadss" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
+                                    <label>¿A qué edad caminó?</label>
                                     <div class="form-group">
-                                        <label>¿A qué edad caminó?</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input id="fechanac" type="text" class="form-control" >
-                                        </div>
+                                        <input id="edadcamino" name="confirm" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿A qué edad emitió sus primeras palabras?</label>
-                                        <input id="confirm" name="confirm" type="text" class="form-control">
+                                        <input id="edadepp" name="confirm" type="text" class="form-control">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-12">
                                 <div class="col-lg-3">
                                         <div class="form-group">
                                             <label>¿Cuándo notaron que el niño no estaba normal o tenía algo diferente a los demás?</label>
-                                            <input id="confirm" name="confirm" type="text" class="form-control">
+                                            <input id="cnoeranormal" name="confirm" type="text" class="form-control">
                                         </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿Qué fue lo primero que notaron diferente?</label><br><br>
-                                        <input id="apellidos" type="text" class="form-control">
+                                        <input id="qfpnd" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿Qué actitud tomaron al comprobar que el niño no era normal? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="qatcnen" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
+                                    <label>¿Qué vacunas tiene? </label>
                                     <div class="form-group">
-                                        <label>¿Qué vacunas tiene? </label><br><br>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" onclick="Vacunast(this)" id="vtiene" name="vtiene" checked=""></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="0" onclick="Vacunast(this)" id="vtiene" name="vtiene"></label>
                                     </div>
+                                    <div class="col-lg-12" id="divacuna" style="display: block;">
+                                        <div class="col-lg-10">
+                                            <select id="vacunass" class="form-control" >
+                                                @if (isset($vacunas))
+                                                    @foreach($vacunas as $ano)
+                                                        <option value="{{$ano->idvacuna}}">{{$ano->vacuna}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <button id="btnvacuna" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>   
                                 </div>
+                            </div>
+                            <div class="col-lg-12">
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿Cuántos hermanos tiene?</label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="chermanost" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
+                                    <label>¿Qué enfermedades han padecido? </label>
                                     <div class="form-group">
-                                        <label>¿Qué enfermedades han padecido? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <label>Si<input type="radio" value="1" onclick="Enfpadecido(this)" id="epadecido" name="epadecido" checked=""></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="0" onclick="Enfpadecido(this)" id="epadecido" name="epadecido"></label>
+                                    </div>
+                                    <div class="col-lg-12" id="divpadecido" style="display: block;">
+                                        <div class="col-lg-10">
+                                            <select id="enfpadecido" class="form-control" >
+                                            @if (isset($tipoenfermedad))
+                                                @foreach($tipoenfermedad as $enf)
+                                                    <option value="{{$enf->idtipoenfermedad}}">{{$enf->nombre}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <button id="btnpadecido" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿Qué numero de orden le corresponde? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="ordencor" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿Está bautizado? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="bautizado" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-12" id="vactable" style="display: block;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesvacuna" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Vacunas que tiene el niño</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="enftable" style="display: block;">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detallesenpadecido" class="table table-striped table-bordered table-hover">
+                                        <thead style="background-color:#A9D0F5">
+                                            <tr>
+                                                <th style="width: 2%">Opciones</th>
+                                                <th>Enfermedades que han padecido</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Responsable</h3>
+                        <section>
+                            <div class="col-lg-12">
+                                <div class="col-lg-4">
+                                    <label>Persona Responsable *</label>
                                     <div class="form-group">
-                                        <label>¿Se infectó el cordón del ombligo antes de caerse? </label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="nombreres" type="text" class="form-control required">
+                                    </div>
+                                </div>   
+                                <div class="col-lg-2">
+                                    <label>Identificación</label>
+                                    <div class="form-group">
+                                        <input id="identificacionres" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
+                                    <label>Dirección</label>
                                     <div class="form-group">
-                                        <label>¿Tuvo control prenatal? </label><br><br>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="direccionres" name="confirm" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
+                                    <label>Teléfono</label>
                                     <div class="form-group">
-                                        <label>Algún comentario que le hicieron de su embarazo durante su control</label>
-                                        <input id="nombre" type="text" class="form-control">
+                                        <input id="telefonores" name="confirm" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -503,6 +703,7 @@
 <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/pacientes/paciente.js')}}"></script>
+<script src="{{asset('assets/js/plugins/iCheck/icheck.min.js')}}"></script>
 
 
 
