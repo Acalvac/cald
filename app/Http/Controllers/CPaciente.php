@@ -22,6 +22,12 @@ use App\MedicTomada;
 use App\EnfPadecido;
 use App\VacunaTiene;
 use App\Control;
+use App\TipoInfeccion;
+use App\TipoEnfermedad;
+use App\TipoAnimal;
+use App\PersonalAtiende;
+use App\MedicinaP;
+use App\Vacunas;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -55,10 +61,45 @@ class CPaciente extends Controller
 		$vacunas = DB::table('vacunas')->get();
 		return view('pacientes.nuevop',['parentesco'=>$parentesco,'religion'=>$religion,'idioma'=>$idioma,'anomalia'=>$anomalia,'tipoinfeccion'=>$tipoinfeccion,'tipoenfermedad'=>$tipoenfermedad,'tipoanimal'=>$tipoanimal,'personalat'=>$personalat,'medicina'=>$medicina,'vacunas'=>$vacunas]);
 	}
+	public function addinfeccion(Request $request)
+	{
+		$infec = new TipoInfeccion;
+		$infec-> nombre=$request->get('nombre');
+		$infec->save();
+		return response()->json($infec);
+	}
+	public function addenfermedad (Request $request)
+	{
+		$enfe = new TipoEnfermedad;
+		$enfe-> nombre=$request->get('nombre');
+		$enfe->save();
+		return response()->json($enfe);
+	}
+	public function addanimal(Request $request)
+	{
+		$ani = new TipoAnimal;
+		$ani-> nombreanimal=$request->get('nombre');
+		$ani->save();
+		return response()->json($ani);
+	}
+	public function addpersonal (Request $request)
+	{
+		$pers = new PersonalAtiende;
+		$pers-> nombre=$request->get('nombre');
+		$pers->save();
+		return response()->json($pers);
+	}
+	public function addmedicina(Request $request)
+	{
+		$med = new MedicinaP;
+		$med-> nombre=$request->get('nombre');
+		$med->save();
+		return response()->json($med);
+	}
 	public function addpaciente(Request $request)
 	{
 		try {
-
+			DB::beginTransaction();
 			$contid= array();
 			$cont=0;
 			$mytime = Carbon::now('America/Guatemala');
@@ -68,10 +109,11 @@ class CPaciente extends Controller
 	        $fecha=$fechadona->format('Y-m-d');
 
 	        $miArray = $request->items;
-	        $miArrayL = $request->itemsL;
-	        $miArrayA = $request->itemsA;
+	        //$miArrayL = $request->itemsL;
+	        //$miArrayA = $request->itemsA;
 
 	        $infeccembarazo =$request->get('imde');
+	        //dd($infeccembarazo);
 	        $enfcronicas =$request->get('ecdm');
 	        $conviveanimal =$request->get('cmcad');
 	        $personatendio =$request->get('tpamp');
@@ -112,52 +154,54 @@ class CPaciente extends Controller
 	        $paciente-> idstatus='5';
 	        $paciente->save();
 			
+	        if ($miArray > 0) {
+				foreach ($miArray as $key => $value) {
+	                $familiar= new Familiar;
+	                $familiar-> nombre = $value['0'];
+	                //$familiar-> apellido = $value['1'];
+	                $fechanacf = $value['1'];
+	                $fechanacf=Carbon::createFromFormat('d/m/Y',$fechanacf);
+	                $fechanacf=$fechanacf->format('Y-m-d');
+	                $familiar-> fechanac = $fechanacf;
+					$familiar-> ocupacion = $value['2'];
+	                $familiar-> talla = $value['3'];
+	                $familiar-> peso = $value['4'];
+	                $familiar-> telefono = $value['5'];
+	                $familiar-> idreligion = $value['6'];
+	                $familiar-> anomalias = $value['7'];
+	                $familiar-> idparentesco = $value['8'];                
+	                $familiar->save();
 
-			foreach ($miArray as $key => $value) {
-                $familiar= new Familiar;
-                $familiar-> nombre = $value['0'];
-                $familiar-> apellido = $value['1'];
-                $fechanacf = $value['2'];
-                $fechanacf=Carbon::createFromFormat('d/m/Y',$fechanacf);
-                $fechanacf=$fechanacf->format('Y-m-d');
-                $familiar-> fechanac = $fechanacf;
-				$familiar-> ocupacion = $value['3'];
-                $familiar-> talla = $value['4'];
-                $familiar-> peso = $value['5'];
-                $familiar-> telefono = $value['6'];
-                $familiar-> idreligion = $value['7'];
-                $familiar-> idparentesco = $value['8'];                
-                $familiar->save();
+	                //$contid= array($familiar->idfamiliar);
+	                for($i = 0; $i < count($value['0']); $i++) {
+					    $contid[] = $familiar->idfamiliar;
+					}
+	            }
+            
+	            //dd($contid);
+	            /*foreach ($miArrayL as $key => $value) {
+	                $idioma= new Idiomas;
+	                $idioma-> ididioma = $value['0'];
+	                $idioma-> idfamiliar = $familiar->idfamiliar;
+	                $idioma->save();
+	            }*/
 
-                //$contid= array($familiar->idfamiliar);
-                for($i = 0; $i < count($value['0']); $i++) {
-				    $contid[] = $familiar->idfamiliar;
-				}
+	            /*foreach ($miArrayA as $key => $value) {
+	                $anomalia= new Anomalias;
+	                $anomalia-> idanomalia = $value['0'];
+	                $anomalia-> idfamiliar = $familiar->idfamiliar;
+	                $anomalia->save();
+	            }*/
+
+	            while($cont < count($contid))
+	            {
+		            $familiares= new Familiares;
+		            $familiares-> idpaciente = $paciente->idpaciente;
+		            $familiares-> idfamiliar = $contid[$cont];
+		            $familiares->save();
+		            $cont ++;
+	            }
             }
-            //dd($contid);
-            foreach ($miArrayL as $key => $value) {
-                $idioma= new Idiomas;
-                $idioma-> ididioma = $value['0'];
-                $idioma-> idfamiliar = $familiar->idfamiliar;
-                $idioma->save();
-            }
-
-            foreach ($miArrayA as $key => $value) {
-                $anomalia= new Anomalias;
-                $anomalia-> idanomalia = $value['0'];
-                $anomalia-> idfamiliar = $familiar->idfamiliar;
-                $anomalia->save();
-            }
-
-            while($cont < count($contid))
-            {
-	            $familiares= new Familiares;
-	            $familiares-> idpaciente = $paciente->idpaciente;
-	            $familiares-> idfamiliar = $contid[$cont];
-	            $familiares->save();
-	            $cont ++;
-            }
-
             $perinatal = new Anperinatal;
             $perinatal-> infeccembarazo = $infeccembarazo;
             $perinatal-> enfcronicas = $enfcronicas;
@@ -176,15 +220,22 @@ class CPaciente extends Controller
             $perinatal-> idpaciente = $paciente->idpaciente;
             $perinatal->save();
 
-            if ($infeccembarazo == 1 ) {
+            if ($infeccembarazo === 'Si' ) {
+            	
+            	
             	foreach ($miArrayInf as $key => $value) {
 	                $infec= new Infecciones;
 	                $infec-> idtipoinfeccion = $value['0'];
 	                $infec-> idperinatal = $perinatal->idperinatal;
 	                $infec->save();
 	            }
+	        
             }
-            if ($enfcronicas == 1 ) {
+            else
+            {
+
+            }
+            if ($enfcronicas === 1 ) {
             	foreach ($miArrayEn as $key => $value) {
 	                $enfer= new Enfermedades;
 	                $enfer-> idtipoenfermedad = $value['0'];
@@ -192,7 +243,7 @@ class CPaciente extends Controller
 	                $enfer->save();
 	            }
             }
-            if ($conviveanimal == 1 ) {
+            if ($conviveanimal === 1 ) {
             	foreach ($miArrayAn as $key => $value) {
 	                $ca= new ConviveAnimales;
 	                $ca-> idanimal = $value['0'];
@@ -200,7 +251,7 @@ class CPaciente extends Controller
 	                $ca->save();
 	            }
             }
-            if ($personatendio == 1 ) {
+            if ($personatendio === 1 ) {
             	foreach ($miArrayPer as $key => $value) {
 	                $perat= new PersonalAtendio;
 	                $perat-> idpersonalatiende = $value['0'];
@@ -208,7 +259,7 @@ class CPaciente extends Controller
 	                $perat->save();
 	            }
             }
-            if ($medicatomados == 1 ) {
+            if ($medicatomados === 1 ) {
             	foreach ($miArrayMed as $key => $value) {
 	                $medic= new MedicTomada;
 	                $medic-> idmedicina = $value['0'];
@@ -216,7 +267,7 @@ class CPaciente extends Controller
 	                $medic->save();
 	            }
             }
-            if ($tuvocontrol == 1 ) {
+            if ($tuvocontrol === 1 ) {
 	            $ctl= new Control;
 	            $ctl-> conquien = $request->get('conquien');
 	            $ctl-> veces = $request->get('veces');
@@ -240,7 +291,7 @@ class CPaciente extends Controller
             $cres-> idpaciente = $paciente->idpaciente;
             $cres->save();
 
-            if ($enfepadecido == 1 ) {
+            if ($enfepadecido === 1 ) {
             	foreach ($miArrayVac as $key => $value) {
 	                $vac= new VacunaTiene;
 	                $vac-> idvacuna = $value['0'];
@@ -249,7 +300,7 @@ class CPaciente extends Controller
 	            }
             }
 
-            if ($vacunastiene == 1 ) {
+            if ($vacunastiene === 1 ) {
             	foreach ($miArrayPad as $key => $value) {
 	                $pades= new EnfPadecido;
 	                $pades-> idtipoenfermedad = $value['0'];
@@ -257,6 +308,7 @@ class CPaciente extends Controller
 	                $pades->save();
 	            }
             }
+        DB::commit();
 
 		} catch (Exception $e) {
 			

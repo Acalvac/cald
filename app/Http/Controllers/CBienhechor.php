@@ -12,7 +12,7 @@ use DB;
 use Validator;
 use Carbon\Carbon;  // para poder usar la fecha y hora
 use Response;
-
+use PDF;
 class CBienhechor extends Controller
 {
     public function index(Request $request)
@@ -55,6 +55,17 @@ class CBienhechor extends Controller
 
         return view('bienechor.detalles',["bienhechor"=>$bienhechor,"donaciones"=>$donaciones,"donacion"=>$donacion]);
 
+    }
+    public function pdfbienhechor ()
+    {
+        //dd("mensaje");
+        $bienhechor=DB::table('persona as p')
+            ->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
+            ->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo')
+            ->where('p.idstatus','=',3)
+            ->get();
+        $pdf= PDF::loadView('bienechor.pdflistado',["bienhechor"=>$bienhechor]);
+        return $pdf->download('Bienhechores.pdf'); 
     }
     public function listarupbienhe(Request $request, $id)
     {
