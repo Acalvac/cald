@@ -40,6 +40,7 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::post('listardetallesb/addonativo','CBienhechor@addonativos');
 	Route::put('updonativo/{id}','CBienhechor@updonativo');
 	Route::put('deletebi/{id}','CBienhechor@deletebi');
+	Route::get('pdfbienhechor','CBienhechor@pdfbienhechor');
 });
 
 // se agrega todas las rutas del paciente, examen medico, historial entre otros
@@ -47,6 +48,11 @@ Route::group(['prefix'=>'paciente'], function(){
 	Route::get('index','CPaciente@index');
 	Route::get('nuevo','CPaciente@nuevopas');
 	Route::post('addpa','CPaciente@addpaciente');
+	Route::post('addinfeccion','CPaciente@addinfeccion');
+	Route::post('addenfermedad','CPaciente@addenfermedad');
+	Route::post('addanimal','CPaciente@addanimal');
+	Route::post('addpersonal','CPaciente@addpersonal');
+	Route::post('addmedicina','CPaciente@addmedicina');
 });
 
 // se agrega todas las rutas del medicamento, proveedor entre otros

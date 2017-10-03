@@ -19,6 +19,7 @@
                 <div><br></div>
                  <div class="margin" id="botones_control">
                     <button class="btn btn-primary btn-addB" title="Nuevo Bienechor">Nuevo Bienhechor</button>
+                    <a href="{{URL::action('CBienhechor@pdfbienhechor')}}"><button type="button" class="btn btn-success">Descargar</button></a>
                 </div>
                 <div><br></div>
             </div>
