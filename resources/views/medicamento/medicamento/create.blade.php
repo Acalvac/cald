@@ -5,7 +5,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitleUsuario"></h4>
+                    <h4 class="modal-title" id="inputTitleUsuario" align="center"></h4>
                 </div>
 
                 @include('medicamento.medicamento.modalcreate')
@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary btn-btnGuardarMedicamento" id="btnGuardarMedicamento">Guardar</button>
+                        <button type="button" class="btn btn-primary btn-btnGuardarMedicamento" id="btnGuardarMedicamento" style="display:none;">Guardar</button>
                     </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@ var cont = 0;
  
     $(document).on('click','.btn-btnGuardarEmpleado',function(e){
         var itemsData=[];
-        var miurl = "store";
+        var miurl = "empleado/store";
         var urlraiz=$("#url_raiz_proyecto").val();
 
 
@@ -56,7 +56,7 @@ var cont = 0;
             apellido: $('#apellido').val(),
             direccion: $('#direccion').val(),
             telefono: $('#telefono').val(),
-            estadocivil: $('#estadocivil').val(),
+            idcivil: $('#idcivil').val(),
             dpi: $('#dpi').val(),
             nit: $('#nit').val(),
             correo: $('#correo').val(),

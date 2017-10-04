@@ -57,6 +57,7 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get('add','MedicamentoController@add');
 	Route::get('addm','MedicamentoController@addm');
 	Route::get('busqueda/{id}','MedicamentoController@busqueda');
+	Route::get('show/{id}','MedicamentoController@show');
 
 
 	Route::post('store','MedicamentoController@store');
@@ -91,11 +92,41 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::post('ubicacion/store','UbicacionController@store');
 	Route::get('ubicacion/busqueda/{id}','UbicacionController@busqueda');
 
+	//Composicion Medicamento
+
+	Route::get('composicion/index','ComposicionController@index');
+	Route::get('composicion/add','ComposicionController@index');
+	Route::get('composicion/addc','ComposicionController@addc');
+	Route::post('composicion/store','ComposicionController@store');
+	Route::get('composicion/busqueda/{id}','ComposicionController@index');
+
+	//Principio Activo
+	Route::get('principio/index','PrincipioController@index');
+	Route::get('principio/add','PrincipioController@index');
+	Route::get('principio/addp','PrincipioController@addp');
+	Route::post('principio/store','PrincipioController@store');
+	Route::get('principio/busqueda/{id}','PrincipioController@busqueda');
+
+	//Presentacion Medicamento
+	Route::get('presentacion/index','PresentacionController@index');
+	Route::get('presentacion/add','PresentacionController@index');
+	Route::get('presentacion/addp','PresentacionController@addp');
+	Route::post('presentacion/store','PresentacionController@store');
+	Route::get('presentacion/busqueda/{id}','PresentacionController@busqueda');
 
 	//Carga de modales para una compra
 	Route::get('cargarbusqueda','CompraController@modalmedicamento');
 	Route::get('proveedor/cargarbusqueda','CompraController@modalproveedor');
 	Route::get('ubicacion/cargarbusqueda','CompraController@modalubicacion');
+	Route::get('principio/cargarbusqueda','MedicamentoController@modalprincipio');
+
+	//Requiscion.
+
+	Route::get ('requisicion/index','RequisicionController@index');
+	Route::get ('requisicion/add','RequisicionController@add');
+	Route::get ('requisicion/addp','RequisicionController@addp');
+	Route::post('requisicion/store','RequisicionController@store');
+	Route::get ('requisicion/busqueda/{id}','RequisicionController@busqueda');
 
 
 	Route::get('/logout', 'Auth\LoginController@logout');
@@ -135,7 +166,12 @@ Route::group(['prefix'=>'seguridad'], function(){
 	Route::get('rol/index','RolController@index');
 });
 
-
+Route::get('paciente/examen/index','EmpleadoController1@index');
+Route::get('paciente/examen/add','EmpleadoController1@add');
+Route::get('paciente/historial/index','EmpleadoController1@index');
+Route::get('paciente/historial/add','CPHistorialController@add');
+Route::post('paciente/historial/store','CPHistorialController@store');
+Route::get('paciente/historial/busqueda/{id}','CPHistorialController@busqueda');
 Route::get('/{slug?}','HomeController@index');
 
 

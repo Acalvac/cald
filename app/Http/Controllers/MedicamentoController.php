@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Marca;
 use App\TipoMedicamento;
 use App\Medicamento;
+use App\Presentacion;
+use App\Composicion;
 use DB;
 class MedicamentoController extends Controller
 {
@@ -18,8 +20,8 @@ class MedicamentoController extends Controller
     {
         $medicamentos = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','med.cantidad')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca','med.cantidad')
         ->paginate(15);
 
         return view('medicamento.medicamento.index',["medicamentos"=>$medicamentos]);
@@ -34,12 +36,32 @@ class MedicamentoController extends Controller
         ->paginate(15);
         return view('medicamento.medicamento.medicamentos',["medicamentos"=>$medicamentos]);
     }
+
+    public function show($id)
+    {
+        $detalle = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca','med.cantidad')
+        ->where('med.idmedicamento','=',$id)
+        ->first();
+
+        $composicion = DB::table('composicion as com')
+        ->join('principioactivo as pri','com.idprincipio','=','pri.idprincipio')
+        ->join('medicamento as med','com.idmedicamento','=','med.idmedicamento')
+        ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
+        ->select('com.idcomposicion','com.concentracion','pri.nombre as principio','tip.tipomedic as familia')
+        ->where('med.idmedicamento','=',$id)
+        ->get();
+
+        return view('medicamento.medicamento.detalle',["detalle"=>$detalle,"composicion"=>$composicion]);        
+    }
     public function add(Request $request)
     {
-
         $tipomedicamento = TipoMedicamento::all();
+        $presentacion = Presentacion::all();
         $marca = Marca::all();
-        return view('medicamento.medicamento.create',["tipomedicamento"=>$tipomedicamento,"marca"=>$marca]);
+        return view('medicamento.medicamento.create',["presentacion"=>$presentacion,"marca"=>$marca]);
         //return view('empleado.create',["tipopersona"=>$tipopersona,"puesto"=>$puesto,"tipoantecedente"=>$tipoantecedente]);
     }
 
@@ -59,8 +81,10 @@ class MedicamentoController extends Controller
 
             //$today = Carbon::now();
             //idmedicamento	medicamento	idtipo	idmarca
+            $miArray = $request->items;
+            
             $medicamento =new Medicamento;
-            $medicamento-> idtipo =  $request->get('idtipo');
+            $medicamento-> idpresentacion =  $request->get('idpresentacion');
             $medicamento-> idmarca = $request->get('idmarca');
             $medicamento-> medicamento = $request->get('medicamento');
             $medicamento-> cantidad = 0;
@@ -69,9 +93,19 @@ class MedicamentoController extends Controller
 
             $medicamentos = DB::table('medicamento as med')
             ->join('marca as mar','med.idmarca','=','mar.idmarca')
-            ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-            ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
+            ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+            ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca')
             ->get();
+
+            foreach ($miArray as $key => $value) {
+                $composicion = new Composicion;
+                $composicion->idmedicamento = $medicamento->idmedicamento;
+                $composicion->idprincipio = $value['0'];
+                $composicion->concentracion = $value['1'];
+
+                $composicion->save();
+            }
+
 
         } catch (Exception $e) {
             DB::rollback();
@@ -84,13 +118,23 @@ class MedicamentoController extends Controller
     {
         $medicamento = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','mar.marca','tip.tipomedic','med.medicamento')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento')
         ->where('med.idmedicamento','=',$id)
         ->first();
 
         return view ('medicamento.compra.modalmedicamento',["medicamento"=>$medicamento]);
-    }  
+    }
+
+    public function modalprincipio()
+    {
+        $principioactivo = DB::table('principioactivo as pri')
+        ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
+        ->select('pri.idprincipio','pri.nombre','tip.tipomedic as familia')
+        ->get();
+
+        return view('medicamento.principioactivo.modalbuscar',["principioactivo"=>$principioactivo]);
+    }
 
     public function validateRequest($request){                
         $rules=[

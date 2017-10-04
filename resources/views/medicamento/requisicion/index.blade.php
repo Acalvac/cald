@@ -22,7 +22,7 @@
                                         <th style="width: 10%">Precio</th>
                                         <th style="width: 10%">Proveedor</th>
                                         <th style="width: 10%">Usuario</th>
-                                        <!--<th style="width: 20%">Opciones</th>-->
+                                        <th style="width: 20%">Opciones</th>
                                 </thead>
                                 <tbody id="listempleado">
                                     @foreach ($compras as $com)
@@ -35,9 +35,7 @@
                                         <td>{{$com->precio}} Q</td>
                                         <td>{{$com->proveedor}}</td>
                                         <td>{{$com->name}}</td>
-                                        <!--
                                         <td>
-
                                             <a href="#">
                                             <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles" value="{{$com->idcompra}}"><i class="fa fa-address-card"></i></button>
                                             </a>
@@ -45,7 +43,6 @@
                                             <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar" value="{{$com->idcompra}}"><i class="fa fa-pencil"></i></button></a>
                                             <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$com->idcompra}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
-                                        -->
                                     </tr>
                                     @endforeach
                                 </tbody>

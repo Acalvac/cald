@@ -38,10 +38,12 @@
                             </div>
                         </div>
                         
+
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="descripcion">Telefono</label>
-                                <input type="text" name="telefono"  id="telefono" class="form-control" placeholder="...">
+                            <label for="descripcion">Telefono</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">502</span>
+                                <input type="text" name="telefono"  id="telefono" class="form-control" placeholder="..." maxlength="8" onkeypress="return valida(event)">
                             </div>
                         </div>
 
@@ -58,14 +60,20 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="descripcion">DPI</label>
-                                <input type="text" name="dpi" id="dpi" class="form-control" placeholder="...">
+                                <input type="text" name="dpi" id="dpi" class="form-control" placeholder="..." maxlength="13" onkeypress="return valida(event)">
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
-                                <label for="descripcion">Nit</label>
-                                <input type="text" name="nit"  id="nit" class="form-control" placeholder="...">
+                                <label for="puesto">Estado Civil</label>
+                                <select id="idcivil" class="form-control select2" data-live-search="true">
+                                @if (isset($estadocivil))
+                                @foreach($estadocivil as $est)
+                                    <option value="{{$est->idcivil}}">{{$est->nombre}}</option>
+                                @endforeach
+                                @endif
+                                </select>
                             </div>
                         </div>
 

@@ -5,16 +5,16 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitle" align="center"></h4>
+                    <h4 class="modal-title" id="inputTitle"></h4>
                 </div>
 
-                @include('medicamento.medicamento.modalcreate')
+                @include('medicamento.principioactivo.modalcreate')
 
                 <div class="modal-footer">
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary btn-btnGuardarMed" id="btnGuardarMedicamento>Guardar" style="display:none;"></button>
+                        <button type="button" class="btn btn-primary btn-btnGuardarPri" id="btnGuardarPrincipio">Guardar"</button>
                     </div>
                 </div>
             </div>
@@ -22,17 +22,17 @@
     </div>
 </div>
 
-<div class="modal fade" id="erroresModalMedicamento" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+<div class="modal fade" id="erroresModalPrincipio" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="inputErrorMedicamento"></h4>
+                <h4 class="modal-title" id="inputErrorPrincipio"></h4>
             </div>
             <div class="modal-body">
-                <ul style="list-style-type:circle" id="erroresContentMedicamento"></ul>
+                <ul style="list-style-type:circle" id="erroresContentPrincipio"></ul>
             </div>
 
             <div class="modal-footer">

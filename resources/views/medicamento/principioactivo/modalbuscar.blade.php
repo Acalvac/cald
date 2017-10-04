@@ -3,7 +3,7 @@
 
 <div class="col-lg-12" id="modales">
     <div class="modal fade" id="formModalBuscar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -11,28 +11,25 @@
                     <h4 class="modal-title" align="center" id="inputTitleBuscar"></h4>
                 </div>
 
-                <form role="form" id="formBuscarMedicamento">
+                <form role="form" id="formBuscarPrincipio">
                     <div class="modal-header">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                     <th style="width: 5%">Id</th>
-                                    <th style="width: 25%">Medicamento</th>
-                                    <th style="width: 25%">Marca</th>
-                                    <th style="width: 25%">Presentaci&oacute;n</th>
-                                    <th style="width: 10%">Cantidad</th>
+                                    <th style="width: 50%">Principio Activo</th>
+                                    <th style="width: 40%">Familia</th>
                                 </thead>
                                 <tbody id="listempleado">
-                                    @foreach ($medicamento as $med)
-                                    <tr class="even gradeA" id="proveedor{{$med->idmedicamento}}">
-                                        <td>{{$med->idmedicamento}}</td>
-                                        <td>{{$med->medicamento}}</td>
-                                        <td>{{$med->marca}}</td>
-                                        <td>{{$med->presentacion}}</td>
-                                        <td>{{$med->cantidad}}</td>
+                                    @foreach ($principioactivo as $pri)
+                                    <tr class="even gradeA" id="proveedor{{$pri->idprincipio}}">
+                                        <td>{{$pri->idprincipio}}</td>
+                                        <td>{{$pri->nombre}}</td>
+                                        <td>{{$pri->familia}}</td>
+
                                         <td>
-                                            <a href="javascript:void(0);" onclick="busqueda(2,{{$med->idmedicamento}});">
-                                                <button class="btn btn-outline btn-primary dim btn-buscar-ubicacion" type="button" title="Agregar" value="{{$med->idmedicamento}}"><i class="fa fa-check"></i></button>
+                                            <a href="javascript:void(0);" onclick="busqueda(8,{{$pri->idprincipio}});">
+                                                <button class="btn btn-outline btn-primary btn-buscar-ubicacion" type="button" title="Agregar" value="{{$pri->idprincipio}}"><i class="fa fa-check"></i></button>
                                             </a>
                                         </td>
                                     </tr>

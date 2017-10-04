@@ -13,7 +13,8 @@ class Medicamento extends Model
 
     protected $fillable=[
     	'medicamento',
-    	'idtipo',
+    	'cantidad',
     	'idmarca',
+    	'idpresentacion',
     ];
 }

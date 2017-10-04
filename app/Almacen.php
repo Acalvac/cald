@@ -16,5 +16,7 @@ class Almacen extends Model
     	'cantidad',
     	'idubicacion',
     	'idcompra',
+    	'idmedicamento',
+    	'fechavencimiento',
     ];
 }

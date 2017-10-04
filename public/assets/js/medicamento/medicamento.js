@@ -1,6 +1,56 @@
+var cont = 0;
+    function agregar(){
+        sustancia = $("#sustancia").val();
+        idsustancia = $("#idprincipio").val();
+        concentracion = $('#concentracion').val();
+        console.log(idsustancia);
+
+
+        var item  = '<tr class="even gradeA" id="sustancia'+cont+'">';
+            item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td>';
+            item += '<td><input type="hidden" name="idprincipio[]" value="'+idsustancia+'">'+sustancia+'</td>';
+            item += '<td>'+concentracion+'</td><tr>';
+            cont++;
+
+        $('#detallecompo').append(item);
+        evaluar();
+    }
+//btn-addcon
+
+    $(document).on('click','.btn-addcon',function(e){
+        agregar();
+    });
+
+     function evaluar(){
+        if (cont>0){
+            $("#btnGuardarMedicamento").show();
+        }
+        else{
+
+            $("#btnGuardarMedicamento").hide();
+        }
+    }
+
+    function eliminar(index){
+       $("#sustancia" + index).remove();
+       cont--;
+       evaluar();
+    }
+
 $(document).on('click','.btn-btnGuardarMedicamento',function(e){
     var urlraiz=$("#url_raiz_proyecto").val();
     var miurl=urlraiz+"/medicamento/store";
+
+    var itemsData=[];
+
+    $('#detallecompo tr').each(function(){
+        var id = $(this).closest('tr').find('input[type="hidden"]').val();
+        var expiration_date = $(this).find('td').eq(2).html();
+        valor = new Array(id,expiration_date);
+        itemsData.push(valor);
+    });
+    
+    console.log(itemsData);   
  
     $.ajaxSetup({
         headers: {
@@ -8,14 +58,11 @@ $(document).on('click','.btn-btnGuardarMedicamento',function(e){
         }
     });
 
-    var urlraiz=$("#url_raiz_proyecto").val();
-    var miurl=urlraiz+"/medicamento/store";
-
     var formData = {
         idmarca: $("#idmarca").val(),
-        idtipo: $("#idtipo").val(),
+        idpresentacion: $("#idpresentacion").val(),
         medicamento: $("#medicamento").val(),
-
+        items: itemsData,
     };
 
     $.ajax({
@@ -64,7 +111,7 @@ $(document).on('click','.btn-btnGuardarMedicamento',function(e){
                                 text: "Se guardado correctamente un nuevo ingreso de medicamento al invetario",
                                 type: "success"
                             }).then(function(){
-                                window.location.href="/empleado/index"
+                                window.location.href=""
                             });
                         }
                     });

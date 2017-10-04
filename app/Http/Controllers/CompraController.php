@@ -26,8 +26,7 @@ class CompraController extends Controller
         ->join('usuario as U','com.idusuario','=','U.id')
         ->join('medicamento as med','com.idmedicamento','=','med.idmedicamento')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','pro.proveedor','com.fechacompra','com.fechavencimiento','com.precio','com.cantidad','com.idcompra','U.name')
+        ->select('med.idmedicamento','med.medicamento','mar.marca','pro.proveedor','com.fechacompra','com.fechavencimiento','com.precio','com.cantidad','com.idcompra','U.name')
         ->paginate(15);
         return view('medicamento.compra.index',["compras"=>$compras]);
     }
@@ -41,7 +40,6 @@ class CompraController extends Controller
         ->join('usuario as U','com.idusuario','=','U.id')
         ->join('medicamento as med','com.idmedicamento','=','med.idmedicamento')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
         ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','pro.proveedor','com.fechacompra','com.fechavencimiento','com.precio','com.cantidad','com.idcompra','U.name')
         ->paginate(15);
         return view('medicamento.compra.compra',["compras"=>$compras]);
@@ -52,8 +50,8 @@ class CompraController extends Controller
     {
         $medicamento = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','mar.marca','tip.tipomedic','med.medicamento')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento')
         ->get();
 
         $proveedor = DB::table('proveedor as pro')
@@ -94,7 +92,10 @@ class CompraController extends Controller
             $almacen =  new Almacen;
             $almacen->cantidad = $request->get('cantidad');
             $almacen->idubicacion = $request->get('ubicacion');
+            $almacen-> fechavencimiento = $fechavencimiento;
             $almacen->idcompra = $compra->idcompra;
+            $almacen-> idmedicamento = $request->get('medicamento');
+
             $almacen->save();
 
 
@@ -128,8 +129,8 @@ class CompraController extends Controller
     {
         $medicamento = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca','med.cantidad')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca','med.cantidad')
         ->get();
 
         return view('medicamento.medicamento.modalbuscar',["medicamento"=>$medicamento]);

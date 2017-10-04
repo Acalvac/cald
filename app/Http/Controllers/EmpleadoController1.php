@@ -9,6 +9,7 @@ use App\TipoAntecedente;
 use App\Persona;
 use App\Empleado;
 use App\Tramite;
+use App\EstadoCivil;
 
 use Carbon\Carbon;  // para poder usar la fecha y hora
 use Illuminate\Support\Facades\Auth; 
@@ -35,8 +36,9 @@ class EmpleadoController1 extends Controller
         $tipopersona = TipoPersona::all()->where('idtipopersona','!=','2');
         $puesto = Puesto::all();
         $tipoantecedente = TipoAntecedente::all();
+        $estadocivil = EstadoCivil::all();
         //return view('empleado.create')->with("tipopersona", $tipopersona);
-        return view('empleado.create',["tipopersona"=>$tipopersona,"puesto"=>$puesto,"tipoantecedente"=>$tipoantecedente]);
+        return view('empleado.create',["tipopersona"=>$tipopersona,"puesto"=>$puesto,"tipoantecedente"=>$tipoantecedente,"estadocivil"=>$estadocivil]);
     }
 
     public function store(Request $request)
@@ -65,7 +67,7 @@ class EmpleadoController1 extends Controller
             $persona-> direccion=$request->get('direccion');
             $persona-> telefono=$request->get('telefono');
             $persona-> idtipopersona=$request->get('idtipopersona');
-            $persona-> estadocivil=$request->get('estadocivil');
+            $persona-> idcivil=$request->get('idcivil');
             $persona-> nit=$request->get('nit');
             $persona-> dpi=$request->get('dpi');
             $persona-> imagen=$request->get('imagen');
@@ -114,12 +116,13 @@ class EmpleadoController1 extends Controller
     public function edit($id)
     {
         $puesto = Puesto::all();
+        $estadocivil = EstadoCivil::all();
         $empleado = DB::table('empleado as emp')
         ->join('persona as per','emp.idpersona','=','per.idpersona')
-        ->select('emp.fechainicio','emp.salario','emp.idpuesto','per.nombre','per.apellido','per.direccion','telefono','per.estadocivil','per.nit','per.dpi','per.correo','per.fechanacimiento','emp.idpersona')
+        ->select('emp.fechainicio','emp.salario','emp.idpuesto','per.nombre','per.apellido','per.direccion','telefono','per.nit','per.dpi','per.correo','per.fechanacimiento','emp.idpersona')
         ->where('emp.idpersona','=',$id)
         ->first();
-        return view('empleado.edit',["puesto"=>$puesto,"empleado"=>$empleado]);
+        return view('empleado.edit',["puesto"=>$puesto,"empleado"=>$empleado,"estadocivil"=>$estadocivil]);
     }
 
     public function update(Request $request, $id)
@@ -183,7 +186,8 @@ class EmpleadoController1 extends Controller
     {
         $detalle = DB::table('persona as per')
         ->join('empleado as emp','per.idpersona','=','emp.idpersona')
-        ->select('emp.idempleado','per.nombre','per.apellido','per.dpi','per.nit','per.direccion','per.telefono','per.correo','per.estadocivil','per.fechanacimiento')
+        ->join('estadocivil as est','per.idcivil','=','est.idcivil')
+        ->select('emp.idempleado','per.nombre','per.apellido','per.dpi','per.nit','per.direccion','per.telefono','per.correo','est.nombre as estadocivil','per.fechanacimiento')
         ->where('per.idpersona','=',$id)
         ->first();
 

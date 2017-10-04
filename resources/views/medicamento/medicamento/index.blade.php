@@ -17,7 +17,7 @@
                                     <th style="width: 5%">Id</th>
                                     <th style="width: 20%">Medicamento</th>
                                     <th style="width: 20%">Marca</th>
-                                    <th style="width: 10%">Tipo</th>
+                                    <th style="width: 10%">Presentacion</th>
                                     <th style="width: 10%">Cantidad</th>
                                     <th style="width: 20%">Opciones</th>
                                 </thead>
@@ -27,14 +27,15 @@
                                         <td>{{$med->idmedicamento}}</td>
                                         <td>{{$med->medicamento}}</td>
                                         <td>{{$med->marca}}</td>
-                                        <td>{{$med->tipo}}</td>
+                                        <td>{{$med->presentacion}}</td>
                                         <td>{{$med->cantidad}}</td>
                                         <td>
-                                            <a href="#">
-                                            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles" value="{{$med->idmedicamento}}"><i class="fa fa-address-card"></i></button>
+                                            <a href="javascript:void(0);" onclick="detalle(8,{{$med->idmedicamento}});">
+                                            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles"><i class="fa fa-address-card"></i></button>
                                             </a>
+                                            <!--
                                             <a href="#">
-                                            <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar" value="{{$med->idmedicamento}}"><i class="fa fa-pencil"></i></button></a>
+                                            <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar" value="{{$med->idmedicamento}}"><i class="fa fa-pencil"></i></button></a>-->
                                             <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$med->idmedicamento}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>

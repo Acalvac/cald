@@ -34,8 +34,6 @@ $("#btnGuardarCompra").click(function(e){
                     title:"Envio correcto",
                     text: "Gracias",
                     type: "success"
-                }).then(function(){
-                    window.location.href="/empleado/index"                
                 });
                             
         },

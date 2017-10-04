@@ -5,16 +5,16 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitle" align="center"></h4>
+                    <h4 class="modal-title" id="inputTitle"></h4>
                 </div>
 
-                @include('medicamento.medicamento.modalcreate')
+                @include('medicamento.compra.modalcreate')
 
                 <div class="modal-footer">
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary btn-btnGuardarMed" id="btnGuardarMedicamento>Guardar" style="display:none;"></button>
+                        <button type="button" class="btn btn-primary btn-btnGuardarCom" id="btnGuardarCompra">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -42,15 +42,39 @@
     </div>
 </div>
 
-<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/medicamento/compra.js')}}"></script>
 <!-- Sweet alert -->
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
+
+<!-- DatePicker -->
+    <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $(".select2").select2();
     });
-    $(".select2").select2();
-    $('.chosen-select').chosen({width: "100%"});
 
+    $('#buy_date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+                
+        });
+
+        $('#expiration_date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+                
+        });
+    $(".select2").select2();
 </script>
 
 

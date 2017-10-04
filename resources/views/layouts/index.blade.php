@@ -108,7 +108,9 @@
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(2);">Ingreso medicamento</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(5);">Listado Compra</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(3);">Ingreso Inventario</a></li>
-                            <li><a href="graph_morris.html"></a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(7);">Requisici&oacute;n</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(9);">Ingreso Examenes</a></li>
+
                         </ul>
                     </li>
 
