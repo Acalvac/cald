@@ -13,7 +13,6 @@ class Paciente extends Model
 
     protected $fillable=[
     	'nombrepa',
-    	'apellidopa',
     	'fechanac',
     	'fechaingreso',
     	'direccion',
@@ -26,6 +25,11 @@ class Paciente extends Model
     	'idmunicipio',
     	'idusaurio',
         'idstatus',
-
     ];
+
+    public function scopePaciente($query,$dato="")
+    {
+        return $query->where('nombrepa','like','%'.$dato.'%');
+    }
+
 }

@@ -24,5 +24,6 @@ class Crecimiento extends Model
     	'ordecorresponde',
     	'estabautizado',
     	'idpaciente',
+        'vacuna',
     ];
 }

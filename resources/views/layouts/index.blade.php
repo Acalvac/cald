@@ -34,11 +34,6 @@
     <!-- Gritter -->
     <link href="{{asset('assets/js/plugins/gritter/jquery.gritter.css')}}" rel="stylesheet">
 
-    <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" />
-
-    <link href="{{asset('assets/css/plugins/select2/select2.min.css')}}" rel="stylesheet">
 
 
        <!-- Sweet Alert -->
@@ -54,7 +49,8 @@
 
 
 
-  
+      <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
 
 
@@ -95,9 +91,9 @@
                     <li>
                         <a href="layouts.html"><i class="fa fa-wheelchair"></i> <span class="nav-label">Paciente</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="javascript:void(0);" onclick="cargarindex(21);">Listado de pacientes</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(21);">Pacientes Activos</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(24);">Pacientes Inactivos</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(22);">Ingreso de paciente</a></li>
-                            <li><a href="graph_morris.html">otros</a></li>
                         </ul>
                     </li>
 
@@ -124,7 +120,8 @@
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Bienhechores</span>  <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="javascript:void(0);" onclick="cargarindex(20);">Listado bienhechor</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(20);">Bienhechor activos</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(23);">Bienhechor inactivos</a></li>
                         </ul>
                     </li>
 
@@ -427,8 +424,6 @@
 
     <!-- ChartJS-->
     <script src="{{asset('assets/js/plugins/chartJs/Chart.min.js')}}"></script>
-
-    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
 
 
 

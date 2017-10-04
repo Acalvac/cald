@@ -302,3 +302,62 @@
             return false;
             }
     }
+
+//Recuperar a bienhechor
+ $(document).on('click','.btnactivarb',function(){
+        var idbienhe=$(this).val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+
+        swal({
+            title: '¿Esta seguro de cambiar de status a Bienhechor Activo?',
+            text: "Precione si para continuar, no para cerrar este mensaje.",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si!',
+            cancelButtonText: 'No!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+            }).then(function () {
+                $.ajax({
+                    type: "PUT",
+                    url: '/bienhechor/recuperarb/' + idbienhe,
+                    success: function (data) {
+                        console.log(data);
+                        $("#bien" + idbienhe).remove();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            }, function (dismiss) {
+            if (dismiss === 'cancel') {
+                swal(
+                'Canceladoo!',
+                'No se realizo ningun cambio :)',
+                'error'
+                )
+            }
+        });
+
+        /*$.ajax({
+            type: "DELETE",
+            url: 'deletepad/' + idpad,
+            success: function (data) {
+                console.log(data);
+                $("#pad" + idpad).remove();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });*/
+
+        $("#erroresContent").html(errHTML); 
+        $('#erroresModal').modal('show');
+    });

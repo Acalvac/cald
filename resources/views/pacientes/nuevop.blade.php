@@ -227,8 +227,8 @@
                                 <div class="col-lg-4">
                                     <label>Enfermedades Crónicas de la madre&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Enfcmadre(this)" id="ecdm" name="ecdm"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" onclick="Enfcmadre(this)" id="ecdm" name="ecdm" checked=""></label>                         
+                                        <label>Si<input type="radio" value="Si" onclick="Enfcmadre(this)" id="ecdm" name="ecdm"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" onclick="Enfcmadre(this)" id="ecdm" name="ecdm" checked=""></label>                         
                                     </div>
                                     <div class="col-lg-12" id="Div2" style="display: none;">
                                         <div class="col-lg-8">
@@ -255,8 +255,8 @@
                                 <div class="col-lg-4">
                                 <label>¿Convive la madre con animales domésticos?&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Conmadre(this)" id="cmcad" name="cmcad"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" onclick="Conmadre(this)" id="cmcad" name="cmcad" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Conmadre(this)" id="cmcad" name="cmcad"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" onclick="Conmadre(this)" id="cmcad" name="cmcad" checked=""></label>
                                     </div>
                                     <div class="col-lg-12" id="Div3" style="display: none;">
                                             <div class="col-lg-8">
@@ -285,8 +285,8 @@
                                 <div class="col-lg-4">
                                     <label>¿Qué tipo de personal atendió a la madre en el parto?</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Atmadre(this)" id="tpamp" name="tpamp"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" onclick="Atmadre(this)" id="tpamp" name="tpamp" checked=""></label>                         
+                                        <label>Si<input type="radio" value="Si" onclick="Atmadre(this)" id="tpamp" name="tpamp"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" onclick="Atmadre(this)" id="tpamp" name="tpamp" checked=""></label>                         
                                     </div>
                                     <div class="col-lg-12" id="Div4" style="display: none;">
                                         <div class="col-lg-8">
@@ -313,8 +313,8 @@
                                 <div class="col-lg-8">
                                     <label>Medicamentos que haya tomado durante su embarazo, incluyendo medicina natural.</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="mtdeimn(this)" id="mednatural" name="mednatural"></label>&nbsp;&nbsp;
-                                        <label>Ninguno<input type="radio" value="0" onclick="mtdeimn(this)" id="mednatural" name="mednatural" checked=""></label>                         
+                                        <label>Si<input type="radio" value="Si" onclick="mtdeimn(this)" id="mednatural" name="mednatural"></label>&nbsp;&nbsp;
+                                        <label>Ninguno<input type="radio" value="No" onclick="mtdeimn(this)" id="mednatural" name="mednatural" checked=""></label>                         
                                     </div>
                                     <div class="col-lg-10" id="Div6" style="display: none;">
                                         <div class="col-lg-8">
@@ -349,15 +349,15 @@
                                 <div class="col-lg-4">
                                     <label>¿Lloró el niño inmediatamente al nacer? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="lnin" name="lnin"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="lnin" name="lnin" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="lnin" name="lnin"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="lnin" name="lnin" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <label>¿Se puso cianótico el niño al nacer? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="pcnn" name="pcnn"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="pcnn" name="pcnn" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="pcnn" name="pcnn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="pcnn" name="pcnn" checked=""></label>
                                     </div>
                                 </div>
                             </div>
@@ -365,22 +365,22 @@
                                 <div class="col-lg-4">
                                     <label>¿Le tuvieron que realizar alguna maniobra al niño para que respirara?</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="mnpr" name="mnpr"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="mnpr" name="mnpr" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="mnpr" name="mnpr"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="mnpr" name="mnpr" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <label>¿Se puso el niño ictérico los primeros días de nacido? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="nipdn" name="nipdn"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="nipdn" name="nipdn" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="nipdn" name="nipdn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="nipdn" name="nipdn" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <label>¿Succionaba bien el pecho, después de nacido? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="sbpdn" name="sbpdn"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="sbpdn" name="sbpdn" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="sbpdn" name="sbpdn"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="sbpdn" name="sbpdn" checked=""></label>
                                     </div>
                                 </div>
                             </div>
@@ -395,15 +395,15 @@
                                 <div class="col-lg-4">
                                     <label>¿Se infectó el cordón del ombligo antes de caerse? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" id="icoac" name="icoac"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" id="icoac" name="icoac" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" id="icoac" name="icoac"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" id="icoac" name="icoac" checked=""></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <label>¿Tuvo control prenatal? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Tcontrolp(this)" id="tcp" name="tcp"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" onclick="Tcontrolp(this)" id="tcp" name="tcp" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Tcontrolp(this)" id="tcp" name="tcp"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" onclick="Tcontrolp(this)" id="tcp" name="tcp" checked=""></label>
                                     </div>
                                 </div>
                             </div>
@@ -544,8 +544,8 @@
                                 <div class="col-lg-3">
                                     <label>¿Qué vacunas tiene? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Vacunast(this)" id="vtiene" name="vtiene" checked=""></label>&nbsp;&nbsp;
-                                        <label>Ninguna<input type="radio" value="0" onclick="Vacunast(this)" id="vtiene" name="vtiene"></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Vacunast(this)" id="vtiene" name="vtiene" checked=""></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="No" onclick="Vacunast(this)" id="vtiene" name="vtiene"></label>
                                     </div>
                                     <div class="col-lg-12" id="divacuna" style="display: block;">
                                         <div class="col-lg-10">
@@ -575,8 +575,8 @@
                                 <div class="col-lg-3">
                                     <label>¿Qué enfermedades han padecido? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Enfpadecido(this)" id="epadecido" name="epadecido" checked=""></label>&nbsp;&nbsp;
-                                        <label>Ninguna<input type="radio" value="0" onclick="Enfpadecido(this)" id="epadecido" name="epadecido"></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Enfpadecido(this)" id="epadecido" name="epadecido" checked=""></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="No" onclick="Enfpadecido(this)" id="epadecido" name="epadecido"></label>
                                     </div>
                                     <div class="col-lg-12" id="divpadecido" style="display: block;">
                                         <div class="col-lg-10">

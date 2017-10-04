@@ -1,4 +1,5 @@
 
+        <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
         <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -6,23 +7,8 @@
     <div class="tabs-container" id="contentsecundario">
  
         <div class="row">
-            <h2 class="text-center">Listado de Bienhechores Activos</h2>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                @include('bienechor.search')
-            </div>
+            <h2 class="text-center">Listado de Bienhechores Inactivos</h2>
             <div><br></div>   
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                <div><br></div>
-                 <div class="margin" id="botones_control">
-                    <button class="btn btn-primary btn-addB" title="Nuevo Bienechor">Nuevo Bienhechor</button>
-                    <a href="{{URL::action('CBienhechor@pdfbienhechor')}}"><button type="button" class="btn btn-success">Descargar</button></a>
-                </div>
-                <div><br></div>
-            </div>
         </div>
 
             <div class="row" id="divcontenido">
@@ -46,12 +32,8 @@
                                         <td>{{$em->telefono}}</td>
                                         <td>{{$em->correo}}</td>
                                         <td>
-                                            <button class="btn  btn-success btn-md btnnd" title="Nuevo Donativo" value="{{$em->idpersona}}"><i class="fa fa-heart fa-plus-circle"></i></button>
-
                                              <a href="javascript:void(0);" onclick="detalle(20,{{$em->idpersona}});"><button class="btn btn-primary btn-md" title="Detalles" ><i class="fa fa-address-card"></i></button></a>
-
-                                            <button class="btn  btn-warning btn-md btneditb" title="Editar" value="{{$em->idpersona}}"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$em->idpersona}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
+                                            <button class="btn btn-success btn-md btnactivarb" id="FWEF" value="{{$em->idpersona}}" title="Recuperar" ><i class="fa fa-star"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -251,5 +233,7 @@
              });
     });
 </script>
+
+
 
 

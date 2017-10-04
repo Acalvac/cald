@@ -13,7 +13,6 @@ class Familiar extends Model
 
     protected $fillable=[
     	'nombre',
-    	'apellido',
     	'telefono',
     	'fechanac',
     	'idparentesco',
@@ -22,5 +21,6 @@ class Familiar extends Model
     	'peso',
     	'ocupacion',
     	'anomalias',
+        'idiomas',
     ];
 }
