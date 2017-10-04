@@ -39,7 +39,7 @@ $(document).ready(function(){
                 var nombrefam = $(this).find('td').eq(1).html();
                 var fenacfam = $(this).find('td').eq(2).html();
                 var ocupacionfam = $(this).find('td').eq(3).html();
-                var tallafam = $(this).closest('tr').find('input[type="hidden"]').val();
+                var tallafam = $(this).find('td').eq(4).html();
                 var pesofam = $(this).find('td').eq(5).html();
                 var idiomafam = $(this).find('td').eq(6).html();
                 var religionfam = $(this).closest('tr').find('input[id="religionfam"]').val();
@@ -96,11 +96,10 @@ $(document).ready(function(){
             });
             var formData = {
                 nombrep:$("#nombrep").val(),
-                apellidop:$("#apellidop").val(),
                 fechanacp:$("#fechanacp").val(),
                 origenp:$("#origenp").val(),
                 procedenciap:$("#procedenciap").val(),
-                tallap:$("#tallap option:selected").val(),
+                tallap:$("#tallap").val(),
                 pesop:$("#pesop").val(),
 
                 nombreres:$("#nombreres").val(),
@@ -123,7 +122,7 @@ $(document).ready(function(){
                 mnpr:$("input:radio[id=mnpr]:checked").val(),
                 nipdn:$("input:radio[id=nipdn]:checked").val(),
                 sbpdn:$("input:radio[id=sbpdn]:checked").val(),
-                tpym:$("#input:radio[id=tpym]:checked").val(),
+                tpym:$("input:radio[id=tpym]:checked").val(),
                 icoac:$("input:radio[id=icoac]:checked").val(),
                 tcp:$("input:radio[id=tcp]:checked").val(),
                 conquien:$("#conquien").val(),
@@ -143,9 +142,11 @@ $(document).ready(function(){
                 cnoeranormal:$("#cnoeranormal").val(),
                 qfpnd:$("#qfpnd").val(),
                 qatcnen:$("#qatcnen").val(),
-                vacunass:$("#vacunass").val(),
+                vtiene:$("input:radio[id=vtiene]:checked").val(),
+                //vacunass:$("#vacunass").val(),
                 chermanost:$("#chermanost").val(),
-                enfpadecido:$("#enfpadecido").val(),
+                //enfpadecido:$("#enfpadecido").val(),
+                epadecido:$("input:radio[id=epadecido]:checked").val(),
                 ordencor:$("#ordencor").val(), 
                 bautizado:$("#bautizado").val(), 
 
@@ -324,21 +325,25 @@ $("#btnGuardar").click(function(e){
             if (status == "addbe") {
                 $(data).each(function(i,v){
                     $("#enfermedadtipo").append('<option selected value='+v.idtipoenfermedad+'">'+v.nombre+'</option>');
+                    agregarenfermedad();
                 });
             }
             if (status == "addba") {
                 $(data).each(function(i,v){
                     $("#animaltipo").append('<option selected value='+v.idanimal+'">'+v.nombreanimal+'</option>');
+                    agregaranimal();
                 });
             }
             if (status == "addbp") {
                 $(data).each(function(i,v){
                     $("#personalati").append('<option selected value='+v.idpersonalatiende+'">'+v.nombre+'</option>');
+                    agregarpersonal();
                 });
             }
             if (status == "addbm") {
                 $(data).each(function(i,v){
                     $("#medicamento").append('<option selected value='+v.idmedicina+'">'+v.nombre+'</option>');
+                    agregarmedicina();
                 });
             }
             $('#formModal').modal('hide');            
@@ -376,12 +381,12 @@ function Infecmadre(elementos) {
 function Enfcmadre(elementos) {
     element = document.getElementById("Div2");
     enfcronica = document.getElementById("enfcronicas");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         enfcronica.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         enfcronica.style.display='none';
     }
@@ -390,12 +395,12 @@ function Enfcmadre(elementos) {
 function Conmadre(elementos) {
     element = document.getElementById("Div3");
     anconvive = document.getElementById("anconvive");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         anconvive.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         anconvive.style.display='none';
     }
@@ -404,12 +409,12 @@ function Conmadre(elementos) {
 function Atmadre(elementos) {
     element = document.getElementById("Div4");
     personaatendio = document.getElementById("personaatendio");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         personaatendio.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         personaatendio.style.display='none';
     }
@@ -418,12 +423,12 @@ function Atmadre(elementos) {
 function mtdeimn(elementos) {
     element = document.getElementById("Div6");
     medicamentos = document.getElementById("medicamentos");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         medicamentos.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         medicamentos.style.display='none';
     }
@@ -431,11 +436,11 @@ function mtdeimn(elementos) {
 }
 function Tcontrolp(elementos) {
     element = document.getElementById("Div5");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
     }
     }
@@ -444,12 +449,12 @@ function Tcontrolp(elementos) {
 function Vacunast(elementos) {
     element = document.getElementById("divacuna");
     vactable = document.getElementById("vactable");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         vactable.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         vactable.style.display='none';
     }
@@ -458,12 +463,12 @@ function Vacunast(elementos) {
 function Enfpadecido(elementos) {
     element = document.getElementById("divpadecido");
     enftable = document.getElementById("enftable");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         enftable.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         enftable.style.display='none';
     }
@@ -473,8 +478,7 @@ function agregarfam(){
     nombrefam = $("#nombrefam").val();
     fenacfam = $("#fenacfam").val();
     ocupacionfam = $("#ocupacionfam").val();
-    tallafam =$("#tallafam option:selected").val(); 
-    famtalla =$("#tallafam option:selected").text();
+    tallafam =$("#tallafam ").val(); 
     pesofam = $("#pesofam").val();
     religionfam =$("#religionfam option:selected").val(); 
     famreligion =$("#religionfam option:selected").text();
@@ -491,7 +495,7 @@ function agregarfam(){
             item +='<td>'+nombrefam+'</td>';
             item +='<td>'+fenacfam+'</td>';
             item +='<td>'+ocupacionfam+'</td>'; 
-            item +='<td><input type="hidden" id="tallafam" name="tallafam[]" value="'+tallafam+'">'+famtalla+'</td>';
+            item +='<td>'+tallafam+'</td>';
             item +='<td>'+pesofam+'</td>';
             item +='<td>'+idiomafam+'</td>';
             item +='<td><input type="hidden" id="religionfam" name="religionfam[]" value="'+religionfam+'">'+famreligion+'</td>';

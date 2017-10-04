@@ -27,10 +27,10 @@ class Persona extends Model
         'permanente',
     ];
 
-    public function scopePersona($query,$dato="")
+    public function scopePersonas($query,$dato="")
     {
-        return $query->where('nombre','like','%'.$dato.'%')
-            ->orwhere('apellido','like','%'.$dato.'%')
-            ->orwhere(\DB::raw("CONCAT(nombre,' ',apellido)"),'like','%'.$dato.'%');
+        return $query->where('persona.nombre','like','%'.$dato.'%')
+            ->orwhere('persona.apellido','like','%'.$dato.'%')
+            ->orwhere(\DB::raw("CONCAT(persona.nombre,' ',persona.apellido)"),'like','%'.$dato.'%');
     }
 }

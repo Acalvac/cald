@@ -34,18 +34,28 @@ use DB;
 use Validator;
 use Carbon\Carbon;  // para poder usar la fecha y hora
 use Response;
-
+use PDF;
 class CPaciente extends Controller
 {
 	public function index()
 	{
 		$paciente= DB::table('paciente as p')
 		->join('responsable as r','r.idresponsable','=','p.idresponsable')
-		->select('p.idpaciente','p.nombrepa','p.apellidopa','p.fechaingreso','r.nombre','r.telefono')
+		->select('p.idpaciente','p.nombrepa','p.fechaingreso','r.nombre','r.telefono')
 		->where('p.idstatus','=','5')
 		->paginate(15);
-
+		
 		return view('pacientes.index',['paciente'=>$paciente]);
+	}
+	public function indexinc()
+	{
+		$paciente= DB::table('paciente as p')
+		->join('responsable as r','r.idresponsable','=','p.idresponsable')
+		->select('p.idpaciente','p.nombrepa','p.fechaingreso','r.nombre','r.telefono')
+		->where('p.idstatus','=','6')
+		->paginate(15);
+		
+		return view('pacientes.indexinc',['paciente'=>$paciente]);
 	}
 	public function nuevopas()
 	{	
@@ -60,6 +70,190 @@ class CPaciente extends Controller
 		$medicina = DB::table('medicina')->get();
 		$vacunas = DB::table('vacunas')->get();
 		return view('pacientes.nuevop',['parentesco'=>$parentesco,'religion'=>$religion,'idioma'=>$idioma,'anomalia'=>$anomalia,'tipoinfeccion'=>$tipoinfeccion,'tipoenfermedad'=>$tipoenfermedad,'tipoanimal'=>$tipoanimal,'personalat'=>$personalat,'medicina'=>$medicina,'vacunas'=>$vacunas]);
+	}
+	public function detallespaciente($id)
+	{	
+		$paciente= DB::table('paciente as p')
+		->join('responsable as r','r.idresponsable','=','p.idresponsable')
+		->select('p.idpaciente','p.nombrepa','p.fechanac','p.lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
+		->where('p.idpaciente','=',$id)
+		->first();
+		$familiar = DB::table('paciente as p')
+		->join('familiares as fs','fs.idpaciente','=','p.idpaciente')
+		->join('familiar as f','f.idfamiliar','=','fs.idfamiliar')
+		->join('parentesco as pco','pco.idparentesco','=','f.idparentesco')
+		->join('religion as rn','rn.idreligion','=','f.idreligion')
+		->select('f.idfamiliar','f.nombre','f.fechanac','f.talla','f.peso','f.ocupacion','f.anomalias','f.idiomas','pco.parentesco','rn.religion')
+		->where('fs.idpaciente','=',$id)
+		->get();
+
+		$antperinatal = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->select('ap.infeccembarazo','ap.enfcronicas','ap.conviveanimal','ap.duroparto','ap.lloronacer','ap.cianaticonacer','ap.maniobrarespira','ap.ictericonacido','ap.succiondepecho','ap.manosypies','ap.cordonantesdecaer','ap.controlprenatal','ap.personatendio','ap.medicatomados')
+		->where('p.idpaciente','=',$id)
+		->first();
+
+		$infecciones = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('infecciones as in','in.idperinatal','=','ap.idperinatal')
+		->join('tipoinfeccion as tin','tin.idtipoinfeccion','=','in.idtipoinfeccion')
+		->select('in.idinfecciones','tin.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$enfermedad = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('enfermedades as en','en.idperinatal','=','ap.idperinatal')
+		->join('tipoenfermedad as ten','ten.idtipoenfermedad','=','en.idtipoenfermedad')
+		->select('en.idenfermedad','ten.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$conanimales = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('conviveanimals as ca','ca.idperinatal','=','ap.idperinatal')
+		->join('tipoanimal as ta','ta.idanimal','=','ta.idanimal')
+		->select('ca.idconvive','ta.nombreanimal')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$peratiende = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('personalatendio as pa','pa.idperinatal','=','ap.idperinatal')
+		->join('personalatiende as po','po.idpersonalatiende','=','pa.idpersonalatiende')
+		->select('pa.idpersonal','po.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$medicina = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('medictomada as mt','mt.idperinatal','=','ap.idperinatal')
+		->join('medicina as m','m.idmedicina','=','mt.idmedicina')
+		->select('mt.idmedic','m.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$cresydesa = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->select('cyd.edadsostuvocabeza','cyd.edadsentosolo','cyd.edadcamino','cyd.primeraspalabras','cyd.notaronnoesnormal','cyd.notarondiferente','cyd.actitudtomada','cyd.hermanostiene','cyd.enfepadecido','cyd.ordecorresponde','cyd.estabautizado','cyd.vacuna')
+		->where('p.idpaciente','=',$id)
+		->first();
+
+		$vacunast = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->join('vacunatiene as vt','vt.iddesarrollo','=','cyd.iddesarrollo')
+		->join('vacunas as v','v.idvacuna','=','vt.idvacuna')
+		->select('vt.idtienevacuna','v.vacuna')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$enferpadecido = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->join('enfpadecido as en','en.iddesarrollo','=','cyd.iddesarrollo')
+		->join('tipoenfermedad as ten','ten.idtipoenfermedad','=','en.idtipoenfermedad')
+		->select('en.idenfpadecido','ten.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		return view('pacientes.detalles',['paciente'=>$paciente,'familiar'=>$familiar,'antperinatal'=>$antperinatal,'infecciones'=>$infecciones,'enfermedad'=>$enfermedad,'conanimales'=>$conanimales,'peratiende'=>$peratiende,'medicina'=>$medicina,'cresydesa'=>$cresydesa,'vacunast'=>$vacunast,'enferpadecido'=>$enferpadecido]);
+	}
+		public function pdf($id)
+	{	
+		$paciente= DB::table('paciente as p')
+		->join('responsable as r','r.idresponsable','=','p.idresponsable')
+		->select('p.idpaciente','p.nombrepa','p.fechanac','p.lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
+		->where('p.idpaciente','=',$id)
+		->first();
+		$papa = DB::table('paciente as p')
+		->join('familiares as fs','fs.idpaciente','=','p.idpaciente')
+		->join('familiar as f','f.idfamiliar','=','fs.idfamiliar')
+		->join('parentesco as pco','pco.idparentesco','=','f.idparentesco')
+		->join('religion as rn','rn.idreligion','=','f.idreligion')
+		->select('f.idfamiliar','f.nombre','f.fechanac','f.talla','f.peso','f.ocupacion','f.anomalias','f.idiomas','pco.parentesco','rn.religion')
+		->where('pco.parentesco','=','Padre')
+		->where('fs.idpaciente','=',$id)
+		->first();
+
+		$mama = DB::table('paciente as p')
+		->join('familiares as fs','fs.idpaciente','=','p.idpaciente')
+		->join('familiar as f','f.idfamiliar','=','fs.idfamiliar')
+		->join('parentesco as pco','pco.idparentesco','=','f.idparentesco')
+		->join('religion as rn','rn.idreligion','=','f.idreligion')
+		->select('f.idfamiliar','f.nombre','f.fechanac','f.talla','f.peso','f.ocupacion','f.anomalias','f.idiomas','pco.parentesco','rn.religion')
+		->where('pco.parentesco','=','Madre')
+		->where('fs.idpaciente','=',$id)
+		->first();
+
+		$antperinatal = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->select('ap.infeccembarazo','ap.enfcronicas','ap.conviveanimal','ap.duroparto','ap.lloronacer','ap.cianaticonacer','ap.maniobrarespira','ap.ictericonacido','ap.succiondepecho','ap.manosypies','ap.cordonantesdecaer','ap.controlprenatal','ap.personatendio','ap.medicatomados')
+		->where('p.idpaciente','=',$id)
+		->first();
+
+		$infecciones = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('infecciones as in','in.idperinatal','=','ap.idperinatal')
+		->join('tipoinfeccion as tin','tin.idtipoinfeccion','=','in.idtipoinfeccion')
+		->select('in.idinfecciones','tin.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$enfermedad = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('enfermedades as en','en.idperinatal','=','ap.idperinatal')
+		->join('tipoenfermedad as ten','ten.idtipoenfermedad','=','en.idtipoenfermedad')
+		->select('en.idenfermedad','ten.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$conanimales = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('conviveanimals as ca','ca.idperinatal','=','ap.idperinatal')
+		->join('tipoanimal as ta','ta.idanimal','=','ta.idanimal')
+		->select('ca.idconvive','ta.nombreanimal')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$peratiende = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('personalatendio as pa','pa.idperinatal','=','ap.idperinatal')
+		->join('personalatiende as po','po.idpersonalatiende','=','pa.idpersonalatiende')
+		->select('pa.idpersonal','po.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$medicina = DB::table('paciente as p')
+		->join('anteperinatal as ap','ap.idpaciente','=','p.idpaciente')
+		->join('medictomada as mt','mt.idperinatal','=','ap.idperinatal')
+		->join('medicina as m','m.idmedicina','=','mt.idmedicina')
+		->select('mt.idmedic','m.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$cresydesa = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->select('cyd.edadsostuvocabeza','cyd.edadsentosolo','cyd.edadcamino','cyd.primeraspalabras','cyd.notaronnoesnormal','cyd.notarondiferente','cyd.actitudtomada','cyd.hermanostiene','cyd.enfepadecido','cyd.ordecorresponde','cyd.estabautizado','cyd.vacuna')
+		->where('p.idpaciente','=',$id)
+		->first();
+
+		$vacunast = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->join('vacunatiene as vt','vt.iddesarrollo','=','cyd.iddesarrollo')
+		->join('vacunas as v','v.idvacuna','=','vt.idvacuna')
+		->select('vt.idtienevacuna','v.vacuna')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$enferpadecido = DB::table('paciente as p')
+		->join('crecydesarrollo as cyd','cyd.idpaciente','=','p.idpaciente')
+		->join('enfpadecido as en','en.iddesarrollo','=','cyd.iddesarrollo')
+		->join('tipoenfermedad as ten','ten.idtipoenfermedad','=','en.idtipoenfermedad')
+		->select('en.idenfpadecido','ten.nombre')
+		->where('p.idpaciente','=',$id)
+		->get();
+
+		$pdf= PDF::loadView('pacientes.pdfdetalle',['paciente'=>$paciente,'papa'=>$papa,'mama'=>$mama,'antperinatal'=>$antperinatal,'infecciones'=>$infecciones,'enfermedad'=>$enfermedad,'conanimales'=>$conanimales,'peratiende'=>$peratiende,'medicina'=>$medicina,'cresydesa'=>$cresydesa,'vacunast'=>$vacunast,'enferpadecido'=>$enferpadecido]);
+        return $pdf->download('Admision.pdf');
 	}
 	public function addinfeccion(Request $request)
 	{
@@ -120,8 +314,8 @@ class CPaciente extends Controller
 	        $medicatomados =$request->get('mednatural');
 	        $tuvocontrol =$request->get('tcp');
 
-	        $enfepadecido = $request->get('enfpadecido');
-	        $vacunastiene = $request->get('vacunass');
+	        $enfepadecido = $request->get('epadecido');
+	        $vacunastiene = $request->get('vtiene');
 
 	        $miArrayInf = $request->itemsInf;
 	        $miArrayEn = $request->itemsEn;
@@ -142,7 +336,6 @@ class CPaciente extends Controller
 
 	        $paciente= new Paciente;
 	        $paciente-> nombrepa=$request->get('nombrep');
-	        $paciente-> apellidopa=$request->get('apellidop');
 	        $paciente-> fechanac=$fecha;
 	        $paciente-> fechaingreso=$mytime->toDateTimeString();
 	        $paciente-> talla=$request->get('tallap');
@@ -166,7 +359,7 @@ class CPaciente extends Controller
 					$familiar-> ocupacion = $value['2'];
 	                $familiar-> talla = $value['3'];
 	                $familiar-> peso = $value['4'];
-	                $familiar-> telefono = $value['5'];
+	                $familiar-> idiomas = $value['5'];
 	                $familiar-> idreligion = $value['6'];
 	                $familiar-> anomalias = $value['7'];
 	                $familiar-> idparentesco = $value['8'];                
@@ -235,7 +428,7 @@ class CPaciente extends Controller
             {
 
             }
-            if ($enfcronicas === 1 ) {
+            if ($enfcronicas === 'Si' ) {
             	foreach ($miArrayEn as $key => $value) {
 	                $enfer= new Enfermedades;
 	                $enfer-> idtipoenfermedad = $value['0'];
@@ -243,7 +436,7 @@ class CPaciente extends Controller
 	                $enfer->save();
 	            }
             }
-            if ($conviveanimal === 1 ) {
+            if ($conviveanimal === 'Si' ) {
             	foreach ($miArrayAn as $key => $value) {
 	                $ca= new ConviveAnimales;
 	                $ca-> idanimal = $value['0'];
@@ -251,7 +444,7 @@ class CPaciente extends Controller
 	                $ca->save();
 	            }
             }
-            if ($personatendio === 1 ) {
+            if ($personatendio === 'Si' ) {
             	foreach ($miArrayPer as $key => $value) {
 	                $perat= new PersonalAtendio;
 	                $perat-> idpersonalatiende = $value['0'];
@@ -259,7 +452,7 @@ class CPaciente extends Controller
 	                $perat->save();
 	            }
             }
-            if ($medicatomados === 1 ) {
+            if ($medicatomados === 'Si' ) {
             	foreach ($miArrayMed as $key => $value) {
 	                $medic= new MedicTomada;
 	                $medic-> idmedicina = $value['0'];
@@ -267,7 +460,7 @@ class CPaciente extends Controller
 	                $medic->save();
 	            }
             }
-            if ($tuvocontrol === 1 ) {
+            if ($tuvocontrol === 'Si' ) {
 	            $ctl= new Control;
 	            $ctl-> conquien = $request->get('conquien');
 	            $ctl-> veces = $request->get('veces');
@@ -289,9 +482,10 @@ class CPaciente extends Controller
             $cres-> ordecorresponde = $request->get('ordencor');
             $cres-> estabautizado = $request->get('bautizado');
             $cres-> idpaciente = $paciente->idpaciente;
+            $cres-> vacuna = $vacunastiene;
             $cres->save();
 
-            if ($enfepadecido === 1 ) {
+            if ($enfepadecido === 'Si' ) {
             	foreach ($miArrayVac as $key => $value) {
 	                $vac= new VacunaTiene;
 	                $vac-> idvacuna = $value['0'];
@@ -300,7 +494,7 @@ class CPaciente extends Controller
 	            }
             }
 
-            if ($vacunastiene === 1 ) {
+            if ($vacunastiene === 'Si' ) {
             	foreach ($miArrayPad as $key => $value) {
 	                $pades= new EnfPadecido;
 	                $pades-> idtipoenfermedad = $value['0'];
@@ -314,4 +508,20 @@ class CPaciente extends Controller
 			
 		}
 	}
+	public function baja($id)
+    {
+        $st=Paciente::findOrFail($id);
+        $st-> idstatus='6';
+        $st->update();
+        return response()->json($st);
+        //return Redirect::to('empleado/listadoen');
+    }
+    public function recuperarp($id)
+    {
+        $st=Paciente::findOrFail($id);
+        $st-> idstatus='5';
+        $st->update();
+        return response()->json($st);
+        //return Redirect::to('empleado/listadoen');
+    }
 }

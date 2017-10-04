@@ -70,6 +70,8 @@ function cargarindex(arg){
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 	if(arg==21){var miurl=urlraiz+"/paciente/index";}
 	if(arg==22){var miurl=urlraiz+"/paciente/nuevo";}
+  if(arg==23){var miurl=urlraiz+"/bienhechor/indexinc";}
+  if(arg==24){var miurl=urlraiz+"/paciente/indexinc";}
  	
     $.ajax({
     url: miurl
@@ -115,6 +117,7 @@ function detalle(arg,id)
 
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/listardetallesb/"+id+"";}
+  if(arg==21){var miurl=urlraiz+"/paciente/detallespaciente/"+id+"";}
 	$.ajax({
 		url: miurl
     }).done( function(resul) 

@@ -19,7 +19,7 @@ class CBienhechor extends Controller
     {
         if ($request)
         {
-            $query=trim($request->get('searchText'));
+            $dato=trim($request->get('dato_buscado'));
         	$bienhechor=DB::table('persona as p')
         	->join('status as sts','p.idstatus','=','sts.idstatus')
         	->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
@@ -28,13 +28,49 @@ class CBienhechor extends Controller
      		//->where('tp.idtipopersona','=',2)
             //->orwhere('p.nombre','LIKE','%'.$query.'%')
      		->where('p.idstatus','=',3)
-            ->where('p.nombre','LIKE','%'.$query.'%')
+            //->where('p.nombre','LIKE','%'.$query.'%')
             ->paginate(15);
 
      		$tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
             $donacion=DB::table('tipodonacion as td')->get();
+            return view('bienechor.index',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion,"dato"=>$dato]);
         }
- 		return view('bienechor.index',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion,"searchText"=>$query]);
+ 		
+    }
+    public function indexb($dato="",Request $request)
+    {
+        //dd($dato);
+            $bienhechor= Persona::Personas($dato)
+            ->join('status as sts','persona.idstatus','=','sts.idstatus')
+            ->join('tipopersona as tp','tp.idtipopersona','=','persona.idtipopersona')
+            ->select('persona.idpersona','persona.nombre','persona.apellido','persona.telefono','persona.direccion','persona.correo','sts.nombre as snombre')
+            ->where('persona.idstatus','=',3)
+            ->paginate(15);
+
+            $tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
+            $donacion=DB::table('tipodonacion as td')->get();
+            return view('bienechor.contentindex',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion,"dato"=>$dato]);
+    }
+    public function indexinc(Request $request)
+    {
+        if ($request)
+        {
+            $query=trim($request->get('dato_buscado'));
+            $bienhechor=DB::table('persona as p')
+            ->join('status as sts','p.idstatus','=','sts.idstatus')
+            ->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
+            ->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo','sts.nombre as snombre')
+            //->where('sts.nombre','=','Activo')
+            //->where('tp.idtipopersona','=',2)
+            //->orwhere('p.nombre','LIKE','%'.$query.'%')
+            ->where('p.idstatus','=',4)
+            ->where('p.nombre','LIKE','%'.$query.'%')
+            ->paginate(15);
+
+            $tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
+            $donacion=DB::table('tipodonacion as td')->get();
+        }
+        return view('bienechor.indexinc',["bienhechor"=>$bienhechor,"tipop"=>$tipop,"donacion"=>$donacion,"dato_buscado"=>$query]);
     }
     public function detallesb(Request $request,$id)
     {
@@ -173,6 +209,15 @@ class CBienhechor extends Controller
     {
         $st=Persona::findOrFail($id);
         $st-> idstatus='4';
+        $st->update();
+        return response()->json($st);
+        //return Redirect::to('empleado/listadoen');
+    }
+
+    public function recuperarb($id)
+    {
+        $st=Persona::findOrFail($id);
+        $st-> idstatus='3';
         $st->update();
         return response()->json($st);
         //return Redirect::to('empleado/listadoen');

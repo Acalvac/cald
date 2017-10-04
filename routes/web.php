@@ -25,10 +25,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-
 // se agrega todas las rutas del bienechor, donaciones entre otros
 Route::group(['prefix'=>'bienhechor'], function(){
 	Route::get('index','CBienhechor@index');
+	Route::get('indexb/{dato?}','CBienhechor@indexb');
 	Route::post('add','CBienhechor@nuevobienhechor');
 	Route::get('listarupbienhe/{id}','CBienhechor@listarupbienhe');
 	Route::put('upbienhe/{id}','CBienhechor@upbienhe');
@@ -41,6 +41,8 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::put('updonativo/{id}','CBienhechor@updonativo');
 	Route::put('deletebi/{id}','CBienhechor@deletebi');
 	Route::get('pdfbienhechor','CBienhechor@pdfbienhechor');
+	Route::get('indexinc','CBienhechor@indexinc');
+	Route::put('recuperarb/{id}','CBienhechor@recuperarb');
 });
 
 // se agrega todas las rutas del paciente, examen medico, historial entre otros
@@ -53,6 +55,11 @@ Route::group(['prefix'=>'paciente'], function(){
 	Route::post('addanimal','CPaciente@addanimal');
 	Route::post('addpersonal','CPaciente@addpersonal');
 	Route::post('addmedicina','CPaciente@addmedicina');
+	Route::get('detallespaciente/{id}','CPaciente@detallespaciente');
+	Route::get('pdf/{id}','CPaciente@pdf');
+	Route::put('baja/{id}','CPaciente@baja');
+	Route::get('indexinc','CPaciente@indexinc');
+	Route::put('recuperarp/{id}','CPaciente@recuperarp');
 });
 
 // se agrega todas las rutas del medicamento, proveedor entre otros

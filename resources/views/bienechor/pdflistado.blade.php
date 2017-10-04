@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="row">
-	<h3 class="text-center">Listado de Bienhechores</h2>
+	<h3 class="text-center">Listado de Bienhechores</h3>
 </div>
 <div class="row">
 	<table width="100%" border="1" cellpadding="0" cellspacing="1" bordercolor="#000000" style="border-collapse:collapse;border-color:#ddd;">
