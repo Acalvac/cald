@@ -1,22 +1,9 @@
 $(document).ready(function(){
     
     $("#wizard").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        autoFocus: true,
         /*onStepChanging: function (e)
         {
-            var nombre=$("#nombre").val();
-            if (nombre!=""){
-                return true;
-            }
-            else
-            {
-                alert("Esta vacio");
-                return false;
-            }
-            laas
+            
         },*/
         onFinishing: function(e){
 
@@ -50,17 +37,18 @@ $(document).ready(function(){
 
             tablaF.each(function(){
                 var nombrefam = $(this).find('td').eq(1).html();
-                var apellidofam = $(this).find('td').eq(2).html();
-                var fenacfam = $(this).find('td').eq(3).html();
-                var ocupacionfam = $(this).find('td').eq(4).html();
+                var fenacfam = $(this).find('td').eq(2).html();
+                var ocupacionfam = $(this).find('td').eq(3).html();
                 var tallafam = $(this).closest('tr').find('input[type="hidden"]').val();
-                var pesofam = $(this).find('td').eq(6).html();
-                var idiomafam = $(this).find('td').eq(7).html();
+                var pesofam = $(this).find('td').eq(5).html();
+                var idiomafam = $(this).find('td').eq(6).html();
                 var religionfam = $(this).closest('tr').find('input[id="religionfam"]').val();
+                var anomaliafam = $(this).find('td').eq(8).html();
                 var parentescofam = $(this).closest('tr').find('input[id="parentescofam"]').val();
-                valor = new Array(nombrefam,apellidofam,fenacfam,ocupacionfam,tallafam,pesofam,idiomafam,religionfam,parentescofam);
+                valor = new Array(nombrefam,fenacfam,ocupacionfam,tallafam,pesofam,idiomafam,religionfam,anomaliafam,parentescofam);
                 itemsData.push(valor);
             });
+
             tablaL.each(function(){
                 var ididioma = $(this).closest('tr').find('input[type="hidden"]').val();
                 valor = new Array(ididioma);
@@ -106,7 +94,6 @@ $(document).ready(function(){
                 valor = new Array(padesidos);
                 itemsDataPad.push(valor);
             });
-
             var formData = {
                 nombrep:$("#nombrep").val(),
                 apellidop:$("#apellidop").val(),
@@ -125,20 +112,20 @@ $(document).ready(function(){
                 itemsL: itemsDataL,
                 itemsA: itemsDataA,
 
-                imde:$("#imde").val(),
-                ecdm:$("#ecdm").val(),
-                cmcad:$("#cmcad").val(),
-                tpamp:$("#tpamp").val(),
-                mednatural:$("#mednatural").val(),
+                imde:$("input:radio[id=imde]:checked").val(),
+                ecdm:$("input:radio[id=ecdm]:checked").val(),
+                cmcad:$("input:radio[id=cmcad]:checked").val(),
+                tpamp:$("input:radio[id=tpamp]:checked").val(),
+                mednatural:$("input:radio[id=mednatural]:checked").val(),
                 tparto:$("#tparto").val(),
-                lnin:$("#lnin").val(),
-                pcnn:$("#pcnn").val(),
-                mnpr:$("#mnpr").val(),
-                nipdn:$("#nipdn").val(),
-                sbpdn:$("#sbpdn").val(),
-                tpym:$("#tpym").val(),
-                icoac:$("#icoac").val(),
-                tcp:$("#tcp").val(),
+                lnin:$("input:radio[id=lnin]:checked").val(),
+                pcnn:$("input:radio[id=pcnn]:checked").val(),
+                mnpr:$("input:radio[id=mnpr]:checked").val(),
+                nipdn:$("input:radio[id=nipdn]:checked").val(),
+                sbpdn:$("input:radio[id=sbpdn]:checked").val(),
+                tpym:$("#input:radio[id=tpym]:checked").val(),
+                icoac:$("input:radio[id=icoac]:checked").val(),
+                tcp:$("input:radio[id=tcp]:checked").val(),
                 conquien:$("#conquien").val(),
                 veces:$("#veces").val(),
                 comentario:$("#comentario").val(),
@@ -192,7 +179,7 @@ $(document).ready(function(){
 
         }
     });
-    $("#idiomafam").select2();
+    $(".select2_demo_2").select2();
     $("#addFam").click(function(){
         agregarfam();
     });
@@ -223,6 +210,49 @@ $(document).ready(function(){
     $("#btnpadecido").click(function(){
         agregarpadecidos();
     });
+    $("#btnaddinf").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Infeccion");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbi');
+                $('#formModal').modal('show');
+            //});
+    });
+
+    $("#btnaddenf").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Enfermedad");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbe');
+                $('#formModal').modal('show');
+            //});
+    });
+    /**/
+    $("#btnaddanimal").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva registro");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addba');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#btnaddpersonal").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Personal");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbp');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#btnaddmedicina").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Medicina");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbm');
+                $('#formModal').modal('show');
+            //});
+    });
+
     $('#fechanacp').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
@@ -250,15 +280,94 @@ var contper=0;
 var contmed=0;
 var contvac=0;
 var contpad=0;
+
+$("#btnGuardar").click(function(e){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    var miurl;
+    var status = $("#btnGuardar").val();
+    var formData = {
+            nombre:$("#nombreb").val(),
+        };
+
+    if (status == "addbi") {
+        miurl = 'paciente/addinfeccion';
+    }
+    if (status == "addbe") {
+        miurl = 'paciente/addenfermedad';
+    }
+    if (status == "addba") {
+        miurl = 'paciente/addanimal';
+    }
+    if (status == "addbp") {
+        miurl = 'paciente/addpersonal';
+    }
+    if (status == "addbm") {
+        miurl = 'paciente/addmedicina';
+    }
+    $.ajax({
+        type: "POST",
+        url: miurl,
+        data: formData,
+        dataType: 'json',
+
+        success: function (data) {
+            if (status == "addbi") {
+                $(data).each(function(i,v){
+                    $("#infecciontipo").append('<option selected value='+v.idtipoinfeccion+'">'+v.nombre+'</option>');
+                    agregarinfeccion();
+                });
+            }
+            if (status == "addbe") {
+                $(data).each(function(i,v){
+                    $("#enfermedadtipo").append('<option selected value='+v.idtipoenfermedad+'">'+v.nombre+'</option>');
+                });
+            }
+            if (status == "addba") {
+                $(data).each(function(i,v){
+                    $("#animaltipo").append('<option selected value='+v.idanimal+'">'+v.nombreanimal+'</option>');
+                });
+            }
+            if (status == "addbp") {
+                $(data).each(function(i,v){
+                    $("#personalati").append('<option selected value='+v.idpersonalatiende+'">'+v.nombre+'</option>');
+                });
+            }
+            if (status == "addbm") {
+                $(data).each(function(i,v){
+                    $("#medicamento").append('<option selected value='+v.idmedicina+'">'+v.nombre+'</option>');
+                });
+            }
+            $('#formModal').modal('hide');            
+        },
+        error: function (data) {
+            $('#loading').modal('hide');
+            var errHTML="";
+            if((typeof data.responseJSON != 'undefined')){
+                for( var er in data.responseJSON){
+                                errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                }
+            }else{
+                errHTML+='<li>Error al intentar guardar un nuevo registro, intente mas tarde.</li>';
+            }
+            $("#erroresContent").html(errHTML); 
+            $('#erroresModal').modal('show');
+        }
+    });
+});
+
 function Infecmadre(elementos) {
     element = document.getElementById("Div1");
     divin = document.getElementById("infeccion");
-    if (elementos.value=="1") {
+    if (elementos.value=="Si") {
         element.style.display='block';
         divin.style.display='block';
     }
     else 
-    { if (elementos.value=="0") {
+    { if (elementos.value=="No") {
         element.style.display='none';
         divin.style.display='none';
     }
@@ -362,7 +471,6 @@ function Enfpadecido(elementos) {
 }
 function agregarfam(){
     nombrefam = $("#nombrefam").val();
-    apellidofam = $("#apellidofam").val();
     fenacfam = $("#fenacfam").val();
     ocupacionfam = $("#ocupacionfam").val();
     tallafam =$("#tallafam option:selected").val(); 
@@ -374,19 +482,20 @@ function agregarfam(){
     famparentesco =$("#parentescofam option:selected").text();
 
     idiomafam =$("#idiomafam option:selected").text();
+    anomaliafam =$("#anomaliafam option:selected").text();
 
     if(nombrefam!="")
     {
         var item = '<tr class="even gradeA" id="idfamiliar'+contf+'">';
             item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+contf+');">X</button></td>';
             item +='<td>'+nombrefam+'</td>';
-            item +='<td>'+apellidofam+'</td>';
             item +='<td>'+fenacfam+'</td>';
             item +='<td>'+ocupacionfam+'</td>'; 
             item +='<td><input type="hidden" id="tallafam" name="tallafam[]" value="'+tallafam+'">'+famtalla+'</td>';
             item +='<td>'+pesofam+'</td>';
             item +='<td>'+idiomafam+'</td>';
             item +='<td><input type="hidden" id="religionfam" name="religionfam[]" value="'+religionfam+'">'+famreligion+'</td>';
+            item +='<td>'+anomaliafam+'</td>';
             item +='<td><input type="hidden" id="parentescofam" name="parentescofam[]" value="'+parentescofam+'">'+famparentesco+'</td></tr>';
             contf++;
             limpiarfam();
@@ -539,15 +648,10 @@ function limpiarfam()
     $("#apellidofam").val("");
     $("#fenacfam").val("");
     $("#ocupacionfam").val("");
-    $("#tallafam option:selected").val(""); 
-    $("#tallafam option:selected").text("Seleccione");
+    $("#tallafam option:selected").val("");
     $("#pesofam").val("");
     $("#religionfam option:selected").val(""); 
-    $("#religionfam option:selected").text("Seleccione");
     $("#parentescofam option:selected").val(""); 
-    $("#parentescofam option:selected").text("Seleccione");
     $("#idiomafam option:selected").val(""); 
-    $("#idiomafam option:selected").text("Seleccione");
     $("#anomaliafam option:selected").val(""); 
-    $("#anomaliafam option:selected").text("Seleccione");
 }

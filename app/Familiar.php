@@ -21,6 +21,6 @@ class Familiar extends Model
     	'talla',
     	'peso',
     	'ocupacion',
-    	'anomalia',
+    	'anomalias',
     ];
 }

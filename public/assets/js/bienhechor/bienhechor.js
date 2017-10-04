@@ -6,7 +6,11 @@
                 $('#formModal').modal('show');
             });
 
-            
+            $(document).on('click','.btndescarga',function(){
+                //alert("download");
+                var miurl="/bienhechor/pdfbienhechor";
+                $.get(miurl);
+            });
 
             $(document).on('click','.btneditb',function(){
                 var idb=$(this).val();

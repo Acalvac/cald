@@ -1,28 +1,23 @@
 <link href="{{asset('assets/css/plugins/steps/jquery.steps.css')}}" rel="stylesheet">
-<link href="{{asset('assets/css/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-<link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+<link href="{{asset('assets/css/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
                     <h3 align="center">Ingreso de paciente</h3>
                     <a href="javascript:void(0);" onclick="cargarindex(21);">
                         <button class="btn btn-primary btn-md" title="Listado Pacientes"><i class="fa fa-arrow-circle-left"></i></button>
                     </a>
                     <hr style="border-color:black;"/>
-                </div>
-                <div class="ibox-content">
-                    <p>
-                        * Campos obligatorios.
-                    </p>
-                    <div id="wizard">
-                        <h3>Datos Generales</h3>
-                        <section>
-                            <div class="col-lg-12 col-md-12">
+        </div>
+        <div class="ibox-content">
+                        <div id="wizard">
+                            <h1>Datos Generales</h1>
+                            <div class="step-content">
+                                <div class="col-lg-12 col-md-12">
                                 <p>Datos del Niño</p>
                                 <div class="col-lg-3 col-md-2">
                                     <label>Nombres y apellidos</label>
@@ -56,14 +51,7 @@
                                 <div class="col-lg-1 col-md-2">
                                     <label>Talla </label>
                                     <div class="form-group">
-                                        <select id="tallap" class="form-control">
-                                            <option value="XS">XS</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="tallap">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2">
@@ -78,18 +66,12 @@
                             </div>
                             <div class="col-lg-12">
                                 <p>Datos de los padres</p>
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>Nombres *</label>
                                         <input id="nombrefam" type="text" class="form-control">
                                     </div>
                                 </div>    
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Apellidos</label>
-                                        <input id="apellidofam" type="text" class="form-control">
-                                    </div>
-                                </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label>Fecha de nacimiento</label>
@@ -110,14 +92,7 @@
                                 <div class="col-lg-1">
                                     <div class="form-group">
                                         <label>Talla </label>
-                                        <select id="tallafam" class="form-control" >
-                                            <option value="XS">XS</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="tallafam">
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
@@ -132,16 +107,14 @@
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Lenguaje</label>
-                                        <select id="idiomafam" class="form-control" multiple="multiple">
+                                    <h4 class="m-t-30">Lenguaje</h4>
+                                        <select id="idiomafam" class="select2_demo_2 select2-multiple" multiple="multiple" data-placeholder="Seleccione ...">
                                             @if (isset($idioma))
                                                 @foreach($idioma as $idi)
                                                     <option value="{{$idi->ididioma}}">{{$idi->nombreid}},&nbsp;&nbsp;</option>
                                                 @endforeach
                                             @endif
                                         </select>
-                                    </div>
                                 </div>
                                 <div class="col-lg-1">
                                     <div class="form-group">
@@ -152,7 +125,7 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label>Religión</label>
-                                        <select id="religionfam" class="form-control " >
+                                        <select id="religionfam" class="select2_demo_2 form-control " >
                                             @if (isset($religion))
                                                 @foreach($religion as $rel)
                                                     <option value="{{$rel->idreligion}}">{{$rel->religion}}</option>
@@ -162,16 +135,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Anomalias observadas</label>
-                                        <select id="anomaliafam" class="form-control" >
+                                    <h4 class="m-t-30">Anomalias observadas</h4>
+                                        <select id="anomaliafam" class="select2_demo_2 select2-multiple" multiple="multiple" data-placeholder="Seleccione ...">
                                             @if (isset($anomalia))
                                                 @foreach($anomalia as $ano)
                                                     <option value="{{$ano->idanomalia}}">{{$ano->anomalia}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
-                                    </div>
                                 </div>
                                 <div class="col-lg-1">
                                     <div class="form-group">
@@ -206,13 +177,13 @@
                                             <tr>
                                                 <th style="width: 2%">Opciones</th>
                                                 <th>Nombres</th>
-                                                <th>Apellidos</th>
                                                 <th>Edad</th>
                                                 <th>Ocupación</th>
                                                 <th>Talla</th>
                                                 <th>Peso</th>
                                                 <th>Idiomas</th>
                                                 <th>Religión</th>
+                                                <th>Anomalias</th>
                                                 <th>Parentezco</th>
                                             </tr>
                                         </thead>
@@ -220,57 +191,37 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                    <table id="detallesidio" class="table table-striped table-bordered table-hover">
-                                        <thead style="background-color:#A9D0F5">
-                                            <tr>
-                                                <th style="width: 2%">Opciones</th>
-                                                <th>Idioma</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                    <table id="detallesanoma" class="table table-striped table-bordered table-hover">
-                                        <thead style="background-color:#A9D0F5">
-                                            <tr>
-                                                <th style="width: 2%">Opciones</th>
-                                                <th>Anomalia</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                        <h3>Antecedentes Perinatales</h3>
-                        <section>
-                            <div class="col-lg-12">
+
+                            <h1>Antecedentes Perinatales</h1>
+                            <div class="step-content">
+                                <div class="col-lg-12">
                                 <div class="col-lg-4">
                                     <label>Infecciones de la madre durante el embarazo&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="1" onclick="Infecmadre(this)" id="imde" name="imde"></label>&nbsp;&nbsp;
-                                        <label>No<input type="radio" value="0" onclick="Infecmadre(this)" id="imde" name="imde" checked=""></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Infecmadre(this)" id="imde" name="imde"></label>&nbsp;&nbsp;
+                                        <label>No<input type="radio" value="No" onclick="Infecmadre(this)" id="imde" name="imde" checked=""></label>
                                     </div>
-                                    <div class="col-lg-10" id="Div1" style="display: none;">
-                                            <div class="col-lg-10">
-                                            <select id="infecciontipo" class="form-control" >
-                                                @if (isset($tipoinfeccion))
-                                                    @foreach($tipoinfeccion as $inf)
-                                                        <option value="{{$inf->idtipoinfeccion}}">{{$inf->nombre}}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
+                                    <div class="col-lg-12" id="Div1" style="display: none;">
+                                            <div class="col-lg-8">
+                                                <select id="infecciontipo" class="select2 form-control" >
+                                                    @if (isset($tipoinfeccion))
+                                                        @foreach($tipoinfeccion as $inf)
+                                                            <option value="{{$inf->idtipoinfeccion}}">{{$inf->nombre}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
                                                     <button id="btninfeccion" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                                 </div>
-                                            </div>   
+                                            </div> 
+                                            <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnaddinf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>  
                                     </div>
                                 </div>  
                                 <div class="col-lg-4">
@@ -279,8 +230,8 @@
                                         <label>Si<input type="radio" value="1" onclick="Enfcmadre(this)" id="ecdm" name="ecdm"></label>&nbsp;&nbsp;
                                         <label>No<input type="radio" value="0" onclick="Enfcmadre(this)" id="ecdm" name="ecdm" checked=""></label>                         
                                     </div>
-                                    <div class="col-lg-10" id="Div2" style="display: none;">
-                                        <div class="col-lg-10">
+                                    <div class="col-lg-12" id="Div2" style="display: none;">
+                                        <div class="col-lg-8">
                                             <select id="enfermedadtipo" class="form-control" >
                                                 @if (isset($tipoenfermedad))
                                                     @foreach($tipoenfermedad as $enf)
@@ -293,7 +244,12 @@
                                             <div class="form-group">
                                                 <button id="enftipo" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                             </div>
-                                        </div>   
+                                        </div> 
+                                        <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnaddenf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>  
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -302,8 +258,8 @@
                                         <label>Si<input type="radio" value="1" onclick="Conmadre(this)" id="cmcad" name="cmcad"></label>&nbsp;&nbsp;
                                         <label>No<input type="radio" value="0" onclick="Conmadre(this)" id="cmcad" name="cmcad" checked=""></label>
                                     </div>
-                                    <div class="col-lg-10" id="Div3" style="display: none;">
-                                            <div class="col-lg-10">
+                                    <div class="col-lg-12" id="Div3" style="display: none;">
+                                            <div class="col-lg-8">
                                             <select id="animaltipo" class="form-control" >
                                                 @if (isset($tipoanimal))
                                                     @foreach($tipoanimal as $ani)
@@ -316,7 +272,12 @@
                                                 <div class="form-group">
                                                     <button id="btnanimal" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                                 </div>
-                                            </div>   
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnaddanimal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>    
                                     </div>
                                 </div>
                             </div>
@@ -327,8 +288,8 @@
                                         <label>Si<input type="radio" value="1" onclick="Atmadre(this)" id="tpamp" name="tpamp"></label>&nbsp;&nbsp;
                                         <label>No<input type="radio" value="0" onclick="Atmadre(this)" id="tpamp" name="tpamp" checked=""></label>                         
                                     </div>
-                                    <div class="col-lg-10" id="Div4" style="display: none;">
-                                        <div class="col-lg-10">
+                                    <div class="col-lg-12" id="Div4" style="display: none;">
+                                        <div class="col-lg-8">
                                             <select id="personalati" class="form-control" >
                                                 @if (isset($personalat))
                                                     @foreach($personalat as $ano)
@@ -341,7 +302,12 @@
                                             <div class="form-group">
                                                 <button id="btnpersonal" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                             </div>
-                                        </div>   
+                                        </div> 
+                                        <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnaddpersonal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>   
                                     </div>
                                 </div>
                                 <div class="col-lg-8">
@@ -351,7 +317,7 @@
                                         <label>Ninguno<input type="radio" value="0" onclick="mtdeimn(this)" id="mednatural" name="mednatural" checked=""></label>                         
                                     </div>
                                     <div class="col-lg-10" id="Div6" style="display: none;">
-                                        <div class="col-lg-10">
+                                        <div class="col-lg-8">
                                             <select id="medicamento" class="form-control" >
                                                 @if (isset($medicina))
                                                     @foreach($medicina as $ano)
@@ -360,9 +326,14 @@
                                                 @endif
                                             </select>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-1">
                                             <div class="form-group">
                                                 <button id="btnmedicina" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <div class="form-group">
+                                                <button id="btnaddmedicina" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                             </div>
                                         </div>   
                                     </div>
@@ -521,10 +492,11 @@
                                     </table>
                                 </div>
                             </div>
-                        </section>
-                        <h3>Antecedentes de Crecimiento y Desarrollo</h3>
-                        <section>
-                            <div class="col-lg-12">
+                            </div>
+
+                            <h1>Antecedentes de Crecimiento y Desarrollo</h1>
+                            <div class="step-content">
+                                <div class="col-lg-12">
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>¿A qué edad sostuvo solo su cabeza el niño?</label>
@@ -662,10 +634,10 @@
                                     </table>
                                 </div>
                             </div>
-                        </section>
-                        <h3>Responsable</h3>
-                        <section>
-                            <div class="col-lg-12">
+                            </div>
+                            <h1>Responsable</h1>
+                            <div class="step-content">
+                                <div class="col-lg-12">
                                 <div class="col-lg-4">
                                     <label>Persona Responsable *</label>
                                     <div class="form-group">
@@ -691,19 +663,67 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+</div>
+<div class="col-lg-12">
+                <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="inputTitle"></h4>
+                            </div>
+
+                        <form role="form" id="formAgregar">
+                            <div class="modal-header">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label class="control-label">Nombre</label>
+                                        <input id="nombreb" type="text" class="form-control" aria-describedby="basic-addon1">   
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                            <input type="hidden" id="idb" name="idb" value="0"/>
+                        </div>
                     </div>
                 </div>
             </div>
+</div>
+<div class="modal fade" id="erroresModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Errores</h4>
+          </div>
+
+          <div class="modal-body">
+            <ul style="list-style-type:circle" id="erroresContent"></ul>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
         </div>
-    </div>
+      </div>
 </div>
 
 <script src="{{asset('assets/js/plugins/steps/jquery.steps.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/pacientes/paciente.js')}}"></script>
-<script src="{{asset('assets/js/plugins/iCheck/icheck.min.js')}}"></script>
 
 
 
