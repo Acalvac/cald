@@ -55,11 +55,17 @@ Route::group(['prefix'=>'paciente'], function(){
 	Route::post('addanimal','CPaciente@addanimal');
 	Route::post('addpersonal','CPaciente@addpersonal');
 	Route::post('addmedicina','CPaciente@addmedicina');
+	Route::post('addvacuna','CPaciente@addvacuna');
+	Route::post('addidioma','CPaciente@addidioma');
+	Route::post('addanomalia','CPaciente@addanomalia');
+	Route::post('addlugar','CPaciente@addlugar');
 	Route::get('detallespaciente/{id}','CPaciente@detallespaciente');
 	Route::get('pdf/{id}','CPaciente@pdf');
 	Route::put('baja/{id}','CPaciente@baja');
 	Route::get('indexinc','CPaciente@indexinc');
 	Route::put('recuperarp/{id}','CPaciente@recuperarp');
+	Route::get('idget','CPaciente@getidioma');
+	Route::get('getanoma','CPaciente@getanomalia');
 });
 
 // se agrega todas las rutas del medicamento, proveedor entre otros

@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Idiomas extends Model
+class LOrigen extends Model
 {
-    protected $table='idioma';
-    protected $primaryKey='ididioma';
+    protected $table='municipio';
+    protected $primaryKey='idmunicipio';
 
     public $timestamps=false;
 
     protected $fillable=[
-    	'nombreid',
+    	'municipio',
     ];
 }

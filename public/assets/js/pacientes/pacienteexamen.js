@@ -96,25 +96,26 @@ $(document).ready(function(){
                 success: function (data) {
                     swal({ 
                         title:"Envio correcto",
-                        text: "Se agrego examenes exitosamente del paciente",
+                        text: "Información guardada correctamente",
                         type: "success"
                     },
                     function(){
                         //window.location.href="/empleado/solicitante"
                     });
+                    
                 },
                 error: function (data) {
-                    
+                    $('#loading').modal('hide');
                     var errHTML="";
                     if((typeof data.responseJSON != 'undefined')){
                         for( var er in data.responseJSON){
                             errHTML+="<li>"+data.responseJSON[er]+"</li>";
                         }
                     }else{
-                        errHTML+='<li>Error.</li>';
+                        errHTML+='<li>Error, intente mas tarde gracias.</li>';
                     }
-                    $("#erroresContentExamen").html(errHTML); 
-                    $('#erroresModalExamen').modal('show');
+                    $("#erroresContent").html(errHTML); 
+                    $('#erroresModal').modal('show');
                 }
             });
         }

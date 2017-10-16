@@ -16,7 +16,7 @@
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Ingreso</th>
-						<th>Encargo</th>
+						<th>Encargado</th>
 						<th>Teléfono</th>
 						<th>Opciones</th>
 					</thead>

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>HOJA DE ADMISION HOGAR DEL NIÑO MINUSVALIDO "HERMANO PEDRO"</title>
+
 </head>
 <body>
 	<label>HOJA DE ADMISION</label>
@@ -318,7 +319,7 @@
                 <table class="table table-striped table-bordered table-condensed table-hover "> 
                     <thead>
                     	<tr>
-		                    <th style="width: 20%">Persona Responsable:</th><td>{{$paciente->nombre}}</td>
+		                    <th style="width: 10%">Persona Responsable:</th><td>{{$paciente->nombre}}</td>
 		                </tr>
 	                    <tr> 
 		                    <th>Identificación:</th><td>{{$paciente->identificacion}}</td>
@@ -328,6 +329,15 @@
 		                </tr>	
 	                    <tr> 
 		                    <th>Teléfono:</th><td>{{$paciente->telefono}}</td>
+		                </tr>
+		                <tr>
+		                	<th><br><br></th>
+		                </tr>
+		                <tr>
+		                	<th>AUTORIZO CUALQUIER OPERACIÓN O TRATAMIENTO QUE SEA FAVORABLE PARA MI HIJO/A.</th>
+		                </tr>
+		                <tr>
+		                	<th>F:_____________________________________________</th>
 		                </tr>
                     </thead>
                     <tbody>
