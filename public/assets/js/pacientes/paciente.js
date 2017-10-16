@@ -95,14 +95,14 @@ $(document).ready(function(){
                 itemsDataPad.push(valor);
             });
             var formData = {
-                nombrep:$("#nombrep").val(),
+                nino:$("#nombrep").val(),
                 fechanacp:$("#fechanacp").val(),
                 origenp:$("#origenp").val(),
                 procedenciap:$("#procedenciap").val(),
                 tallap:$("#tallap").val(),
                 pesop:$("#pesop").val(),
 
-                nombreres:$("#nombreres").val(),
+                responsable:$("#nombreres").val(),
                 identres:$("#identificacionres").val(),
                 direccionres:$("#direccionres").val(),
                 telefonores:$("#telefonores").val(),
@@ -148,13 +148,11 @@ $(document).ready(function(){
                 //enfpadecido:$("#enfpadecido").val(),
                 epadecido:$("input:radio[id=epadecido]:checked").val(),
                 ordencor:$("#ordencor").val(), 
-                bautizado:$("#bautizado").val(), 
+                bautizado:$("input:radio[id=bautizado]:checked").val(),
 
                 itemsVac: itemsDataVac,
                 itemsPad: itemsDataPad,               
             }
-             console.log(formData);
-
             $.ajax({
                 type: "POST",
                 url: miurl,
@@ -162,25 +160,48 @@ $(document).ready(function(){
                 dataType: 'json',
 
                 success: function (data) {
-                    console.log(formData);
                     swal({ 
                         title:"Envio correcto",
-                        text: "Información actualizada correctamente",
+                        text: "Información guardada correctamente",
                         type: "success"
-                    },
+                    }).then(
                     function(){
-                        //window.location.href="/empleado/solicitante"
+                            var urlraiz=$("#url_raiz_proyecto").val();
+                            $("#capa_modal").html($("#cargador_empresa").html());
+                            var miurl=urlraiz+"/paciente/index";
+                            $.ajax({
+                            url: miurl
+                            }).done( function(resul) 
+                            {
+                             $("#capa_modal").html(resul);
+                           
+                            }).fail( function() 
+                           {
+                            $("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                           }) ;
+
                     });
                     
                 },
                 error: function (data) {
-                    
+                    $('#loading').modal('hide');
+                    var errHTML="";
+                    if((typeof data.responseJSON != 'undefined')){
+                        for( var er in data.responseJSON){
+                            errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                        }
+                    }else{
+                        errHTML+='<li>Error, intente mas tarde gracias.</li>';
+                    }
+                    $("#erroresContent").html(errHTML); 
+                    $('#erroresModal').modal('show');
                 }
             });
 
         }
     });
-    $(".select2_demo_2").select2();
+    $('.select2_demo_2').select2();
+    $('.chosen-select').chosen({width: "100%"});
     $("#addFam").click(function(){
         agregarfam();
     });
@@ -228,7 +249,6 @@ $(document).ready(function(){
                 $('#formModal').modal('show');
             //});
     });
-    /**/
     $("#btnaddanimal").click(function(){
         //$(document).on('click','.btn-addB',function(){
                 $('#inputTitle').html("Nueva registro");
@@ -253,7 +273,46 @@ $(document).ready(function(){
                 $('#formModal').modal('show');
             //});
     });
-
+    $("#btnadvac").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Vacuna");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addpv');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#btnaddenfh").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nueva Enfermedad");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbep');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#addIdiofam").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nuevo Idioma");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addid');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#addAnofam").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nuevo Anomalia");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addban');
+                $('#formModal').modal('show');
+            //});
+    });
+    $("#btnaddlug").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nuevo lugar de origen ");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addblug');
+                $('#formModal').modal('show');
+            //});
+    });
     $('#fechanacp').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
@@ -261,13 +320,13 @@ $(document).ready(function(){
         calendarWeeks: true,
         autoclose: true
     });
-    $('#fenacfam').datepicker({
+    /*$('#fenacfam').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: true,
         autoclose: true
-    });
+    });*/
 
 });
 
@@ -291,7 +350,7 @@ $("#btnGuardar").click(function(e){
     var miurl;
     var status = $("#btnGuardar").val();
     var formData = {
-            nombre:$("#nombreb").val(),
+            nombre:$("#nombre").val(),
         };
 
     if (status == "addbi") {
@@ -309,6 +368,18 @@ $("#btnGuardar").click(function(e){
     if (status == "addbm") {
         miurl = 'paciente/addmedicina';
     }
+    /**/
+    if (status == "addid") {
+        miurl = 'paciente/addidioma';
+    }
+    if (status == "addban") {
+        miurl = 'paciente/addanomalia';
+    }
+    if (status == "addblug") {
+        miurl = 'paciente/addlugar';
+    }
+
+
     $.ajax({
         type: "POST",
         url: miurl,
@@ -346,6 +417,55 @@ $("#btnGuardar").click(function(e){
                     agregarmedicina();
                 });
             }
+            if (status == "addpv") {
+                $(data).each(function(i,v){
+                    $("#vacunass").append('<option selected value='+v.idvacuna+'">'+v.vacuna+'</option>');
+                    agregarvacuna();
+                });
+            }
+            if (status == "addbep") {
+                $(data).each(function(i,v){
+                    $("#enfpadecido").append('<option selected value='+v.idtipoenfermedad+'">'+v.nombre+'</option>');
+                    agregarpadecidos();
+                });
+            }
+            /**/
+            if (status == "addid") {
+                var urlraiz=$("#url_raiz_proyecto").val();
+                var miurl=urlraiz+"/paciente/idget";
+                $.ajax({
+                url: miurl
+                }).done( function(resul) 
+                {
+                    $("#divlenguaje").html(resul);
+                }).fail( function() 
+                {
+                    $("#divlenguaje").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                });
+
+            }
+            if (status == "addban") {
+                var urlraiz=$("#url_raiz_proyecto").val();
+                var miurl=urlraiz+"/paciente/getanoma";
+                $.ajax({
+                url: miurl
+                }).done( function(resul) 
+                {
+                    $("#divanomalia").html(resul);
+                }).fail( function() 
+                {
+                    $("#divanomalia").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                });
+
+                /*$(data).each(function(i,v){
+                    $("#anomaliafam").append('<option selected multiple="multiple" value='+v.idanomalia+'">'+v.anomalia+'</option>');
+                });*/
+            }
+            if (status == "addblug") {
+                $(data).each(function(i,v){
+                    $("#origenp").append('<option selected value='+v.idmunicipio+'">'+v.municipio+'</option>');
+                });
+            }
             $('#formModal').modal('hide');            
         },
         error: function (data) {
@@ -363,6 +483,20 @@ $("#btnGuardar").click(function(e){
         }
     });
 });
+function Anofams(elementos) {
+    element = document.getElementById("divanomal");
+    divbt = document.getElementById("divbtn"); 
+    if (elementos.value=="Si") {
+        element.style.display='block';
+        divbt.style.display='block';
+    }
+    else 
+    { if (elementos.value=="No") {
+        element.style.display='none';
+        divbt.style.display='none';
+    }
+    }
+}
 
 function Infecmadre(elementos) {
     element = document.getElementById("Div1");
@@ -659,3 +793,38 @@ function limpiarfam()
     $("#idiomafam option:selected").val(""); 
     $("#anomaliafam option:selected").val(""); 
 }
+
+
+//Validaciones Letras y numeros
+    function valida(e){
+        tecla = e.keyCode || e.which;
+        tecla_final = String.fromCharCode(tecla);
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla==8 || tecla==37 || tecla==39 ||tecla==46 ||tecla==9)
+            {
+                return true;
+            } 
+        // Patron de entrada, en este caso solo acepta numeros
+        patron =/[0-9]/;
+        //patron =/^\d{9}$/;
+        return patron.test(tecla_final);
+
+    }
+            //Se utiliza para que el campo de texto solo acepte letras
+    function validaL(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ63";//Se define todo el abecedario que se quiere que se muestre.
+        especiales = [8, 37, 39, 46, 9]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+        tecla_especial = false
+        for(var i in especiales) {
+            if(key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        if(letras.indexOf(tecla) == -1 && !tecla_especial){
+            //alert('Tecla no aceptada');
+            return false;
+            }
+    }

@@ -17,180 +17,190 @@
                         <div id="wizard">
                             <h1>Datos Generales</h1>
                             <div class="step-content">
-                                <div class="col-lg-12 col-md-12">
-                                <p>Datos del Niño</p>
-                                <div class="col-lg-3 col-md-2">
-                                    <label>Nombres y apellidos</label>
-                                    <div class="form-group">
-                                        <input id="nombrep" type="text" class="form-control required">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="form-group">
-                                        <label>Fecha de nacimiento</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input id="fechanacp" type="text" class="form-control" >
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p>Datos del Niño</p>
+                                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                                        <label>Nombres y apellidos</label>
+                                        <div class="form-group">
+                                            <input id="nombrep" name="nino" type="text" class="form-control required">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="form-group">
-                                        <label>Lugar de origen</label>
-                                        <input id="origenp" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="form-group">
-                                        <label>Procedencia</label>
-                                        <input id="procedenciap" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 col-md-2">
-                                    <label>Talla </label>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="tallap">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2">
-                                    <div class="form-group">
-                                        <label>Peso </label>
-                                        <div class="input-group">
-                                            <input id="pesop" type="text" class="form-control">
-                                            <span class="input-group-addon">Lbs.</span>
+                                    <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                                <input id="fechanacp" type="text" class="form-control" maxlength="10" onkeypress="return valida(event);">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <p>Datos de los padres</p>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Nombres *</label>
-                                        <input id="nombrefam" type="text" class="form-control">
-                                    </div>
-                                </div>    
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Fecha de nacimiento</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input id="fenacfam" type="text" class="form-control" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Ocupación</label>
-                                        <input id="ocupacionfam" type="text" class="form-control">
-                                    </div>
-                                </div>    
-                                <div class="col-lg-1">
-                                    <div class="form-group">
+                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                         <label>Talla </label>
-                                        <input type="text" class="form-control" id="tallafam">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="tallap">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Peso </label>
-                                        <div class="input-group">
-                                            <input id="pesofam" type="text" class="form-control">
-                                            <span class="input-group-addon">Lbs.</span>
+                                    <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Peso </label>
+                                            <div class="input-group">
+                                                <input id="pesop" type="text" class="form-control" maxlength="6" onkeypress="return valida(event);">
+                                                <span class="input-group-addon">Lbs.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Procedencia</label>
+                                            <input id="procedenciap" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="col-lg-2">
-                                    <h4 class="m-t-30">Lenguaje</h4>
-                                        <select id="idiomafam" class="select2_demo_2 select2-multiple" multiple="multiple" data-placeholder="Seleccione ...">
-                                            @if (isset($idioma))
-                                                @foreach($idioma as $idi)
-                                                    <option value="{{$idi->ididioma}}">{{$idi->nombreid}},&nbsp;&nbsp;</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                </div>
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button id="addIdiofam" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="col-lg-3 col-md-12">
+                                        <label>Lugar de origen</label>
+                                            <div class="card-box form-inline">
+                                                <div class="form-group">
+                                                    <select id="origenp" class="form-control" >
+                                                        @if (isset($origen))
+                                                            @foreach($origen as $org)
+                                                                <option value="{{$org->idmunicipio}}">{{$org->municipio}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div> 
+                                                    <button id="btnaddlug" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Religión</label>
-                                        <select id="religionfam" class="select2_demo_2 form-control " >
-                                            @if (isset($religion))
-                                                @foreach($religion as $rel)
-                                                    <option value="{{$rel->idreligion}}">{{$rel->religion}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
+                                <div class="col-lg-12 col-md-12">
+                                    <p>Datos de los padres</p>
+                                    <div class="col-lg-2 col-md-4">
+                                        <div class="form-group">
+                                            <label>Parentesco</label>
+                                            <select id="parentescofam" class="form-control " >
+                                                @if (isset($parentesco))
+                                                    @foreach($parentesco as $pare)
+                                                        <option value="{{$pare->idparentesco}}">{{$pare->parentesco}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4">
+                                        <div class="form-group">
+                                            <label>Nombres *</label>
+                                            <input id="nombrefam" type="text" class="form-control">
+                                        </div>
+                                    </div>    
+                                    <div class="col-lg-1 col-md-2">
+                                        <div class="form-group">
+                                            <label>Edad</label>
+                                            <div class="input-group">
+                                                <input id="fenacfam" type="text" class="form-control" maxlength="2" onkeypress="return valida(event);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-2">
+                                        <div class="form-group">
+                                            <label>Talla </label>
+                                            <input type="text" class="form-control" id="tallafam">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4">
+                                        <div class="form-group">
+                                            <label>Peso </label>
+                                            <div class="input-group">
+                                                <input id="pesofam" type="text" class="form-control" maxlength="6" onkeypress="return valida(event);">
+                                                <span class="input-group-addon">Lbs.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4">
+                                        <div class="form-group">
+                                            <label>Ocupación</label>
+                                            <input id="ocupacionfam" type="text" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <h4 class="m-t-30">Anomalias observadas</h4>
-                                        <select id="anomaliafam" class="select2_demo_2 select2-multiple" multiple="multiple" data-placeholder="Seleccione ...">
-                                            @if (isset($anomalia))
-                                                @foreach($anomalia as $ano)
-                                                    <option value="{{$ano->idanomalia}}">{{$ano->anomalia}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                </div>
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button id="addAnofam" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                <div class="col-lg-12 col-md-12">
+
+                                    <div class="col-lg-3 col-md-5 form-inline">
+                                    <label>Lenguaje</label>
+                                            <div id="divlenguaje" >
+                                                    <select id="idiomafam" class="chosen-select form-control"  multiple data-placeholder="Seleccione ...">
+                                                        @if (isset($idioma))
+                                                            @foreach($idioma as $idi)
+                                                                <option value="{{$idi->ididioma}}">{{$idi->nombreid}},&nbsp;&nbsp;</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1"><br>
+                                        <button id="addIdiofam" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <div class="form-group">
+                                            <label>Religión</label>
+                                            <select id="religionfam" class="chosen-select"  tabindex="2" >
+                                                @if (isset($religion))
+                                                    @foreach($religion as $rel)
+                                                        <option value="{{$rel->idreligion}}">{{$rel->religion}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 ">
+                                        <label>Anomalias observadas</label>
+                                        <div class="form-group">
+                                            <label>Si<input type="radio" value="Si" onclick="Anofams(this)" id="an" name="an"></label>&nbsp;&nbsp;
+                                            <label>Ninguna<input type="radio" value="No" onclick="Anofams(this)" id="an" name="an" checked=""></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10" id="divanomal" style="display: none;">
+                                            <select id="anomaliafam" class="chosen-select" style="width:350px;"  multiple data-placeholder="Seleccione ...">
+                                                @if (isset($anomalia))
+                                                    @foreach($anomalia as $ano)
+                                                        <option value="{{$ano->idanomalia}}">{{$ano->anomalia}},&nbsp;&nbsp;</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-1" id="divbtn" style="display: none;">
+                                            <button id="addAnofam" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-1 col-md-2"><br>
+                                            <button id="addFam" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <label>Parentesco</label>
-                                        <select id="parentescofam" class="form-control " >
-                                            @if (isset($parentesco))
-                                                @foreach($parentesco as $pare)
-                                                    <option value="{{$pare->idparentesco}}">{{$pare->parentesco}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
+                                
+                                <div class="col-lg-12">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 table-responsive">
+                                        <table id="detallesfam" class="table table-striped table-bordered table-hover">
+                                            <thead style="background-color:#A9D0F5">
+                                                <tr>
+                                                    <th style="width: 2%">Opciones</th>
+                                                    <th>Nombres</th>
+                                                    <th>Edad</th>
+                                                    <th>Ocupación</th>
+                                                    <th>Talla</th>
+                                                    <th>Peso</th>
+                                                    <th>Idiomas</th>
+                                                    <th>Religión</th>
+                                                    <th>Anomalias</th>
+                                                    <th>Parentezco</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <label></label><br>
-                                        <button id="addFam" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-12">
-                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                    <table id="detallesfam" class="table table-striped table-bordered table-hover">
-                                        <thead style="background-color:#A9D0F5">
-                                            <tr>
-                                                <th style="width: 2%">Opciones</th>
-                                                <th>Nombres</th>
-                                                <th>Edad</th>
-                                                <th>Ocupación</th>
-                                                <th>Talla</th>
-                                                <th>Peso</th>
-                                                <th>Idiomas</th>
-                                                <th>Religión</th>
-                                                <th>Anomalias</th>
-                                                <th>Parentezco</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
                             </div>
 
                             <h1>Antecedentes Perinatales</h1>
@@ -544,11 +554,11 @@
                                 <div class="col-lg-3">
                                     <label>¿Qué vacunas tiene? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="Si" onclick="Vacunast(this)" id="vtiene" name="vtiene" checked=""></label>&nbsp;&nbsp;
-                                        <label>Ninguna<input type="radio" value="No" onclick="Vacunast(this)" id="vtiene" name="vtiene"></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Vacunast(this)" id="vtiene" name="vtiene"></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="No" onclick="Vacunast(this)" id="vtiene" checked="" name="vtiene"></label>
                                     </div>
-                                    <div class="col-lg-12" id="divacuna" style="display: block;">
-                                        <div class="col-lg-10">
+                                    <div class="col-lg-12" id="divacuna" style="display: none;">
+                                        <div class="col-lg-8">
                                             <select id="vacunass" class="form-control" >
                                                 @if (isset($vacunas))
                                                     @foreach($vacunas as $ano)
@@ -562,6 +572,11 @@
                                                 <button id="btnvacuna" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                             </div>
                                         </div>
+                                        <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnadvac" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>  
                                     </div>   
                                 </div>
                             </div>
@@ -573,13 +588,28 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>¿Qué numero de orden le corresponde? </label>
+                                        <input id="ordencor" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>¿Está bautizado? </label>
+                                        <div class="form-group">
+                                            <label>Si<input type="radio" value="Si" id="bautizado" name="bautizado"></label>&nbsp;&nbsp;
+                                            <label>No<input type="radio" value="No" id="bautizado" name="bautizado" checked=""></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
                                     <label>¿Qué enfermedades han padecido? </label>
                                     <div class="form-group">
-                                        <label>Si<input type="radio" value="Si" onclick="Enfpadecido(this)" id="epadecido" name="epadecido" checked=""></label>&nbsp;&nbsp;
-                                        <label>Ninguna<input type="radio" value="No" onclick="Enfpadecido(this)" id="epadecido" name="epadecido"></label>
+                                        <label>Si<input type="radio" value="Si" onclick="Enfpadecido(this)" id="epadecido" name="epadecido"></label>&nbsp;&nbsp;
+                                        <label>Ninguna<input type="radio" value="No" onclick="Enfpadecido(this)" id="epadecido" checked="" name="epadecido"></label>
                                     </div>
-                                    <div class="col-lg-12" id="divpadecido" style="display: block;">
-                                        <div class="col-lg-10">
+                                    <div class="col-lg-12" id="divpadecido" style="display: none;">
+                                        <div class="col-lg-8">
                                             <select id="enfpadecido" class="form-control" >
                                             @if (isset($tipoenfermedad))
                                                 @foreach($tipoenfermedad as $enf)
@@ -593,22 +623,16 @@
                                                 <button id="btnpadecido" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
                                             </div>
                                         </div>
+                                        <div class="col-lg-1">
+                                                <div class="form-group">
+                                                    <button id="btnaddenfh" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>  
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>¿Qué numero de orden le corresponde? </label>
-                                        <input id="ordencor" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>¿Está bautizado? </label>
-                                        <input id="bautizado" type="text" class="form-control">
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="col-lg-12" id="vactable" style="display: block;">
+                            <div class="col-lg-12" id="vactable" style="display: none;">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                     <table id="detallesvacuna" class="table table-striped table-bordered table-hover">
                                         <thead style="background-color:#A9D0F5">
@@ -621,7 +645,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-lg-12" id="enftable" style="display: block;">
+                            <div class="col-lg-12" id="enftable" style="display: none;">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                     <table id="detallesenpadecido" class="table table-striped table-bordered table-hover">
                                         <thead style="background-color:#A9D0F5">
@@ -641,13 +665,13 @@
                                 <div class="col-lg-4">
                                     <label>Persona Responsable *</label>
                                     <div class="form-group">
-                                        <input id="nombreres" type="text" class="form-control required">
+                                        <input id="nombreres" name="responsable" type="text" class="form-control required">
                                     </div>
                                 </div>   
                                 <div class="col-lg-2">
                                     <label>Identificación</label>
                                     <div class="form-group">
-                                        <input id="identificacionres" type="text" class="form-control">
+                                        <input id="identificacionres" type="text" class="form-control" maxlength="13" onkeypress="return valida(event);">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -659,7 +683,7 @@
                                 <div class="col-lg-2">
                                     <label>Teléfono</label>
                                     <div class="form-group">
-                                        <input id="telefonores" name="confirm" type="text" class="form-control">
+                                        <input id="telefonores" name="confirm" type="text" class="form-control" maxlength="8" onkeypress="return valida(event);">
                                     </div>
                                 </div>
                             </div>
@@ -684,7 +708,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <label class="control-label">Nombre</label>
-                                        <input id="nombreb" type="text" class="form-control" aria-describedby="basic-addon1">   
+                                        <input id="nombre" name="nombre" type="text" class="form-control" aria-describedby="basic-addon1">   
                                     </div>
                                 </div>
                             </div> 
@@ -724,7 +748,6 @@
 <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/pacientes/paciente.js')}}"></script>
-
 
 
 

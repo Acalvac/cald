@@ -41,7 +41,7 @@
                         @foreach ($familiar as $fam)
                             <tr class="even gradeA" id="familia{{$fam->idfamiliar}}">
                                 <td>{{$fam->nombre}}</td>
-                                <td>{{$fam->fechanac}}</td>
+                                <td>{{$fam->fechanac}} años</td>
                                 <td>{{$fam->talla}}</td>
                                 <td>{{$fam->peso}}</td>
                                 <td>{{$fam->idiomas}}</td>

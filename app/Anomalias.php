@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Anomalias extends Model
 {
-    protected $table='anomaliafamiliar';
-    protected $primaryKey='idanfamiliares';
+    protected $table='anomalia';
+    protected $primaryKey='idanomalia';
 
     public $timestamps=false;
 
     protected $fillable=[
-    	'idanomalia',
-    	'idfamiliar',
+    	'anomalia',
     ];
 }

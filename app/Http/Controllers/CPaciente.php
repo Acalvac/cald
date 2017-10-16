@@ -28,6 +28,7 @@ use App\TipoAnimal;
 use App\PersonalAtiende;
 use App\MedicinaP;
 use App\Vacunas;
+use App\LOrigen;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -69,13 +70,15 @@ class CPaciente extends Controller
 		$personalat = DB::table('personalatiende')->get();
 		$medicina = DB::table('medicina')->get();
 		$vacunas = DB::table('vacunas')->get();
-		return view('pacientes.nuevop',['parentesco'=>$parentesco,'religion'=>$religion,'idioma'=>$idioma,'anomalia'=>$anomalia,'tipoinfeccion'=>$tipoinfeccion,'tipoenfermedad'=>$tipoenfermedad,'tipoanimal'=>$tipoanimal,'personalat'=>$personalat,'medicina'=>$medicina,'vacunas'=>$vacunas]);
+		$origen = DB::table('municipio')->get();
+		return view('pacientes.nuevop',['parentesco'=>$parentesco,'religion'=>$religion,'idioma'=>$idioma,'anomalia'=>$anomalia,'tipoinfeccion'=>$tipoinfeccion,'tipoenfermedad'=>$tipoenfermedad,'tipoanimal'=>$tipoanimal,'personalat'=>$personalat,'medicina'=>$medicina,'vacunas'=>$vacunas,'origen'=>$origen]);
 	}
 	public function detallespaciente($id)
 	{	
 		$paciente= DB::table('paciente as p')
 		->join('responsable as r','r.idresponsable','=','p.idresponsable')
-		->select('p.idpaciente','p.nombrepa','p.fechanac','p.lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
+		->join('municipio as mun','mun.idmunicipio','=','p.idmunicipio')
+		->select('p.idpaciente','p.nombrepa','p.fechanac','mun.municipio as lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
 		->where('p.idpaciente','=',$id)
 		->first();
 		$familiar = DB::table('paciente as p')
@@ -157,11 +160,12 @@ class CPaciente extends Controller
 
 		return view('pacientes.detalles',['paciente'=>$paciente,'familiar'=>$familiar,'antperinatal'=>$antperinatal,'infecciones'=>$infecciones,'enfermedad'=>$enfermedad,'conanimales'=>$conanimales,'peratiende'=>$peratiende,'medicina'=>$medicina,'cresydesa'=>$cresydesa,'vacunast'=>$vacunast,'enferpadecido'=>$enferpadecido]);
 	}
-		public function pdf($id)
+	public function pdf($id)
 	{	
 		$paciente= DB::table('paciente as p')
 		->join('responsable as r','r.idresponsable','=','p.idresponsable')
-		->select('p.idpaciente','p.nombrepa','p.fechanac','p.lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
+		->join('municipio as mun','mun.idmunicipio','=','p.idmunicipio')
+		->select('p.idpaciente','p.nombrepa','p.fechanac','mun.municipio as lorigen','p.procedencia','p.fechaingreso','r.nombre','r.telefono','r.identificacion','r.direccion')
 		->where('p.idpaciente','=',$id)
 		->first();
 		$papa = DB::table('paciente as p')
@@ -257,6 +261,7 @@ class CPaciente extends Controller
 	}
 	public function addinfeccion(Request $request)
 	{
+		$this->validateRequest($request);
 		$infec = new TipoInfeccion;
 		$infec-> nombre=$request->get('nombre');
 		$infec->save();
@@ -264,6 +269,7 @@ class CPaciente extends Controller
 	}
 	public function addenfermedad (Request $request)
 	{
+		$this->validateRequest($request);
 		$enfe = new TipoEnfermedad;
 		$enfe-> nombre=$request->get('nombre');
 		$enfe->save();
@@ -271,6 +277,7 @@ class CPaciente extends Controller
 	}
 	public function addanimal(Request $request)
 	{
+		$this->validateRequest($request);
 		$ani = new TipoAnimal;
 		$ani-> nombreanimal=$request->get('nombre');
 		$ani->save();
@@ -278,6 +285,7 @@ class CPaciente extends Controller
 	}
 	public function addpersonal (Request $request)
 	{
+		$this->validateRequest($request);
 		$pers = new PersonalAtiende;
 		$pers-> nombre=$request->get('nombre');
 		$pers->save();
@@ -285,15 +293,63 @@ class CPaciente extends Controller
 	}
 	public function addmedicina(Request $request)
 	{
+		$this->validateRequest($request);
 		$med = new MedicinaP;
 		$med-> nombre=$request->get('nombre');
 		$med->save();
 		return response()->json($med);
 	}
+	public function addvacuna(Request $request)
+	{
+		$this->validateRequest($request);
+		$vac = new Vacunas;
+		$vac-> vacuna=$request->get('nombre');
+		$vac->save();
+		return response()->json($vac);
+	}
+	/**/
+	public function addidioma(Request $request)
+	{
+		$this->validateRequest($request);
+		$idi = new Idiomas;
+		$idi-> nombreid=$request->get('nombre');
+		$idi->save();
+
+		$idioma = DB::table('idioma')->get();
+		return response()->json($idi);
+	}
+	public function getidioma()
+	{
+		$idioma=DB::table('idioma')->get();
+		return view('pacientes.lenguaje',['idioma'=>$idioma]);
+	}
+	public function addanomalia(Request $request)
+	{
+		$this->validateRequest($request);
+		$anomal = new Anomalias;
+		$anomal-> anomalia=$request->get('nombre');
+		$anomal->save();
+		return response()->json($anomal);
+	}
+	public function getanomalia()
+	{
+		$anomalia=DB::table('anomalia')->get();
+		return view('pacientes.anomalias',['anomalia'=>$anomalia]);
+	}
+	public function addlugar(Request $request)
+	{
+		$this->validateRequest($request);
+		$lo = new LOrigen;
+		$lo-> municipio=$request->get('nombre');
+		$lo->save();
+		return response()->json($lo);
+	}
 	public function addpaciente(Request $request)
 	{
 		try {
+			//$this->validateRequestP($request);
 			DB::beginTransaction();
+			$this->validateRequestP($request);
 			$contid= array();
 			$cont=0;
 			$mytime = Carbon::now('America/Guatemala');
@@ -328,34 +384,34 @@ class CPaciente extends Controller
 
 
 	        $respo= new Responsable;
-	        $respo-> nombre = $request->get('nombreres');
+	        $respo-> nombre = $request->get('responsable');
 	        $respo-> identificacion = $request->get('identres');
 	        $respo-> direccion = $request->get('direccionres');
 	        $respo-> telefono = $request->get('telefonores');
 	        $respo->save();
 
 	        $paciente= new Paciente;
-	        $paciente-> nombrepa=$request->get('nombrep');
+	        $paciente-> nombrepa=$request->get('nino');
 	        $paciente-> fechanac=$fecha;
 	        $paciente-> fechaingreso=$mytime->toDateTimeString();
 	        $paciente-> talla=$request->get('tallap');
 	        $paciente-> peso=$request->get('pesop');
 	        $paciente-> procedencia=$request->get('procedenciap');
-	        $paciente-> lorigen=$request->get('origenp');
+	        $paciente-> idmunicipio=$request->get('origenp');
 	        $paciente-> idresponsable=$respo->idresponsable;
 	        $paciente-> idusuario=Auth::user()->id;
 	        $paciente-> idstatus='5';
 	        $paciente->save();
-			
+			//dd($paciente);
 	        if ($miArray > 0) {
 				foreach ($miArray as $key => $value) {
 	                $familiar= new Familiar;
 	                $familiar-> nombre = $value['0'];
 	                //$familiar-> apellido = $value['1'];
-	                $fechanacf = $value['1'];
+	                /*$fechanacf = $value['1'];
 	                $fechanacf=Carbon::createFromFormat('d/m/Y',$fechanacf);
-	                $fechanacf=$fechanacf->format('Y-m-d');
-	                $familiar-> fechanac = $fechanacf;
+	                $fechanacf=$fechanacf->format('Y-m-d');*/
+	                $familiar-> fechanac = $value['1'];
 					$familiar-> ocupacion = $value['2'];
 	                $familiar-> talla = $value['3'];
 	                $familiar-> peso = $value['4'];
@@ -370,21 +426,6 @@ class CPaciente extends Controller
 					    $contid[] = $familiar->idfamiliar;
 					}
 	            }
-            
-	            //dd($contid);
-	            /*foreach ($miArrayL as $key => $value) {
-	                $idioma= new Idiomas;
-	                $idioma-> ididioma = $value['0'];
-	                $idioma-> idfamiliar = $familiar->idfamiliar;
-	                $idioma->save();
-	            }*/
-
-	            /*foreach ($miArrayA as $key => $value) {
-	                $anomalia= new Anomalias;
-	                $anomalia-> idanomalia = $value['0'];
-	                $anomalia-> idfamiliar = $familiar->idfamiliar;
-	                $anomalia->save();
-	            }*/
 
 	            while($cont < count($contid))
 	            {
@@ -485,7 +526,7 @@ class CPaciente extends Controller
             $cres-> vacuna = $vacunastiene;
             $cres->save();
 
-            if ($enfepadecido === 'Si' ) {
+            if ($vacunastiene === 'Si' ) {
             	foreach ($miArrayVac as $key => $value) {
 	                $vac= new VacunaTiene;
 	                $vac-> idvacuna = $value['0'];
@@ -494,7 +535,7 @@ class CPaciente extends Controller
 	            }
             }
 
-            if ($vacunastiene === 'Si' ) {
+            if ($enfepadecido === 'Si' ) {
             	foreach ($miArrayPad as $key => $value) {
 	                $pades= new EnfPadecido;
 	                $pades-> idtipoenfermedad = $value['0'];
@@ -502,11 +543,13 @@ class CPaciente extends Controller
 	                $pades->save();
 	            }
             }
+            
         DB::commit();
 
 		} catch (Exception $e) {
 			
 		}
+		return response()->json($paciente);
 	}
 	public function baja($id)
     {
@@ -523,5 +566,29 @@ class CPaciente extends Controller
         $st->update();
         return response()->json($st);
         //return Redirect::to('empleado/listadoen');
+    }
+
+    public function validateRequest($request){                
+        $rules=[
+            'nombre' => 'required',
+        ];
+
+        $messages=[
+            'required' => 'Debe ingresar :attribute.',
+        ];
+        $this->validate($request, $rules,$messages);         
+    }
+    public function validateRequestP($request){                
+        $rules=[
+        	'nino' => 'required',
+            'responsable' => 'required',
+        ];
+
+        $messages=[
+            //'required' => 'Debe ingresar datos del :attribute.',
+        	'nino' => 'Debe ingresar almenos el nombre del Niño',
+        	'responsable' => 'Debe ingresar datos del Responsable',
+        ];
+        $this->validate($request, $rules,$messages);         
     }
 }

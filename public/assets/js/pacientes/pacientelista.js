@@ -83,19 +83,6 @@ $("#btndebaja").click(function(){
                 )
             }
         });
-
-        /*$.ajax({
-            type: "DELETE",
-            url: 'deletepad/' + idpad,
-            success: function (data) {
-                console.log(data);
-                $("#pad" + idpad).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });*/
-
         $("#erroresContent").html(errHTML); 
         $('#erroresModal').modal('show');
     });
