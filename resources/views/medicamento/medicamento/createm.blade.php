@@ -42,13 +42,9 @@
     </div>
 </div>
 
-<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
 <!-- Sweet alert -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".select2").select2();
-    });
-    $(".select2").select2();
     $('.chosen-select').chosen({width: "100%"});
 
 </script>

@@ -11,15 +11,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="cache-control" content="max-age-0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="cache-control" content="no-store"/>
-    <meta http-equiv="cache-control" content="must-revalidate"/>
-    <meta http-equiv="expieres" content="0"/>
-    <meta http-equiv="expieres" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
-    <meta http-equiv="pragma" content="no-cache"/>
+
 
 
     <title>HNMHP</title>
@@ -45,7 +37,7 @@
     <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
 
-        <link href="{{asset('assets/css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
 
 
 
@@ -104,7 +96,7 @@
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(2);">Ingreso medicamento</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(5);">Listado Compra</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(3);">Ingreso Inventario</a></li>
-                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(7);">Requisici&oacute;n</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(8);">Requisici&oacute;n</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(9);">Ingreso Examenes</a></li>
 
                         </ul>
@@ -115,7 +107,7 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="javascript:void(0);" onclick="cargarindex(6);">Listado</a></li>
                             
-                            <li><a href="javascript:void(0);" onclick="cargarindex(2);">Ingreso Proveedores</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(6);">Ingreso Proveedores</a></li>
                         </ul>                        
                     </li>
                     
@@ -142,9 +134,9 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="javascript:void(0);" onclick="cargarindex(3);">Listado</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(1);">Ingreso Usuario</a></li>
-                                                        <li><a href="javascript:void(0);" onclick="cargarmodalempleado(4);">Ingreso Marca</a></li>
-
-                            <li><a href="{{url('/seguridad/rol/index')}}">Listado Rol</a></li>
+                            <!--
+                            <li><a href="javascript:void(0);" onclick="cargarmodalempleado(4);">Ingreso Marca</a></li>-->
+                            <li><a href="javascript:void(0);" onclick="cargarindex(12);">Listado Rol</a></li>
                         </ul>
                     </li>
                 </ul>

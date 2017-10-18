@@ -26,7 +26,7 @@
                                     <select class="form-control" class="chosen-select" data-live-search="true" onchange="pacientepe();" id="idpaciente">
                                     @if (isset($paciente))
                                     @foreach($paciente as $pac)
-                                    <option value="{{$pac->idpaciente}}">{{$pac->nombrepa.' '.$pac->apellidopa}}</option>
+                                    <option value="{{$pac->idpaciente}}">{{$pac->nombrepa}}</option>
 
                                     @endforeach
                                     @endif

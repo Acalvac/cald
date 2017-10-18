@@ -240,3 +240,89 @@ function cargar_formulario(arg){
    }) ;
 
 }
+
+$(document).on('click','.btn-btnGuardarRol',function(e){
+    var urlraiz=$("#url_raiz_proyecto").val();
+    var miurl = urlraiz+"/seguridad/crear_rol";
+
+    var formData = {
+        rol: $('#rol_nombre').val(),
+        slug: $('#rol_slug').val(),
+        descripcion: $('#rol_descripcion').val(),
+    };
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: miurl,
+        data: formData,
+        dataType: 'json',
+              
+        success: function (data) {
+            swal({
+                title: '¿Desea agregar otro rol?',
+                text: "Precione si para realizar un nuevo registro, no para cerrar este mensaje.",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si!',
+                cancelButtonText: 'No!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function () {
+                var miurl=urlraiz+"/seguridad/form_nuevo_rol";
+                var errHTML="";
+                $.ajax({
+                    url: miurl
+                }).done( function(resul) 
+                {
+                    $("#contentsecundario").html(resul);
+                }).fail(function() 
+                {
+                    $("#contentsecundario").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                });
+            }, function (dismiss) {
+                // dismiss can be 'cancel', 'overlay',
+                // 'close', and 'timer'
+                if (dismiss === 'cancel') {
+                    swal({ 
+                                title:"Envio correcto",
+                                text: "Se guardado correctamente un nuevo empleado",
+                                type: "success"
+                    }).then(function(){
+                      var miurl=urlraiz+"/seguridad/rol/index";
+                        $.ajax({
+                            url: miurl
+                        }).done( function(resul) 
+                        {
+                            $("#capa_modal").html(resul);
+                        }).fail( function() 
+                        {
+                            $("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                        });
+                    });
+                }
+            });  
+        },                         
+        
+        error: function (data) {
+                var errHTML="";
+                if((typeof data.responseJSON != 'undefined')){
+                    for( var er in data.responseJSON){
+                        errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                    }
+                    }else{
+                        errHTML+='<li>Error.</li>';
+                    }
+                $("#erroresContentRol").html(errHTML); 
+                $('#erroresModalRol').modal('show');
+        },
+    });
+});

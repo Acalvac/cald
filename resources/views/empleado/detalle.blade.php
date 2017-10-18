@@ -34,7 +34,6 @@
                         <th style="width: 2%">Id</th>
                         <th style="width: 10%">Tipo de antecedente</th>
                         <th style="width: 10%">Fecha vencimiento</th>
-                        <th style="width: 10%">Adjunto</th>
                         <th style="width: 10%">Opciones</th>
                     </thead>
                     <tbody id="donativos">
@@ -43,7 +42,6 @@
                                 <td>{{$tra->idtramite}}</td>
                                 <td>{{$tra->nombreantecedente}}</td>
                                 <td>{{$tra->fechavencimiento}}</td>
-                                <td></td>
                                 <td>
                                     <button class="btn  btn-warning btn-md btneditdb" value="{{$tra->idtramite}}" title="Editar"><i class="fa fa-pencil"></i></button>  
                                 </td>

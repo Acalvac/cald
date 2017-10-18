@@ -49,7 +49,7 @@ class MedicamentoController extends Controller
         $composicion = DB::table('composicion as com')
         ->join('principioactivo as pri','com.idprincipio','=','pri.idprincipio')
         ->join('medicamento as med','com.idmedicamento','=','med.idmedicamento')
-        ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
+        ->join('tipo as tip','pri.idtipo','=','tip.idtipo')
         ->select('com.idcomposicion','com.concentracion','pri.nombre as principio','tip.tipomedic as familia')
         ->where('med.idmedicamento','=',$id)
         ->get();
@@ -129,7 +129,7 @@ class MedicamentoController extends Controller
     public function modalprincipio()
     {
         $principioactivo = DB::table('principioactivo as pri')
-        ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
+        ->join('tipo as tip','pri.idtipo','=','tip.idtipo')
         ->select('pri.idprincipio','pri.nombre','tip.tipomedic as familia')
         ->get();
 

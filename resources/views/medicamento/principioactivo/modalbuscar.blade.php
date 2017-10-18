@@ -1,5 +1,6 @@
 <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 
 <div class="col-lg-12" id="modales">
     <div class="modal fade" id="formModalBuscar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -14,11 +15,12 @@
                 <form role="form" id="formBuscarPrincipio">
                     <div class="modal-header">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover dataTables-example" >
+                            <table class="table table-striped table-bordered table-hover dataTables-principio" >
                                 <thead>
                                     <th style="width: 5%">Id</th>
                                     <th style="width: 50%">Principio Activo</th>
                                     <th style="width: 40%">Familia</th>
+                                    <th style="width: 5%"></th>
                                 </thead>
                                 <tbody id="listempleado">
                                     @foreach ($principioactivo as $pri)
@@ -44,7 +46,6 @@
                     <div class="col-md-12">
                         <div><br></div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-
                     </div>
                 </div>
             </div>
@@ -71,11 +72,36 @@
         </div>
     </div>
 </div>
-
    
 <!-- Sweet alert -->
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
-    
+
+    <script src="{{asset('assets/js/plugins/dataTables/datatables.min.js')}}"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="{{asset('assets/js/inspinia.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/pace/pace.min.js')}}"></script>
+
+    <script>
+
+            $('.dataTables-principio').DataTable({
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                columns: [
+                null,
+                null,
+                null,
+                null
+                ],
+
+                aLengthMenu:[
+                5,10,15],
+
+                buttons: [
+                    
+                ]
+
+            });
+    </script>    
 
 

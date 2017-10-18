@@ -37,10 +37,11 @@
     </div>
 </div>
 
-<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
 <script type="text/javascript">
     $('.chosen-select').chosen({width: "100%"});
     document.getElementById('dato_buscado').focus();
+    
     $(document).ready(function() {
         $('#dato_buscado').keypress(function(e){   
             if(e.which == 13){      

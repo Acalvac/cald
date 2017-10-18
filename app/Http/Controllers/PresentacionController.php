@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Presentacion;
 class PresentacionController extends Controller
 {
     public function __construct()
@@ -13,7 +13,7 @@ class PresentacionController extends Controller
     
     public function index()
     {
-        $medicamentos = DB::table('medicamento as med')
+        $presentacion = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
         ->join('tipo as tip','med.idtipo','=','tip.idtipo')
         ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
@@ -22,22 +22,12 @@ class PresentacionController extends Controller
         return view('medicamento.medicamento.index',["medicamentos"=>$medicamentos]);
     }
 
-    public function medicamento()
-    {
-        $medicamentos = DB::table('medicamento as med')
-        ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
-        ->paginate(15);
-        return view('medicamento.medicamento.medicamentos',["medicamentos"=>$medicamentos]);
-    }
-
     public function add(Request $request)
     {
         return view('medicamento.presentacion.create');
     }
 
-    public function addm(Request $request)
+    public function addp(Request $request)
     {
         return view('medicamento.presentacion.createp');
     }
@@ -48,19 +38,19 @@ class PresentacionController extends Controller
             $this->validateRequest($request);
 
             $presentacion =new Presentacion;
-            $presentacion-> nombre =  $request->get('nombre');
+            $presentacion-> nombre =  $request->get('presentacion');
             $presentacion->save();
 
         } catch (Exception $e) {
             DB::rollback();
-            return response()->json(array('error'=>'No se ha podido enviar la petición de agregar una presentación nueva'),404);
+            return response()->json(array('error'=>'No se ha podido enviar la petición de agregar una nueva presentación'),404);
         }
         return json_encode($presentacion);    
     }
 
      public function validateRequest($request){                
         $rules=[
-            'nombre' => 'required',   
+            'presentacion' => 'required',   
         ];
 
         $messages=[

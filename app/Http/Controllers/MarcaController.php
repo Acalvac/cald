@@ -23,16 +23,6 @@ class MarcaController extends Controller
         return view('medicamento.medicamento.index',["medicamentos"=>$medicamentos]);
     }
 
-    public function medicamento()
-    {
-        $medicamentos = DB::table('medicamento as med')
-        ->join('marca as mar','med.idmarca','=','mar.idmarca')
-        ->join('tipo as tip','med.idtipo','=','tip.idtipo')
-        ->select('med.idmedicamento','med.medicamento','tip.tipomedic as tipo','mar.marca')
-        ->paginate(15);
-        return view('medicamento.medicamento.medicamentos',["medicamentos"=>$medicamentos]);
-    }
-
     public function add(Request $request)
     {
         return view('medicamento.marca.create');

@@ -22,19 +22,19 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                            <div class="form-group">
                                 <label for="Nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control required" placeholder=".." required>
+                                <input type="text" name="nombre" id="nombre" class="form-control required" placeholder=".." required maxlength="50">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="nombre">Apellido</label>
-                                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="...">
+                                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="..." maxlength="50">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="stock">Direccion</label>
-                                <input type="text" name="direccion"  id="direccion" class="form-control" placeholder="...">
+                                <input type="text" name="direccion"  id="direccion" class="form-control" placeholder="..." maxlength="100">
                             </div>
                         </div>
                         
@@ -44,16 +44,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon">502</span>
                                 <input type="text" name="telefono"  id="telefono" class="form-control" placeholder="..." maxlength="8" onkeypress="return valida(event)">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="descripcion">Estado civil</label>
-                                <select name="estadocivil" id="estadocivil" class="form-control select2" data-live-search="true">
-                                    <option value="Soltero">Soltero</option>
-                                    <option value="casado">Casado</option>
-                                </select>
                             </div>
                         </div>
 
@@ -88,7 +78,7 @@
                             <div class="form-group">
                                 <label class="control-label">Fecha nacimiento</label>
                                 <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="birth_date" type="text" class="form-control" value="03/04/2014">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="birth_date" type="text" class="form-control" value="03/04/2014" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -109,7 +99,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="descripcion">Salario</label>
-                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0">
+                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0" maxlength="18">
                             </div>
                         </div>
 
@@ -162,7 +152,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <br>
-                                <button type="button" id="bt_add" class="btn btn-info">Agregar antecedente</button>
+                                <button type="button" id="bt_add" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                             </div>
                         </div>
 
@@ -226,51 +216,39 @@
     </div>
 </div>
 
-
-
-
-    <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
-    <script src="{{asset('assets/js/empleado/persona.js')}}"></script>
-    <script src="{{asset('assets/js/validacion.js')}}"></script>
-    
-    <!-- Sweet alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
-
-    <script>
-        $(document).ready(function() {
-
-
-
-            $('#date_work_start').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-                
-            });
-
-            $('#birth_date').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-            $('#expiration_date').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-                
-            });
-
+<script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
+<script src="{{asset('assets/js/empleado/persona.js')}}"></script>
+<script src="{{asset('assets/js/validacion.js')}}"></script>
+  
+<!-- Sweet alert -->
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#date_work_start').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
         });
 
-    </script>
+        $('#birth_date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+        $('#expiration_date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true    
+        });
+    });
+</script>
 
 

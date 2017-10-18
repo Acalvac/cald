@@ -21,6 +21,10 @@ class RequisicionController extends Controller
 
     public function index()
     {
+        $paciente = DB::table('paciente as p')
+        ->select('p.nombrepa','p.idpaciente')
+        ->where('p.idstatus','=',5)
+        ->get();
         $proveedores = DB::table('proveedor as pro')
         ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre')
         ->paginate(15);
@@ -35,11 +39,12 @@ class RequisicionController extends Controller
         ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento')
         ->get();
 
-        $proveedor = DB::table('proveedor as pro')
-        ->select('pro.idproveedor','pro.proveedor')
+        $paciente = DB::table('paciente as p')
+        ->select('p.nombrepa','p.idpaciente')
+        ->where('p.idstatus','=',5)
         ->get();
 
-        return view('medicamento.requisicion.create',["medicamento"=>$medicamento,"proveedor"=>$proveedor]);
+        return view('medicamento.requisicion.create',["medicamento"=>$medicamento,"paciente"=>$paciente]);
     }
 
     public function addp(Request $request)

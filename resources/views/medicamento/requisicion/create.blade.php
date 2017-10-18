@@ -1,26 +1,77 @@
-<div class="col-lg-12" id="modales">
-    <div class="modal fade" id="formModalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitleUsuario"></h4>
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="ibox-content m-b-sm border-bottom">
+        <h4 class="box-title" align="center">Agregar medicamento a un paciente</h4> 
+        <a href="javascript:void(0);" onclick="cargarindex(7);">
+            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Listado Empleado"><i class="fa fa-arrow-circle-left"></i></button>
+        </a>
+        <hr style="border-color:black;"/>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label>Tipo Antecedente</label>
+                        <select name="idtipoantecedente" id="idtipoantecedente" class="form-control select2" data-live-search="true">
+                                @if (isset($paciente))
+                                @foreach($paciente as $pac)
+                                    <option value="{{$pac->idpaciente}}">{{$pac->nombrepa}}</option>
+                                @endforeach
+                                @endif
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <label>Medicamento</label>
+                    <input type="text" name="" placeholder="Medicamento a comprar" class="form-control" disabled="">
                 </div>
 
-                @include('medicamento.requisicion.modalcreate')
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                    <br>
+                    <a href="javascript:void(0);" onclick="cargarbusqueda(2);">
+                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Medicamento" value=""><i class="fa fa-search"></i></button>
+                    </a>
+                </div>
 
-                <div class="modal-footer">
-                    <div class="col-md-12">
-                        <div><br></div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="btnGuardarRequisicion">Guardar</button>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="descripcion">Cantidad</label>
+                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0" maxlength="10">
+                            </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <br>
+                                <button type="button" id="bt_add" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
+                            </div>
+                </div>
+
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <table id="detalles" class="table table-striped table-bordered table-hover">
+                        <thead style="background-color:#A9D0F5">
+                            <tr>
+                                <th>Opciones</th>
+                                <th>Medicamento</th>
+                                <th>cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div><br></div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-btnGuardarEmpleado"  type="button" id="btnGuardarEmpleado" style="display:none;" >Guardar</button>
+                        <button class="btn btn-danger" type="reset">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 
+
 
 <div class="modal fade" id="erroresModalRequisicion" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog">

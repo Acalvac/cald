@@ -26,28 +26,6 @@
                 </div>
             </div>
 
-            <!--
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div><br></div>
-                <label class="col-md-2">Tipo</label>
-                <div class="col-md-6">
-                    <select id="idtipo" class="chosen-select" data-live-search="true">
-                    @if (isset($tipomedicamento))
-                    @foreach($tipomedicamento as $tip)
-                        <option value="{{$tip->idtipo}}">{{$tip->tipomedic}}</option>
-                    @endforeach
-                    @endif
-                    </select>
-                </div>
-
-                <div class="col-md-4">
-                    <a href="javascript:void(0);" onclick="cargarmodal(5);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
-                    </a>
-                </div>
-            </div>
-            -->
-
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div><br></div>
                 <label class="col-md-2 col-sm-2">Presentaci&oacute;n</label>
@@ -62,8 +40,8 @@
                 </div>
 
                 <div class="col-md-4 col-sm-4">
-                    <a href="javascript:void(0);" onclick="cargarmodal(5);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
+                    <a href="javascript:void(0);" onclick="cargarmodal(11);">
+                        <button type="button" class="btn btn-primary btn-md" id="nuevapresentacion" title="Nueva presentacion medicamento" value=""><i class="fa fa-plus-square"></i></button>
                     </a>
                 </div>
             </div>
@@ -71,7 +49,7 @@
         <div class="modal-header">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="prin">
                 <div><br></div>
-                
+            
                 <label class="col-md-2 col-sm-2">Sustancia</label>
                 <div class="col-md-6 col-sm-6">
                     <input type="text" name="" placeholder="Sustancia..." class="form-control" id="sustancia" disabled>

@@ -90,8 +90,11 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get ('proveedor/add','ProveedorController@add');
 	Route::get ('proveedor/addp','ProveedorController@addp');
 	Route::post('proveedor/store','ProveedorController@store');
+	Route::post('proveedor/eliminar','ProveedorController@eliminar');
 	Route::get('proveedor/busqueda/{id}','ProveedorController@busqueda');
-
+	Route::get('proveedor/listaredit/{id}','ProveedorController@listaredit');
+	Route::put('proveedor/update/{id}','ProveedorController@update');
+	//Route::put('updateAca/{id}','UController@updateAca');
 
 	//Marca
 	Route::get('marca/index','MarcaController@index');
@@ -128,7 +131,7 @@ Route::group(['prefix'=>'medicamento'], function(){
 
 	//Presentacion Medicamento
 	Route::get('presentacion/index','PresentacionController@index');
-	Route::get('presentacion/add','PresentacionController@index');
+	Route::get('presentacion/add','PresentacionController@add');
 	Route::get('presentacion/addp','PresentacionController@addp');
 	Route::post('presentacion/store','PresentacionController@store');
 	Route::get('presentacion/busqueda/{id}','PresentacionController@busqueda');
@@ -159,7 +162,8 @@ Route::group(['prefix'=>'empleado'], function(){
 	Route::post('store','EmpleadoController1@store');
 	Route::get('edit/{id}','EmpleadoController1@edit');
 	Route::post('update/{id}','EmpleadoController1@update');
-	Route::post('delete','EmpleadoController1@modal');
+	Route::post('delete','EmpleadoController1@delete');
+
 	Route::get('show/{id}','EmpleadoController1@show');
 	Route::get('/logout', 'Auth\LoginController@logout');
 });
@@ -191,6 +195,9 @@ Route::get('paciente/historial/index','EmpleadoController1@index');
 Route::get('paciente/historial/add','CPHistorialController@add');
 Route::post('paciente/historial/store','CPHistorialController@store');
 Route::get('paciente/historial/busqueda/{id}','CPHistorialController@busqueda');
+Route::get('paciente/historial/show/{id}','CPHistorialController@show');
+Route::get('paciente/historial/examen/show/{id}','CPHistorialController@showe');
+
 Route::get('/{slug?}','HomeController@index');
 
 

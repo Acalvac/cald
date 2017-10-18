@@ -132,7 +132,7 @@ class CompraController extends Controller
         ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
         ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca','med.cantidad')
         ->get();
-
+        
         return view('medicamento.medicamento.modalbuscar',["medicamento"=>$medicamento]);
     }
 

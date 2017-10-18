@@ -7,11 +7,11 @@
                 </div>
 
                 <div class="col-md-4">
+                    <a href="javascript:void(0);" onclick="cargarbusqueda(2);">
+                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Medicamento" value=""><i class="fa fa-search"></i></button>
+                    </a>
                     <a href="javascript:void(0);" onclick="cargarmodal(2);">
                         <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
-                    </a>
-                    <a href="javascript:void(0);" onclick="cargarbusqueda(2);">
-                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar ubicacion" value=""><i class="fa fa-search"></i></button>
                     </a>
                 </div>
             </div>
@@ -26,11 +26,11 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="javascript:void(0);" onclick="cargarmodal(6);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Proveedor" value=""><i class="fa fa-plus-square"></i></button>
-                    </a>
                     <a href="javascript:void(0);" onclick="cargarbusqueda(6);">
                         <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Proveedor" value=""><i class="fa fa-search"></i></button>
+                    </a>
+                    <a href="javascript:void(0);" onclick="cargarmodal(6);">
+                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Proveedor" value=""><i class="fa fa-plus-square"></i></button>
                     </a>
                 </div>
             </div>
@@ -44,11 +44,11 @@
                </div>
 
                 <div class="col-md-4">
-                    <a href="javascript:void(0);" onclick="cargarmodal(7);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
-                    </a>
                     <a href="javascript:void(0);" onclick="cargarbusqueda(7);">
                         <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar ubicacion" value=""><i class="fa fa-search"></i></button>
+                    </a>
+                    <a href="javascript:void(0);" onclick="cargarmodal(7);">
+                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Tipo medicamento" value=""><i class="fa fa-plus-square"></i></button>
                     </a>
                 </div>
             </div>

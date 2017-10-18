@@ -1,10 +1,10 @@
 <?php
 
 namespace App;
-    use Caffeinated\Shinobi\Traits\ShinobiTrait;
-
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\MyResetPassword;
 
 class User extends Authenticatable
 {

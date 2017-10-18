@@ -81,15 +81,6 @@ var cont = 0;
             dataType: 'json',
             
             success: function (data) {
-                /*
-                swal({
-                    title:"Envio correcto",
-                    text: "Gracias",
-                    type: "success"
-                },
-                function(){
-                    window.location.href="/empleado/listado"
-                });*/
                 
                 swal({
                     title: '¿Desea agregar un usuario?',
@@ -161,7 +152,7 @@ var cont = 0;
             apellido: $('#apellido').val(),
             direccion: $('#direccion').val(),
             telefono: $('#telefono').val(),
-            estadocivil: $('#estadocivil').val(),
+            estadocivil: $('#idcivil').val(),
             dpi: $('#dpi').val(),
             nit: $('#nit').val(),
             correo: $('#correo').val(),
@@ -191,7 +182,7 @@ var cont = 0;
                     text: "Gracias",
                     type: "success"
                 }).then(function(){
-                    window.location.href="/empleado/index"                
+                    cargarindex(1);                
                 });
 
                 /* 
@@ -221,5 +212,56 @@ var cont = 0;
         });
     });
 
+$(document).on('click','.btn-eliminaremp',function(e){
+    var id = $(this).val();
+    var urlraiz=$("#url_raiz_proyecto").val();
+    var miurl = urlraiz+"/empleado/delete";
+        var formData = {
+        empleado: id,
+    };
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+
+    swal({
+        title: '¿Desea eliminar este registro?',
+        text: "Precione si para eliminar empleado, no para cerrar este mensaje.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!',
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false
+    }).then(function () {
+        $.ajax({
+                type: "POST",
+                url: miurl,
+                data: formData,
+                dataType: 'json',
+                success: function() {
+                    $("#empleado" + id).remove();
+                    swal( 
+                        "Regitro eliminado",
+                        "",
+                        "success"
+                    )
+                }
+        });                        
+    }, 
+    function (dismiss) {
+        if (dismiss === 'cancel') {
+            swal( 
+                "Cancelado",
+                "No se ha borrado",
+                "error"
+            )
+        }
+    });   
+});
 
 

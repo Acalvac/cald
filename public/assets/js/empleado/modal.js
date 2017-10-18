@@ -6,8 +6,9 @@ function cargarmodalempleado(arg){
     if(arg==3){var miurl=urlraiz+"/medicamento/compra/add"; var titulo="Nueva compra de un medicamento" ; }
     if(arg==4){var miurl=urlraiz+"/medicamento/marca/add"; var titulo="Nuevo ingreso de una marca"; $('#nuevomarca').val('add');}
     if(arg==5){var miurl=urlraiz+"/medicamento/tipomedicamento/add"; var titulo="Nuevo ingreso de un tipo de medicamento";}
-    if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/add"; var titulo="Nuevo ingreso de un proveedor";}
+    if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/add"; var titulo="Nuevo ingreso de un proveedor"; }
     if(arg==7){var miurl=urlraiz+"/medicamento/requisicion/add"; var titulo="Nuevo ingreso de una requisicion";}
+    if(arg==11){var miurl=urlraiz+"/medicamento/presentacion/add"; var titulo="Nuevo ingreso de una presentacion";}
 
 	var errHTML="";
 
@@ -15,9 +16,11 @@ function cargarmodalempleado(arg){
 		url: miurl
 	}).done( function(resul) 
 	{
-		$("#modales").html(resul);
+  	$("#modales").html(resul);
 		$('#inputTitleUsuario').html(titulo);
-        $('#formModalUsuario').modal('show');
+    $('#formModalUsuario').modal('show');
+    $('#btnGuardarProveedor').val('add');
+  
 	}).fail(function() 
 	{
 		$("#modales").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
@@ -36,8 +39,9 @@ function cargarmodal(arg){
   if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/addp"; var titulo="Nuevo ingreso de un proveedor";}
   if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/addu"; var titulo="Nuevo ingreso de una ubicacion";}
   if(arg==8){var miurl=urlraiz+"/medicamento/principio/addp"; var titulo="Nuevo ingreso de una composición";}
+  if(arg==11){var miurl=urlraiz+"/medicamento/presentacion/addp"; var titulo="Nuevo ingreso de una presentacion";}
 
-
+  
 	var errHTML="";
 
 	$.ajax({
@@ -65,7 +69,13 @@ function cargarindex(arg){
 	if(arg==4){var miurl=urlraiz+"/medicamento/index";}
 	if(arg==5){var miurl=urlraiz+"/medicamento/compra/index";}
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/index";}
+  if(arg==7){var miurl=urlraiz+"/medicamento/requisicion/index";}
+  if(arg==8){var miurl=urlraiz+"/medicamento/requisicion/add";}
   if(arg==9){var miurl=urlraiz+"/paciente/historial/add";}
+  if(arg==12){var miurl=urlraiz+"/seguridad/rol/index";}
+  
+ 
+
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 	if(arg==21){var miurl=urlraiz+"/paciente/index";}
@@ -112,8 +122,11 @@ function detalle(arg,id)
 
 	if(arg==1){var miurl =urlraiz+"/empleado/show/"+id+"";}
   if(arg==8){var miurl =urlraiz+"/medicamento/show/"+id+"";}
-	if(arg==2){var miurl=urlraiz+"/empleado/add";}
-	if(arg==3){var miurl=urlraiz+"/seguridad/index";}
+	if(arg==2){var miurl =urlraiz+"/empleado/add";}
+	if(arg==3){var miurl =urlraiz+"/seguridad/index";}
+  if(arg==9){var miurl =urlraiz+"/paciente/historial/show/"+id;}
+  if(arg==10){var miurl =urlraiz+"/paciente/historial/examen/show/"+id;}
+
 
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/listardetallesb/"+id+"";}
@@ -128,6 +141,23 @@ function detalle(arg,id)
    		$("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
    	});
 
+
+}
+
+function cargardetalle(arg,id)
+{
+      var urlraiz=$("#url_raiz_proyecto").val();
+        if(arg==10){var miurl =urlraiz+"/paciente/historial/examen/show/"+id;}
+        $.ajax({
+          url: miurl
+        }).done( function(resul) 
+        {
+            $("#cargardetalle").html(resul);
+        }).fail( function() 
+        {
+            $("#cargardetalle").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+        });
+      //$("#capa_modal").html($("#cargador_empresa").html());
 
 }
 
@@ -196,35 +226,4 @@ function busqueda(arg,id){
     }) ;
 }
 
-
-$(document).on('click','.btn-vacaciones',function(){
-            var errHTML="";
-            idempleado=$(this).val();
-            $.get('empleados/calculardias/'+idempleado,function(data){
-               
-                var horas = '';
-                var dias = '';
-                var tdh;
-
-                $.each(data,function(){
-                    horas = data[0];
-                    dias = data[1];
-                    autorizacion = data[2];
-                })
-
-                $('#inputTitle').html("Saldo de vacaciones");
-                $('#formAgregar').trigger("reset");
-                $('#formModal').modal('show');
-                $('#datomar').attr('disabled', 'disabled');
-                $('#hhoras').attr('disabled', 'disabled');
-                $('#dacumulado').attr('disabled', 'disabled');
-                $('#btnguardarV').attr('disabled', 'disabled'); 
-
-                tdh = (dias + ' ' + 'dias' + ' ' + 'con' +' '+ horas +' '+ 'horas');
-                document.getElementById('dacumulado').value = tdh;
-                document.getElementById('tdias').value = dias;
-                document.getElementById('thoras').value = horas;
-                
-            });
-        });
 

@@ -27,7 +27,7 @@ class EmpleadoController1 extends Controller
     
     public function index(Request $request)
     {
-        $empleado = Persona::all()->where('idtipopersona','=','1');
+        $empleado = Persona::all()->where('idtipopersona','=','1')->where('idstatus','=',1);
         return view('empleado.index',["empleado"=>$empleado]);
     }
 
@@ -152,7 +152,7 @@ class EmpleadoController1 extends Controller
             $persona-> apellido=$request->get('apellido');
             $persona-> direccion=$request->get('direccion');
             $persona-> telefono=$request->get('telefono');
-            $persona-> estadocivil=$request->get('estadocivil');
+            $persona-> idcivil=$request->get('idcivil');
             $persona-> nit=$request->get('nit');
             $persona-> dpi=$request->get('dpi');
             $persona-> imagen=$request->get('imagen');
@@ -184,10 +184,12 @@ class EmpleadoController1 extends Controller
 
     public function show($id)
     {
+
         $detalle = DB::table('persona as per')
         ->join('empleado as emp','per.idpersona','=','emp.idpersona')
         ->join('estadocivil as est','per.idcivil','=','est.idcivil')
-        ->select('emp.idempleado','per.nombre','per.apellido','per.dpi','per.nit','per.direccion','per.telefono','per.correo','est.nombre as estadocivil','per.fechanacimiento')
+        ->select('emp.idempleado','per.nombre','per.apellido','per.dpi','per.nit',
+                'per.direccion','per.telefono','per.correo','est.nombre as estadocivil','per.fechanacimiento')
         ->where('per.idpersona','=',$id)
         ->first();
 
@@ -201,8 +203,14 @@ class EmpleadoController1 extends Controller
         return view('empleado.detalle',["detalle"=>$detalle,"tramite"=>$tramite]);        
     }
 
-    public function delate()
-    {}
+    public function delete(Request $request)
+    {
+        $persona = Persona::find($request->empleado);
+        $persona->idstatus = 2;
+        $persona->save(); 
+        return json_encode($persona);
+    }
+
 
     public function validateRequest($request){                
         $rules=[

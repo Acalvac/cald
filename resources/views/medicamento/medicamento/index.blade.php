@@ -1,3 +1,4 @@
+<link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 <div class="tabs-container">
    <div class="tab-content" id="contentsecundario">
         <div id="tab-1" class="tab-pane active">
@@ -12,7 +13,7 @@
 
                     <div class="ibox-content">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover dataTables-example" >
+                            <table class="table table-striped table-bordered table-hover dataTables-index-medicamento" >
                                 <thead>
                                     <th style="width: 5%">Id</th>
                                     <th style="width: 20%">Medicamento</th>
@@ -53,3 +54,25 @@
         </div>
     </div>
 </div>
+<script src="{{asset('assets/js/plugins/dataTables/datatables.min.js')}}"></script>
+<script>
+    $('.dataTables-index-medicamento').DataTable({
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                columns: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+                ],
+
+                aLengthMenu:[
+                5,10,15],
+
+                buttons: [
+                    
+                ]
+    });
+</script>

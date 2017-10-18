@@ -18,5 +18,6 @@ class Proveedor extends Model
     	'nit',
     	'cuenta',
     	'chequenombre',
+        'estado',
     ];
 }

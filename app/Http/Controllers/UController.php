@@ -138,22 +138,24 @@ class UController extends Controller
     public function form_nuevo_rol(){
         //carga el formulario para agregar un nuevo rol
         $roles=Role::all();
-        return view("seguridad.usuario.form_nuevo_rol")->with("roles",$roles);
+        return view("seguridad.rol.form_nuevo_rol")->with("roles",$roles);
     }
         
     public function crear_rol(Request $request){
-        $rol=new Role;
-        $rol->name=$request->input("rol_nombre") ;
-        $rol->slug=$request->input("rol_slug") ;
-        $rol->description=$request->input("rol_descripcion") ;
-        if($rol->save())
-        {
-            return view("mensajes.msj_rol_creado")->with("msj","Rol agregado correctamente") ;
+        try{
+
+            $this->validateRequestRol($request);
+            $rol=new Role;
+            $rol-> name=$request->get('rol') ;
+            $rol-> slug=$request->get('slug') ;
+            $rol-> description=$request->get('descripcion');
+            $rol->save();
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo rol'),404);
         }
-        else
-        {
-            return view("mensajes.mensaje_error")->with("msj","...Hubo un error al agregar ;...") ;
-        }
+        return json_encode($rol);  
+
     }
     
     public function borrar_rol($idrole){
@@ -212,5 +214,19 @@ class UController extends Controller
             $usuario = Collection::make($calculo);
             return json_encode ($usuario);
         }
+    }
+
+    public function validateRequestRol($request){                
+        $rules=[
+            'rol' => 'required',
+            'slug' => 'required',
+            'descripcion' => 'required',
+        ];
+
+        $messages=[
+            'required' => 'Debe ingresar :attribute.',
+            'max'  => 'La capacidad del campo :attribute es :max'
+        ];
+        $this->validate($request, $rules,$messages);         
     }
 }

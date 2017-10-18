@@ -13,6 +13,6 @@ class Principio extends Model
 
     protected $fillable=[
     	'nombre',
-    	'idfamilia',
+    	'idtipo',
     ];
 }

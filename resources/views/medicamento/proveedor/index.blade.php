@@ -1,3 +1,4 @@
+<link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 <div class="tabs-container">
     <div class="tab-content" id="contentsecundario">
         <div id="tab-1" class="tab-pane active">
@@ -11,7 +12,7 @@
                         
                     <div class="ibox-content" style="border-color:black;">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover dataTables-example" >
+                            <table class="table table-striped table-bordered table-hover dataTables-index-proveedor" >
                                 <thead>
                                         <th style="width: 5%">Id</th>
                                         <th style="width: 15%">Proveedor</th>
@@ -33,11 +34,10 @@
                                         <td>{{$pro->cuenta}}</td>
                                         <td>{{$pro->chequenombre}}</td>
                                         <td>
+                                            <button class="btn  btn-warning btn-md btn-editar-proveedor" title="Editar" value="{{$pro->idproveedor}}"><i class="fa fa-pencil"></i></button>
+                                            
+                                            <button class="btn btn-danger btn-md btn-eliminarpro" id="FWEF" value="{{$pro->idproveedor}}" title="Eliminar proveedor" ><i class="fa fa-remove"></i></button>                                                
 
-                                            <a href="javascript:void(0);" onclick="editar(1,{{$pro->idproveedor}});">
-                                                <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar"><i class="fa fa-pencil"></i></button>
-                                            </a>
-                                            <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$pro->idproveedor}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                     
                                         </td>
                                     </tr>
@@ -55,3 +55,30 @@
         </div>
     </div>
 </div>
+
+@include('medicamento.proveedor.create')
+
+<script src="{{asset('assets/js/plugins/dataTables/datatables.min.js')}}"></script>
+<script>
+    $('.dataTables-index-proveedor').DataTable({
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                columns: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+                ],
+
+                aLengthMenu:[
+                5,10,15],
+
+                buttons: [
+                    
+                ]
+    });
+</script>

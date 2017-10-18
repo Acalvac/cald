@@ -22,15 +22,15 @@ class PrincipioController extends Controller
             //$today = Carbon::now();
             //idmedicamento	medicamento	idtipo	idmarca
             $principioactivo =new Principio;
-            $principioactivo-> idfamilia =  $request->get('familia');
+            $principioactivo-> idtipo =  $request->get('familia');
             $principioactivo-> nombre = $request->get('nombre');
             
 
             $principioactivo->save();
 
             $principioactivo = DB::table('principioactivo as pri')
-            ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
-            ->select('pri.idprincipio','pri.nombre','tip.tipomedic as familia')
+            ->join('tipo as tip','pri.idtipo','=','tip.idtipo')
+            ->select('pri.idtipo','pri.nombre','tip.tipomedic as familia')
             ->orderby('pri.idprincipio','desc')
             ->first();
 
@@ -44,7 +44,7 @@ class PrincipioController extends Controller
     public function busqueda($id)
     {
         $principioactivo = DB::table('principioactivo as pri')
-        ->join('tipo as tip','pri.idfamilia','=','tip.idtipo')
+        ->join('tipo as tip','pri.idtipo','=','tip.idtipo')
         ->select('pri.idprincipio','pri.nombre','tip.tipomedic as familia')
         ->where('pri.idprincipio','=',$id)
         ->first();
