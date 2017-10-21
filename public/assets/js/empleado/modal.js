@@ -171,6 +171,7 @@ function cargarbusqueda(arg){
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/cargarbusqueda"; var titulo="Buscar proveedor" ;}
 	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/cargarbusqueda"; var titulo="Buscar ubicacion" ; }
   if(arg==8){var miurl=urlraiz+"/medicamento/principio/cargarbusqueda"; var titulo="Buscar ubicacion" ; }
+  if(arg==9){var miurl=urlraiz+"/medicamento/requisicion/cargarbusqueda"; var titulo="Buscar medicamento" ; }
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 
@@ -193,13 +194,14 @@ function busqueda(arg,id){
 	var urlraiz=$("#url_raiz_proyecto").val();
 	
 	if(arg==1){var miurl=urlraiz+"/seguridad/busqueda/"+id; }
-	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; var form = $("#medi"); }
+	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; var form = $("#medi");}
 	if(arg==3){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  }
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/busqueda/"+id;  var form = $("#prov"); }
 	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  var form = $("#ubic");}
   if(arg==8){var miurl=urlraiz+"/medicamento/principio/busqueda/"+id;  var form = $("#prin");}
-
+  if(arg==9){var miurl=urlraiz+"/medicamento/requisicion/busqueda/"+id;  var form = $("#rmedi");}
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
+
 
 	var errHTML="";
 

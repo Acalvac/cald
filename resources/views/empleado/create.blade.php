@@ -99,7 +99,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="descripcion">Salario</label>
-                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0" maxlength="18">
+                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0" maxlength="18" onkeypress="return valida(event)" min="0">
                             </div>
                         </div>
 
@@ -204,8 +204,6 @@
             </div>
 
             <div class="modal-body">
-                <!-- The messages container -->
-<!--                <div id="erroresContent"></div>-->
                    <ul style="list-style-type:circle" id="erroresContentEmpleado"></ul>
             </div>
 

@@ -25,6 +25,7 @@
                                     <label for="Nombre">Paciente</label>
                                     <select class="form-control" class="chosen-select" data-live-search="true" onchange="pacientepe();" id="idpaciente">
                                     @if (isset($paciente))
+                                    <option value="0">Seleccione</option>
                                     @foreach($paciente as $pac)
                                     <option value="{{$pac->idpaciente}}">{{$pac->nombrepa}}</option>
 
@@ -85,104 +86,104 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="Nombre">Piel</label>
-                                    <input type="text" name="nombre" id="piel" class="form-control required" placeholder=".." required>
+                                    <input type="text" name="nombre" id="piel" class="form-control required" placeholder=".." required value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="nombre">Cabeza</label>
-                                    <input type="text" name="apellido" id="cabeza" class="form-control" placeholder="...">
+                                    <input type="text" name="apellido" id="cabeza" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Ojos</label>
-                                    <input type="text" name="ojos"  id="ojos" class="form-control" placeholder="...">
+                                    <input type="text" name="ojos"  id="ojos" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Oidos</label>
-                                    <input type="text" name="direccion"  id="oidos" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="oidos" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Nariz</label>
-                                    <input type="text" name="direccion"  id="nariz" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="nariz" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Boca y faringe</label>
-                                    <input type="text" name="direccion"  id="boca" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="boca" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Cuello</label>
-                                    <input type="text" name="direccion"  id="cuello" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="cuello" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Coraz&oacute;n</label>
-                                    <input type="text" name="direccion"  id="corazon" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="corazon" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Pulmones</label>
-                                    <input type="text" name="direccion"  id="pulmones" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="pulmones" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Tórax</label>
-                                    <input type="text" name="direccion"  id="torax" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="torax" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Manos y axilas</label>
-                                    <input type="text" name="direccion"  id="manos" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="manos" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Columna</label>
-                                    <input type="text" name="direccion"  id="columna" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="columna" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Abdomen</label>
-                                    <input type="text" name="direccion"  id="abdomen" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="abdomen" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Extremidades superiores</label>
-                                    <input type="text" name="direccion"  id="extremidades" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="extremidades" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Extremidades inferiores</label>
-                                    <input type="text" name="direccion"  id="extremidadesi" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="extremidadesi" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">Sistema musco-esqueletico</label>
-                                    <input type="text" name="direccion"  id="sistemamus" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="sistemamus" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="stock">genitales</label>
-                                    <input type="text" name="direccion"  id="genitales" class="form-control" placeholder="...">
+                                    <input type="text" name="direccion"  id="genitales" class="form-control" placeholder="..." value="normal">
                                 </div>
                             </div>
                         </section>
@@ -258,7 +259,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="inputErrorExamen"></h4>
+                <h4 class="modal-title" id="inputErrorExamen">Error</h4>
             </div>
             <div class="modal-body">
                 <ul style="list-style-type:circle" id="erroresContentExamen"></ul>

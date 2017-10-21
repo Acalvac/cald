@@ -7,9 +7,9 @@
         <hr style="border-color:black;"/>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label>Tipo Antecedente</label>
+                        <label>Paciente</label>
                         <select name="idtipoantecedente" id="idtipoantecedente" class="form-control select2" data-live-search="true">
                                 @if (isset($paciente))
                                 @foreach($paciente as $pac)
@@ -20,34 +20,36 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <label>Medicamento</label>
-                    <input type="text" name="" placeholder="Medicamento a comprar" class="form-control" disabled="">
-                </div>
+                <div id="rmedi">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <label>Medicamento</label>
+                        <input type="text" name="" placeholder="Medicamento a comprar" class="form-control" disabled="" id="medica">
+                    </div>
 
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
-                    <br>
-                    <a href="javascript:void(0);" onclick="cargarbusqueda(2);">
-                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Medicamento" value=""><i class="fa fa-search"></i></button>
-                    </a>
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                        <br>
+                        <a href="javascript:void(0);" onclick="cargarbusqueda(9);">
+                            <button type="button" class="btn btn-info btn-md" id="brmedi" title="Buscar Medicamento" value=""><i class="fa fa-search"></i></button>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="descripcion">Cantidad</label>
-                                <input type="number" name="salario" id="salario" class="form-control" placeholder="..." value="0" maxlength="10">
+                                <input type="number" id="cantidad" class="form-control" placeholder="..." value="0" maxlength="10" onkeypress="return valida(event)" min="0">
                             </div>
                 </div>
                 
                 <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <br>
-                                <button type="button" id="bt_add" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
+                                <button type="button" id="bt_addm" class="btn btn-info btn-addm" title="Añadir"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                             </div>
                 </div>
 
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                    <table id="detalles" class="table table-striped table-bordered table-hover">
+                    <table id="detallerequi" class="table table-striped table-bordered table-hover">
                         <thead style="background-color:#A9D0F5">
                             <tr>
                                 <th>Opciones</th>
@@ -93,15 +95,14 @@
     </div>
 </div>
 
-    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-    <script src="{{asset('assets/js/medicamento/compra.js')}}"></script>
+
+    <script src="{{asset('assets/js/medicamento/requisicion.js')}}"></script>
+    <script src="{{asset('assets/js/validacion.js')}}"></script>
 <!-- Sweet alert -->
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
 
 <!-- DatePicker -->
-    <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/footable/footable.all.min.js')}}"></script>
 
     
 

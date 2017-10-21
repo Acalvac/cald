@@ -21,7 +21,7 @@
                                     <th style="width: 25%">Medicamento</th>
                                     <th style="width: 25%">Marca</th>
                                     <th style="width: 25%">Presentaci&oacute;n</th>
-                                    <th style="width: 15%">Cantidad</th>
+                                    <th style="width: 15%">Cantidad existente</th>
                                     <th style="width: 5%"></th>
                                 </thead>
                                 <tbody id="listempleado">
@@ -33,8 +33,8 @@
                                         <td>{{$med->presentacion}}</td>
                                         <td>{{$med->cantidad}}</td>
                                         <td>
-                                            <a href="javascript:void(0);" onclick="busqueda(2,{{$med->idmedicamento}});">
-                                                <button class="btn btn-outline btn-primary btn-buscar-ubicacion" type="button" title="Agregar" id="bmedica" value="{{$med->idmedicamento}}"><i class="fa fa-check"></i></button>
+                                            <a href="javascript:void(0);" onclick="busqueda(9,{{$med->idmedicamento}});">
+                                                <button class="btn btn-outline btn-primary" type="button" title="Agregar"><i class="fa fa-check"></i></button>
                                             </a>
                                         </td>
                                     </tr>
@@ -90,6 +90,28 @@
             $('.dataTables-medicamento').DataTable({
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "No data available in table",
+                    "info":           "Mostrar _START_ a _END_ de _TOTAL_ registros por pagina",
+                    "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Mostrar _MENU_ registros",
+                    "loadingRecords": "Loading...",
+                    "processing":     "Processing...",
+                    "search":         "Buscar:",
+                    "total":          "total",          
+                    "zeroRecords":    "No matching records found",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                },
+                
                 columns: [
                 null,
                 null,

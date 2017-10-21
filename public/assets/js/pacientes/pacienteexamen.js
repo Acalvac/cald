@@ -114,8 +114,8 @@ $(document).ready(function(){
                     }else{
                         errHTML+='<li>Error, intente mas tarde gracias.</li>';
                     }
-                    $("#erroresContent").html(errHTML); 
-                    $('#erroresModal').modal('show');
+                    $("#erroresContentExamen").html(errHTML); 
+                    $('#erroresModalExamen').modal('show');
                 }
             });
         }

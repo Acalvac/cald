@@ -148,8 +148,8 @@ Route::group(['prefix'=>'medicamento'], function(){
 	Route::get ('requisicion/add','RequisicionController@add');
 	Route::get ('requisicion/addp','RequisicionController@addp');
 	Route::post('requisicion/store','RequisicionController@store');
+	Route::get ('requisicion/cargarbusqueda','RequisicionController@modalrequisicion');
 	Route::get ('requisicion/busqueda/{id}','RequisicionController@busqueda');
-
 
 	Route::get('/logout', 'Auth\LoginController@logout');
 });

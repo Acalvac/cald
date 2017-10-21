@@ -9,6 +9,8 @@ use App\Compra;
 use App\Medicamento;
 use App\Ubicacion;
 use App\Almacen;
+use App\Requisicion;
+use App\RequisicionDetalle;
 use Carbon\Carbon;  // para poder usar la fecha y hora
 use Illuminate\Support\Facades\Auth;
 
@@ -54,35 +56,77 @@ class RequisicionController extends Controller
 
     public function store(Request $request)
     {
+        $this->validateRequest($request);
         try {
-            $this->validateRequest($request);
+            DB::beginTransaction();
 
-            $proveedor = new Proveedor;
-            $proveedor-> proveedor =  $request->get('proveedor');
-            $proveedor-> telefono = $request->get('telefono');
-            $proveedor-> direccion = $request->get('direccion');
-            $proveedor-> nit = $request->get('nit');
-            $proveedor-> cuenta = $request->get('cuenta');
-            $proveedor-> chequenombre = $request->get('encargado_cheque');
+            $miArray = $request->items;
 
-            $proveedor->save();
+            $requisicion = new Requisicion;
+            $requisicion-> idusuario =  Auth::user()->id;
+            $requisicion-> idpaciente = $request->get('paciente');
+            $requisicion-> idtiporequiscion = 1;
 
+            $requisicion->save();
+
+
+
+            foreach ($miArray as $key => $value) {
+                $idmedicamento = $value['0'];
+                $almacen = DB::table('almacen as a')
+                ->select('a.idalmacen')
+                ->where('a.idmedicamento','=',$idmedicamento)
+                ->orderby('a.fechavencimiento','asc')
+                ->first();
+
+                $requisiciondetalle = new RequisicionDetalle;
+                $requisiciondetalle->idrequisicion = $requisicion->idrequisicion;
+                $requisiciondetalle->idmedicamento = $idmedicamento;
+                $requisiciondetalle->cantidad = $value['1'];
+                $requisiciondetalle->almacen = $almacen->idalmacen;
+
+                //$persona-> nombre=$request->get('nombre');
+
+                $almacen = Almacen::find($almacen->idalmacen);
+                $almacen = 
+
+ 
+
+                $fechavencimiento=Carbon::createFromFormat('d/m/Y',$fechavencimiento);
+                $fechavencimiento=$fechavencimiento->format('Y-m-d');
+
+                $tramite-> fechavencimiento=$fechavencimiento;
+                $tramite->save();
+            }
+            DB::commit();
         } catch (Exception $e) {
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo proveedor'),404);
         }
-        dd($proveedor);
         return json_encode($proveedor);
+    }
+
+    public function modalrequisicion()
+    {
+        $medicamento = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','med.medicamento','pre.nombre as presentacion','mar.marca','med.cantidad')
+        ->get();
+        
+        return view('medicamento.requisicion.modalbuscarm',["medicamento"=>$medicamento]);
     }
 
     public function busqueda($id)
     {
-        $proveedor = DB::table('proveedor as pro')
-        ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre')
-        ->where('pro.idproveedor','=',$id)
+        $medicamento = DB::table('medicamento as med')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento')
+        ->where('med.idmedicamento','=',$id)
         ->first();
 
-        return view ('medicamento.compra.modalproveedor',["proveedor"=>$proveedor]);
+        return view ('medicamento.requisicion.modalmedicamento',["medicamento"=>$medicamento]);
     }
 
     public function validateRequest($request){                
