@@ -333,6 +333,19 @@
 		                <tr>
 		                	<th><br><br></th>
 		                </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+       </div>           
+    </div>
+    <div class="row"><br><br>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        	<div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed table-hover "> 
+                    <thead>
+
 		                <tr>
 		                	<th>AUTORIZO CUALQUIER OPERACIÓN O TRATAMIENTO QUE SEA FAVORABLE PARA MI HIJO/A.</th>
 		                </tr>

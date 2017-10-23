@@ -35,7 +35,6 @@
                         <th>Ocupación</th>
                         <th>Anomalias</th>
                         <th>Parentesco</th>
-                        <th>Opciones</th>
                     </thead>
                     <tbody id="donativos">
                         @foreach ($familiar as $fam)
@@ -49,9 +48,6 @@
                                 <td>{{$fam->ocupacion}}</td>
                                 <td>{{$fam->anomalias}}</td>
                                 <td>{{$fam->parentesco}}</td>
-                                <td>
-                                    <button class="btn  btn-warning btn-md" value="{{$fam->idfamiliar}}" title="Editar"><i class="fa fa-pencil"></i></button>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

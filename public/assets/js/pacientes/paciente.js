@@ -451,10 +451,10 @@ $("#btnGuardar").click(function(e){
                 url: miurl
                 }).done( function(resul) 
                 {
-                    $("#divanomalia").html(resul);
+                    $("#divanomal").html(resul);
                 }).fail( function() 
                 {
-                    $("#divanomalia").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                    $("#divanomal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
                 });
 
                 /*$(data).each(function(i,v){
@@ -621,23 +621,43 @@ function agregarfam(){
 
     idiomafam =$("#idiomafam option:selected").text();
     anomaliafam =$("#anomaliafam option:selected").text();
-
+    anomal=$("input:radio[id=an]:checked").val();
     if(nombrefam!="")
     {
-        var item = '<tr class="even gradeA" id="idfamiliar'+contf+'">';
-            item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+contf+');">X</button></td>';
-            item +='<td>'+nombrefam+'</td>';
-            item +='<td>'+fenacfam+'</td>';
-            item +='<td>'+ocupacionfam+'</td>'; 
-            item +='<td>'+tallafam+'</td>';
-            item +='<td>'+pesofam+'</td>';
-            item +='<td>'+idiomafam+'</td>';
-            item +='<td><input type="hidden" id="religionfam" name="religionfam[]" value="'+religionfam+'">'+famreligion+'</td>';
-            item +='<td>'+anomaliafam+'</td>';
-            item +='<td><input type="hidden" id="parentescofam" name="parentescofam[]" value="'+parentescofam+'">'+famparentesco+'</td></tr>';
-            contf++;
-            limpiarfam();
-        $('#detallesfam').append(item);
+        if (anomal=="Si")
+        {
+            var item = '<tr class="even gradeA" id="idfamiliar'+contf+'">';
+                item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+contf+');">X</button></td>';
+                item +='<td>'+nombrefam+'</td>';
+                item +='<td>'+fenacfam+'</td>';
+                item +='<td>'+ocupacionfam+'</td>'; 
+                item +='<td>'+tallafam+'</td>';
+                item +='<td>'+pesofam+'</td>';
+                item +='<td>'+idiomafam+'</td>';
+                item +='<td><input type="hidden" id="religionfam" name="religionfam[]" value="'+religionfam+'">'+famreligion+'</td>';
+                item +='<td>'+anomaliafam+'</td>';
+                item +='<td><input type="hidden" id="parentescofam" name="parentescofam[]" value="'+parentescofam+'">'+famparentesco+'</td></tr>';
+                contf++;
+                limpiarfam();
+            $('#detallesfam').append(item);
+        }
+        else
+        {
+            var item = '<tr class="even gradeA" id="idfamiliar'+contf+'">';
+                item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+contf+');">X</button></td>';
+                item +='<td>'+nombrefam+'</td>';
+                item +='<td>'+fenacfam+'</td>';
+                item +='<td>'+ocupacionfam+'</td>'; 
+                item +='<td>'+tallafam+'</td>';
+                item +='<td>'+pesofam+'</td>';
+                item +='<td>'+idiomafam+'</td>';
+                item +='<td><input type="hidden" id="religionfam" name="religionfam[]" value="'+religionfam+'">'+famreligion+'</td>';
+                item +='<td>Ninguna</td>';
+                item +='<td><input type="hidden" id="parentescofam" name="parentescofam[]" value="'+parentescofam+'">'+famparentesco+'</td></tr>';
+                contf++;
+                limpiarfam();
+            $('#detallesfam').append(item);
+        }
     }
     else
     {
