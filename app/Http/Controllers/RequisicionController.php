@@ -65,45 +65,33 @@ class RequisicionController extends Controller
             $requisicion = new Requisicion;
             $requisicion-> idusuario =  Auth::user()->id;
             $requisicion-> idpaciente = $request->get('paciente');
-            $requisicion-> idtiporequiscion = 1;
+            $requisicion-> idtiporequisicion = 1;
 
             $requisicion->save();
 
 
-
             foreach ($miArray as $key => $value) {
                 $idmedicamento = $value['0'];
-                $almacen = DB::table('almacen as a')
-                ->select('a.idalmacen')
-                ->where('a.idmedicamento','=',$idmedicamento)
-                ->orderby('a.fechavencimiento','asc')
-                ->first();
 
                 $requisiciondetalle = new RequisicionDetalle;
                 $requisiciondetalle->idrequisicion = $requisicion->idrequisicion;
                 $requisiciondetalle->idmedicamento = $idmedicamento;
                 $requisiciondetalle->cantidad = $value['1'];
-                $requisiciondetalle->almacen = $almacen->idalmacen;
 
-                //$persona-> nombre=$request->get('nombre');
+                $medicamento = Medicamento::find($idmedicamento);
+                $medicamento->cantidad = $medicamento->cantidad - $value['1'];
+                $medicamento->save();
+                $requisiciondetalle->save();
 
-                $almacen = Almacen::find($almacen->idalmacen);
-                $almacen = 
-
- 
-
-                $fechavencimiento=Carbon::createFromFormat('d/m/Y',$fechavencimiento);
-                $fechavencimiento=$fechavencimiento->format('Y-m-d');
-
-                $tramite-> fechavencimiento=$fechavencimiento;
-                $tramite->save();
+                $descuento = DB::select("call detalle_insertar(?,?)",array($idmedicamento,$value['1']));
             }
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo proveedor'),404);
         }
-        return json_encode($proveedor);
+        return json_encode($requisicion);
     }
 
     public function modalrequisicion()
@@ -122,7 +110,7 @@ class RequisicionController extends Controller
         $medicamento = DB::table('medicamento as med')
         ->join('marca as mar','med.idmarca','=','mar.idmarca')
         ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
-        ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento')
+        ->select('med.idmedicamento','mar.marca','pre.nombre as presentacion','med.medicamento','med.cantidad')
         ->where('med.idmedicamento','=',$id)
         ->first();
 
@@ -131,12 +119,7 @@ class RequisicionController extends Controller
 
     public function validateRequest($request){                
         $rules=[
-            'proveedor' => 'required',
-            'telefono' => 'required',
-            'direccion' => 'required',
-            'nit' => 'required',
-            'cuenta' => 'required',
-            'encargado_cheque'=> 'required',   
+            'paciente' => 'required',
         ];
 
         $messages=[

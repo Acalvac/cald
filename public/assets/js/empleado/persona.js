@@ -120,7 +120,7 @@ var cont = 0;
                                 text: "Se guardado correctamente un nuevo empleado",
                                 type: "success"
                             }).then(function(){
-                                window.location.href="/empleado/index"
+                                cargarindex(1);
                             });
                         }
                     });                               

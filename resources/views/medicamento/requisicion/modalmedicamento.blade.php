@@ -4,6 +4,7 @@
                 <input type="text" name="" value="{{$medicamento->medicamento.' '.$medicamento->marca.' '.$medicamento->presentacion}}" class="form-control" disabled="" id="medica">
 
                 <input type="hidden" name="" value="{{$medicamento->idmedicamento}}" id="idmedicamento">
+                <input type="text" name="" class="form-control" disabled value="{{$medicamento->cantidad}}" id="cantexistente">
                 @endif
 </div>
 

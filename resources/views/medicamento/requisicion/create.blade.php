@@ -10,7 +10,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label>Paciente</label>
-                        <select name="idtipoantecedente" id="idtipoantecedente" class="form-control select2" data-live-search="true">
+                        <select id="idpaciente" class="form-control select2" data-live-search="true">
                                 @if (isset($paciente))
                                 @foreach($paciente as $pac)
                                     <option value="{{$pac->idpaciente}}">{{$pac->nombrepa}}</option>
@@ -35,17 +35,17 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <label for="descripcion">Cantidad</label>
-                                <input type="number" id="cantidad" class="form-control" placeholder="..." value="0" maxlength="10" onkeypress="return valida(event)" min="0">
-                            </div>
+                    <div class="form-group">
+                        <label for="descripcion">Cantidad</label>
+                        <input type="number" id="cantidad" class="form-control" placeholder="..." value="0" maxlength="10" onkeypress="return valida(event)" min="0">
+                    </div>
                 </div>
                 
                 <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <br>
-                                <button type="button" id="bt_addm" class="btn btn-info btn-addm" title="Añadir"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
-                            </div>
+                    <div class="form-group">
+                        <br>
+                        <button type="button" id="bt_addm" class="btn btn-info btn-addm" title="Añadir"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
+                    </div>
                 </div>
 
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -65,7 +65,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div><br></div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-btnGuardarEmpleado"  type="button" id="btnGuardarEmpleado" style="display:none;" >Guardar</button>
+                        <button class="btn btn-primary btn-btnGuardarRequisicion"  type="button" id="btnGuardarRequisicion" style="display:none;">Guardar</button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                     </div>
                 </div>

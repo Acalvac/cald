@@ -15,6 +15,5 @@ class RequisicionDetalle extends Model
     	'cantidad',
     	'idmedicamento',
     	'idrequisicion',
-    	'idalmacen',
     ];
 }
