@@ -124,6 +124,7 @@ function detalle(arg,id)
   if(arg==8){var miurl =urlraiz+"/medicamento/show/"+id+"";}
 	if(arg==2){var miurl =urlraiz+"/empleado/add";}
 	if(arg==3){var miurl =urlraiz+"/seguridad/index";}
+  if(arg==7){var miurl =urlraiz+"/medicamento/requisicion/show/"+id;}
   if(arg==9){var miurl =urlraiz+"/paciente/historial/show/"+id;}
   if(arg==10){var miurl =urlraiz+"/paciente/historial/examen/show/"+id;}
 

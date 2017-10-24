@@ -111,7 +111,7 @@ $(document).on('click','.btn-btnGuardarMedicamento',function(e){
                                 text: "Se guardado correctamente un nuevo ingreso de medicamento al invetario",
                                 type: "success"
                             }).then(function(){
-                                window.location.href=""
+                                cargarindex(4);
                             });
                         }
                     });

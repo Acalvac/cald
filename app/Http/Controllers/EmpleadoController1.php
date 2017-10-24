@@ -184,7 +184,6 @@ class EmpleadoController1 extends Controller
 
     public function show($id)
     {
-
         $detalle = DB::table('persona as per')
         ->join('empleado as emp','per.idpersona','=','emp.idpersona')
         ->join('estadocivil as est','per.idcivil','=','est.idcivil')

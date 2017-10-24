@@ -89,7 +89,7 @@ class CPHistorialController extends Controller
     }
 
 
-    public function validateRequest($request){                
+    public function validateRequest($request){
         $rules=[
             'observacion' => 'required',
         ];
@@ -117,9 +117,9 @@ class CPHistorialController extends Controller
 
         $detalle = DB::table('historialmedico as his')
         ->join('paciente as p','his.idpaciente','=','p.idpaciente')
-        ->select('his.fecha','his.temperatura','his.respiracionminuto','his.pulso','his.idhistorialmedic')
-        
+        ->select('his.fecha','his.temperatura','his.respiracionminuto','his.pulso','his.idhistorialmedic')   
         ->orderby('his.fecha','desc')
+        ->where('his.idpaciente','=',$id)
         ->get();
 
 

@@ -23,14 +23,14 @@ class RequisicionController extends Controller
 
     public function index()
     {
-        $paciente = DB::table('paciente as p')
-        ->select('p.nombrepa','p.idpaciente')
-        ->where('p.idstatus','=',5)
+        $requisicion = DB::table('requisicion as req')
+        //->join('requisiciondetalle as rde','req.idrequisicion','=','rde.idrequisicion')
+        ->join('paciente as p','req.idpaciente','=','p.idpaciente')
+        ->join('usuario as U','req.idusuario','=','U.id')
+        ->join('tiporequisiscion as tre','req.idtiporequisicion','=','tre.idtiporequisicion')
+        ->select('req.idrequisicion','p.nombrepa','U.name','tre.nombre as tiporequisicion')
         ->get();
-        $proveedores = DB::table('proveedor as pro')
-        ->select('pro.idproveedor','pro.proveedor','pro.telefono','pro.direccion','pro.nit','pro.cuenta','pro.chequenombre')
-        ->paginate(15);
-        return view('medicamento.proveedor.index',["proveedores"=>$proveedores]);
+        return view('medicamento.requisicion.index',["requisicion"=>$requisicion]);
     }
 
     public function add(Request $request)
@@ -47,11 +47,6 @@ class RequisicionController extends Controller
         ->get();
 
         return view('medicamento.requisicion.create',["medicamento"=>$medicamento,"paciente"=>$paciente]);
-    }
-
-    public function addp(Request $request)
-    {
-        return view('medicamento.proveedor.createp');
     }
 
     public function store(Request $request)
@@ -115,6 +110,29 @@ class RequisicionController extends Controller
         ->first();
 
         return view ('medicamento.requisicion.modalmedicamento',["medicamento"=>$medicamento]);
+    }
+
+    public function show($id)
+    {
+        $detalle = DB::table('requisicion as req')
+        //->join('requisiciondetalle as rde','req.idrequisicion','=','rde.idrequisicion')
+        ->join('paciente as p','req.idpaciente','=','p.idpaciente')
+        ->join('usuario as U','req.idusuario','=','U.id')
+        ->join('tiporequisiscion as tre','req.idtiporequisicion','=','tre.idtiporequisicion')
+        ->select('req.idrequisicion','p.nombrepa','U.name','tre.nombre as tiporequisicion')
+        ->where('req.idrequisicion','=',$id)
+        ->first();
+
+        $requisiciondetalle = DB::table('requisiciondetalle as rde')
+        ->join('requisicion as req','rde.idrequisicion','=','req.idrequisicion')
+        ->join('medicamento as med','rde.idmedicamento','=','med.idmedicamento')
+        ->join('marca as mar','med.idmarca','=','mar.idmarca')
+        ->join('presentacion as pre','med.idpresentacion','=','pre.idpresentacion')
+        ->select('med.medicamento','pre.nombre as presentacion','mar.marca','rde.cantidad','rde.iddetalle')
+        ->where('rde.idrequisicion','=',$id)
+        ->get();
+
+        return view('medicamento.requisicion.detalle',["detalle"=>$detalle,"requisiciondetalle"=>$requisiciondetalle]);
     }
 
     public function validateRequest($request){                

@@ -96,6 +96,7 @@
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(2);">Ingreso medicamento</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(5);">Listado Compra</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(3);">Ingreso Inventario</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(7);">Listado Requisici&oacute;n</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(8);">Requisici&oacute;n</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(9);">Ingreso Examenes</a></li>
 

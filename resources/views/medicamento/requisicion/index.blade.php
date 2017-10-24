@@ -3,45 +3,34 @@
         <div id="tab-1" class="tab-pane active">
             <div class="panel-body">
                 <div class="tab-pan active" id="contentsecundario">
-                    @if(isset($compras))
+                    @if(isset($requisicion))
 
-                    @if(count($compras) > 0)
+                    @if(count($requisicion) > 0)
 
-                    <h4 class="box-title" align="center">Listado Compra Medicamento</h4>
+                    <h4 class="box-title" align="center">Listado requisición Medicamento</h4>
                     <hr style="border-color:black;"/>
 
                     <div class="ibox-content" style="border-color:black;">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
-                                        <th style="width: 5%">Id</th>
-                                        <th style="width: 20%">Medicamento</th>
-                                        <th style="width: 10%">Fecha Compra</th>
-                                        <th style="width: 10%">Fecha Vencimiento</th>
-                                        <th style="width: 10%">Cantidad</th>
-                                        <th style="width: 10%">Precio</th>
-                                        <th style="width: 10%">Proveedor</th>
-                                        <th style="width: 10%">Usuario</th>
-                                        <th style="width: 20%">Opciones</th>
+                                    <th style="width: 5%">Id</th>
+                                    <th style="width: 20%">Usuario</th>
+                                    <th style="width: 10%">Paciente</th>
+                                    <th style="width: 10%">Tipo requisicion</th>
+                                    <th style="width: 20%">Opciones</th>
                                 </thead>
-                                <tbody id="listempleado">
-                                    @foreach ($compras as $com)
-                                    <tr class="even gradeA" id="medicamento{{$com->idcompra}}">
-                                        <td>{{$com->idcompra}}</td>
-                                        <td>{{$com->medicamento.' '.$com->marca}}</td>
-                                        <td>{{$com->fechacompra}}</td>
-                                        <td>{{$com->fechavencimiento}}</td>
-                                        <td>{{$com->cantidad}} Unidades</td>
-                                        <td>{{$com->precio}} Q</td>
-                                        <td>{{$com->proveedor}}</td>
-                                        <td>{{$com->name}}</td>
+                                <tbody id="listrequisicion">
+                                    @foreach ($requisicion as $req)
+                                    <tr class="even gradeA" id="requisicion{{$req->idrequisicion}}">
+                                        <td>{{$req->idrequisicion}}</td>
+                                        <td>{{$req->name}}</td>
+                                        <td>{{$req->nombrepa}}</td>
+                                        <td>{{$req->tiporequisicion}}</td>
                                         <td>
-                                            <a href="#">
-                                            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles" value="{{$com->idcompra}}"><i class="fa fa-address-card"></i></button>
+                                            <a href="javascript:void(0);" onclick="detalle(7,{{$req->idrequisicion}});">
+                                            <button type="button" class="btn btn-primary btn-md btn-detalle-empleado" title="Detalles"><i class="fa fa-address-card"></i></button>
                                             </a>
-                                            <a href="#">
-                                            <button class="btn  btn-warning btn-md btn-editar-empleado" title="Editar" value="{{$com->idcompra}}"><i class="fa fa-pencil"></i></button></a>
-                                            <button class="btn btn-danger btn-md btneliminarb" id="FWEF" value="{{$com->idcompra}}" title="Eliminar" ><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
