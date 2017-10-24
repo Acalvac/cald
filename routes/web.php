@@ -43,6 +43,7 @@ Route::group(['prefix'=>'bienhechor'], function(){
 	Route::get('pdfbienhechor','CBienhechor@pdfbienhechor');
 	Route::get('indexinc','CBienhechor@indexinc');
 	Route::put('recuperarb/{id}','CBienhechor@recuperarb');
+	//
 });
 
 // se agrega todas las rutas del paciente, examen medico, historial entre otros
