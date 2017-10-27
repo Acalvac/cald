@@ -52,16 +52,16 @@
             
                 <label class="col-md-2 col-sm-2">Sustancia</label>
                 <div class="col-md-6 col-sm-6">
-                    <input type="text" name="" placeholder="Sustancia..." class="form-control" id="sustancia" disabled>
+                    <input type="text" placeholder="Sustancia..." class="form-control" id="sustancia" disabled>
                     <input type="hidden" id="idprincipio">
                 </div>
 
                 <div class="col-md-4 col-sm-4">
                     <a href="javascript:void(0);" onclick="cargarmodal(8);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevotipomedicamento" title="Nuevo Proveedor" value=""><i class="fa fa-plus-square"></i></button>
+                        <button type="button" class="btn btn-primary btn-md" title="Nueva sustancia"><i class="fa fa-plus-square"></i></button>
                     </a>
                     <a href="javascript:void(0);" onclick="cargarbusqueda(8);">
-                        <button type="button" class="btn btn-info btn-md" id="nuevotipomedicamento" title="Buscar Proveedor" value=""><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-info btn-md"  title="Buscar sustancia"><i class="fa fa-search"></i></button>
                     </a>
                 </div>
             </div>
@@ -90,32 +90,3 @@
             </div>
         </div>
     </form>
-
-<script type="text/javascript">
-
-    /*
-    var cont = 0;
-    function agregar(){
-
-        idrol =$("#idrol option:selected").val(); 
-        rol =$("#idrol option:selected").text();
-
-        var item  = '<tr class="even gradeA" id="rol'+cont+'">';
-            item +='<td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td>';
-            item += '<td><input type="hidden" name="idrol[]" value="'+idrol+'">'+rol+'</td>';
-
-        $('#rolUsuario').append(item);
-    }
-
-    $(document).ready(function() {
-        $('#bt_addrol').click(function() {
-            agregar();
-        });
-    });
-
-    function eliminar(index){
-       $("#rol" + index).remove();
-       cont--;
-   }*/
-
-</script>

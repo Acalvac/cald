@@ -86,6 +86,8 @@
                             <li><a href="javascript:void(0);" onclick="cargarindex(21);">Pacientes Activos</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(24);">Pacientes Inactivos</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(22);">Ingreso de paciente</a></li>
+                            <li><a href="javascript:void(0);" onclick="cargarindex(9);">Ingreso Examenes</a></li>
+
                         </ul>
                     </li>
 
@@ -98,8 +100,7 @@
                             <li><a href="javascript:void(0);" onclick="cargarmodalempleado(3);">Ingreso Inventario</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(7);">Listado Requisici&oacute;n</a></li>
                             <li><a href="javascript:void(0);" onclick="cargarindex(8);">Requisici&oacute;n</a></li>
-                            <li><a href="javascript:void(0);" onclick="cargarindex(9);">Ingreso Examenes</a></li>
-
+ 
                         </ul>
                     </li>
 
@@ -126,7 +127,7 @@
                             <li><a href="javascript:void(0);" onclick="cargarindex(1);">Listado</a></li>
                             <!--<li><a href="{{url('/empleado/add')}}">Ingreso empleado</a></li>-->
                             <li><a href="javascript:void(0);" onclick="cargarindex(2);">Ingreso empleado</a></li>
-                            <li><a href="{{url('/empleado/index')}}">Ingreso antecedentes</a></li>
+                            <!--<li><a href="{{url('/empleado/index')}}">Ingreso antecedentes</a></li>-->
                         </ul>
                     </li>
 
@@ -186,6 +187,11 @@
                     <div id="capa_modal" class="div_modal" ></div>
                     <div id="capa_formularios" class="div_modal"></div>
                     <div id="capa_busqueda" class="div_modal"></div>
+
+                    <div id="modales" class="div_modal"></div>
+                    <div id="modales1"></div>
+                    <div id="modales2" class="div_modal"></div>
+
                     
                 </div>
 
@@ -337,12 +343,12 @@
     </div>
 </div>
 
-
+<!--
     <div id="modales"></div>
 
     <div id="modales1"></div>
     <div id="modales2"></div>
-
+-->
 
     <input type="hidden"  id="url_raiz_proyecto" value="{{ url("/") }}" />
 

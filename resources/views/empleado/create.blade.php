@@ -152,7 +152,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <br>
-                                <button type="button" id="bt_add" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
+                                <button type="button" id="bt_add" class="btn btn-info btn-md" title="Añadir"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                             </div>
                         </div>
 

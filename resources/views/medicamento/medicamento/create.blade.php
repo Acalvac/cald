@@ -1,6 +1,6 @@
 <div class="col-lg-12" id="modales">
-    <div class="modal fade" id="formModalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="formModalUsuario" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -21,6 +21,7 @@
         </div>
     </div>
 </div>
+    <div id="modales2"></div>
 
 <div class="modal fade" id="erroresModalMedicamento" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog">

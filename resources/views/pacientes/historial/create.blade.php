@@ -3,14 +3,16 @@
 <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-
+<!-- Sweet Alert -->
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h3 align="center">Ingreso examenes de paciente</h3>
-                    <a href="javascript:void(0);" onclick="cargarindex(1);">
+                    <a href="javascript:void(0);" onclick="cargarindex(21);">
                         <button class="btn btn-primary btn-md" title="Listado Pacientes"><i class="fa fa-arrow-circle-left"></i></button>
                     </a>
                     <hr style="border-color:black;"/>
@@ -227,7 +229,7 @@
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                 <div class="form-group">
                                     <br>
-                                    <button type="button" class="btn btn-info btn_addExamen">Agregar</button>
+                                    <button type="button" class="btn btn-info btn_addexamen"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                                 </div>
                             </div>
 
@@ -275,9 +277,6 @@
 
 <script src="{{asset('assets/js/pacientes/pacienteexamen.js')}}"></script>
 <script src="{{asset('assets/js/pacientes/step.js')}}"></script>
-
-
-
-
-
-   
+<!-- Sweet alert -->
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>

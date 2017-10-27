@@ -14,7 +14,8 @@ class CPHistorialController extends Controller
 {
     public function add(Request $request)
     {
-        $paciente = DB::table('paciente')->select('idpaciente','nombrepa')->get();
+        $paciente = DB::table('paciente')->select('idpaciente','nombrepa')
+                    ->where('idstatus','=',5)->get();
         return view('pacientes.historial.create',["paciente"=>$paciente]);
     }
 

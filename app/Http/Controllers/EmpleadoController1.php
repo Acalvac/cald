@@ -89,9 +89,10 @@ class EmpleadoController1 extends Controller
             
             $empleado->save();
 
-            $tramite = new Tramite;
 
             foreach ($miArray as $key => $value) {
+                $tramite = new Tramite;
+
                 $tramite->idempleado = $empleado->idempleado;
                 $tramite->idtipoantecedente = $value['0'];
                 $fechavencimiento = $value['1'];

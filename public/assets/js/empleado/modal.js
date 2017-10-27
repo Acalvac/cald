@@ -97,7 +97,7 @@ function cargarindex(arg){
 
 function editar(arg,id){
 
-  	var urlraiz=$("#url_raiz_proyecto").val();
+  var urlraiz=$("#url_raiz_proyecto").val();
 	$("#capa_modal").html($("#cargador_empresa").html());
 	
 	if(arg==1){var miurl =urlraiz+"/empleado/edit/"+id+"";}
@@ -171,7 +171,7 @@ function cargarbusqueda(arg){
 	if(arg==3){var miurl=urlraiz+"/medicamento/ubicacion/cargarbusqueda"; var titulo="Buscar ubicacion" ; }
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/cargarbusqueda"; var titulo="Buscar proveedor" ;}
 	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/cargarbusqueda"; var titulo="Buscar ubicacion" ; }
-  if(arg==8){var miurl=urlraiz+"/medicamento/principio/cargarbusqueda"; var titulo="Buscar ubicacion" ; }
+  if(arg==8){var miurl=urlraiz+"/medicamento/principio/cargarbusqueda"; var titulo="Buscar sustancia medica" ; }
   if(arg==9){var miurl=urlraiz+"/medicamento/requisicion/cargarbusqueda"; var titulo="Buscar medicamento" ; }
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
@@ -185,6 +185,7 @@ function cargarbusqueda(arg){
     	$("#modales2").html(resul);
       $('#inputTitleBuscar').html(titulo);
       $('#formModalBuscar').modal('show');
+      
     }).fail( function() 
     {
     	$("#modales2").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');

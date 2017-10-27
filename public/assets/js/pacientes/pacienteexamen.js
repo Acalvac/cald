@@ -11,7 +11,7 @@ var cont = 0;
         //evaluar();
     }
     
-    $(document).on('click','.btn_addExamen',function(e){
+    $(document).on('click','.btn_addexamen',function(e){
         agregar();
     });
 
@@ -98,11 +98,23 @@ $(document).ready(function(){
                         title:"Envio correcto",
                         text: "Información guardada correctamente",
                         type: "success"
-                    },
-                    function(){
-                        //window.location.href="/empleado/solicitante"
-                    });
-                    
+                    }).then(function () {
+                        cargarindex(21);
+                        /*
+                            var urlraiz=$("#url_raiz_proyecto").val();
+                            $("#capa_modal").html($("#cargador_empresa").html());
+                            var miurl=urlraiz+"/medicamento/proveedor/index";
+                            $.ajax({
+                            url: miurl
+                            }).done( function(resul) 
+                            {
+                             $("#capa_modal").html(resul);
+                           
+                            }).fail( function() 
+                            {
+                                $("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                            });*/
+                    });                  
                 },
                 error: function (data) {
                     $('#loading').modal('hide');

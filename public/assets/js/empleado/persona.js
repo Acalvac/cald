@@ -152,7 +152,7 @@ var cont = 0;
             apellido: $('#apellido').val(),
             direccion: $('#direccion').val(),
             telefono: $('#telefono').val(),
-            estadocivil: $('#idcivil').val(),
+            idcivil: $('#idcivil').val(),
             dpi: $('#dpi').val(),
             nit: $('#nit').val(),
             correo: $('#correo').val(),

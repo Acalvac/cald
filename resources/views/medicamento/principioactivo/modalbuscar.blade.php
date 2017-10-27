@@ -1,5 +1,3 @@
-<link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 
 <div class="col-lg-12" id="modales">
@@ -31,7 +29,7 @@
 
                                         <td>
                                             <a href="javascript:void(0);" onclick="busqueda(8,{{$pri->idprincipio}});">
-                                                <button class="btn btn-outline btn-primary btn-buscar-ubicacion" type="button" title="Agregar" value="{{$pri->idprincipio}}"><i class="fa fa-check"></i></button>
+                                                <button class="btn btn-outline btn-primary" type="button" title="Agregar"><i class="fa fa-check"></i></button>
                                             </a>
                                         </td>
                                     </tr>
@@ -73,14 +71,9 @@
     </div>
 </div>
    
-<!-- Sweet alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>
-
     <script src="{{asset('assets/js/plugins/dataTables/datatables.min.js')}}"></script>
     <!-- Custom and plugin javascript -->
-    <script src="{{asset('assets/js/inspinia.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/pace/pace.min.js')}}"></script>
+   
 
     <script>
 
