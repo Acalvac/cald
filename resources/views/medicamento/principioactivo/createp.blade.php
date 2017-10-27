@@ -5,7 +5,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitle"></h4>
+                    <h4 class="modal-title" align="center" id="inputTitle"></h4>
                 </div>
 
                 @include('medicamento.principioactivo.modalcreate')
@@ -42,15 +42,8 @@
     </div>
 </div>
 
-<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-<!-- Sweet alert -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".select2").select2();
-    });
-    $(".select2").select2();
     $('.chosen-select').chosen({width: "100%"});
-
 </script>
 
 

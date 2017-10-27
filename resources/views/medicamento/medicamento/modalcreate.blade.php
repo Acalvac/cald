@@ -41,7 +41,7 @@
 
                 <div class="col-md-4 col-sm-4">
                     <a href="javascript:void(0);" onclick="cargarmodal(11);">
-                        <button type="button" class="btn btn-primary btn-md" id="nuevapresentacion" title="Nueva presentacion medicamento" value=""><i class="fa fa-plus-square"></i></button>
+                        <button type="button" class="btn btn-primary btn-md" id="nuevapresentacion" title="Nueva presentacion medicamento"><i class="fa fa-plus-square"></i></button>
                     </a>
                 </div>
             </div>

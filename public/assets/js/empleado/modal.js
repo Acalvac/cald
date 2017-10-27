@@ -6,9 +6,8 @@ function cargarmodalempleado(arg){
     if(arg==3){var miurl=urlraiz+"/medicamento/compra/add"; var titulo="Nueva compra de un medicamento" ; }
     if(arg==4){var miurl=urlraiz+"/medicamento/marca/add"; var titulo="Nuevo ingreso de una marca"; $('#nuevomarca').val('add');}
     if(arg==5){var miurl=urlraiz+"/medicamento/tipomedicamento/add"; var titulo="Nuevo ingreso de un tipo de medicamento";}
-    if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/add"; var titulo="Nuevo ingreso de un proveedor"; }
+    if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/add"; var titulo="Nuevo ingreso de un proveedor";}
     if(arg==7){var miurl=urlraiz+"/medicamento/requisicion/add"; var titulo="Nuevo ingreso de una requisicion";}
-    if(arg==11){var miurl=urlraiz+"/medicamento/presentacion/add"; var titulo="Nuevo ingreso de una presentacion";}
 
 	var errHTML="";
 
@@ -16,11 +15,9 @@ function cargarmodalempleado(arg){
 		url: miurl
 	}).done( function(resul) 
 	{
-  	$("#modales").html(resul);
+		$("#modales").html(resul);
 		$('#inputTitleUsuario').html(titulo);
-    $('#formModalUsuario').modal('show');
-    $('#btnGuardarProveedor').val('add');
-  
+        $('#formModalUsuario').modal('show');
 	}).fail(function() 
 	{
 		$("#modales").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
@@ -38,10 +35,10 @@ function cargarmodal(arg){
   if(arg==5){var miurl=urlraiz+"/medicamento/tipomedicamento/addt"; var titulo="Nuevo ingreso de un tipo de medicamento";}
   if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/addp"; var titulo="Nuevo ingreso de un proveedor";}
   if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/addu"; var titulo="Nuevo ingreso de una ubicacion";}
-  if(arg==8){var miurl=urlraiz+"/medicamento/principio/addp"; var titulo="Nuevo ingreso de una composición";}
+  if(arg==8){var miurl=urlraiz+"/medicamento/principio/addp"; var titulo="Nuevo ingreso de una sustancia medica";}
   if(arg==11){var miurl=urlraiz+"/medicamento/presentacion/addp"; var titulo="Nuevo ingreso de una presentacion";}
 
-  
+
 	var errHTML="";
 
 	$.ajax({
@@ -57,6 +54,24 @@ function cargarmodal(arg){
 	}) ;
 }
 
+function cargarmodal4(arg){
+    var urlraiz=$("#url_raiz_proyecto").val();
+    if(arg==8){var miurl=urlraiz+"/medicamento/principio/addp"; var titulo="Nuevo ingreso de una sustancia medica";}
+    var errHTML="";
+
+    $.ajax({
+      url: miurl
+    }).done( function(resul) 
+    {
+      console.log(resul);
+      $("#modales3").html(resul);
+      $('#inputTitle').html(titulo);
+          $('#modales').modal('show');
+    }).fail(function() 
+    {
+      $("#modales3").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+    }) ;
+}
 function cargarindex(arg){
 	var urlraiz=$("#url_raiz_proyecto").val();
 	$("#capa_modal").html($("#cargador_empresa").html());
@@ -69,13 +84,8 @@ function cargarindex(arg){
 	if(arg==4){var miurl=urlraiz+"/medicamento/index";}
 	if(arg==5){var miurl=urlraiz+"/medicamento/compra/index";}
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/index";}
-  if(arg==7){var miurl=urlraiz+"/medicamento/requisicion/index";}
-  if(arg==8){var miurl=urlraiz+"/medicamento/requisicion/add";}
   if(arg==9){var miurl=urlraiz+"/paciente/historial/add";}
-  if(arg==12){var miurl=urlraiz+"/seguridad/rol/index";}
-  
- 
-
+  if(arg==10){var miurl=urlraiz+"/medicamento/add";}
 
 	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 	if(arg==21){var miurl=urlraiz+"/paciente/index";}
@@ -130,6 +140,7 @@ function detalle(arg,id)
 
 
 
+
 	if(arg==20){var miurl=urlraiz+"/bienhechor/listardetallesb/"+id+"";}
   if(arg==21){var miurl=urlraiz+"/paciente/detallespaciente/"+id+"";}
 	$.ajax({
@@ -142,23 +153,6 @@ function detalle(arg,id)
    		$("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
    	});
 
-
-}
-
-function cargardetalle(arg,id)
-{
-      var urlraiz=$("#url_raiz_proyecto").val();
-        if(arg==10){var miurl =urlraiz+"/paciente/historial/examen/show/"+id;}
-        $.ajax({
-          url: miurl
-        }).done( function(resul) 
-        {
-            $("#cargardetalle").html(resul);
-        }).fail( function() 
-        {
-            $("#cargardetalle").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
-        });
-      //$("#capa_modal").html($("#cargador_empresa").html());
 
 }
 
@@ -196,14 +190,13 @@ function busqueda(arg,id){
 	var urlraiz=$("#url_raiz_proyecto").val();
 	
 	if(arg==1){var miurl=urlraiz+"/seguridad/busqueda/"+id; }
-	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; var form = $("#medi");}
+	if(arg==2){var miurl=urlraiz+"/medicamento/busqueda/"+id; var form = $("#medi"); }
 	if(arg==3){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  }
 	if(arg==6){var miurl=urlraiz+"/medicamento/proveedor/busqueda/"+id;  var form = $("#prov"); }
 	if(arg==7){var miurl=urlraiz+"/medicamento/ubicacion/busqueda/"+id;  var form = $("#ubic");}
   if(arg==8){var miurl=urlraiz+"/medicamento/principio/busqueda/"+id;  var form = $("#prin");}
-  if(arg==9){var miurl=urlraiz+"/medicamento/requisicion/busqueda/"+id;  var form = $("#rmedi");}
-	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 
+	if(arg==20){var miurl=urlraiz+"/bienhechor/index";}
 
 	var errHTML="";
 
@@ -230,4 +223,35 @@ function busqueda(arg,id){
     }) ;
 }
 
+
+$(document).on('click','.btn-vacaciones',function(){
+            var errHTML="";
+            idempleado=$(this).val();
+            $.get('empleados/calculardias/'+idempleado,function(data){
+               
+                var horas = '';
+                var dias = '';
+                var tdh;
+
+                $.each(data,function(){
+                    horas = data[0];
+                    dias = data[1];
+                    autorizacion = data[2];
+                })
+
+                $('#inputTitle').html("Saldo de vacaciones");
+                $('#formAgregar').trigger("reset");
+                $('#formModal').modal('show');
+                $('#datomar').attr('disabled', 'disabled');
+                $('#hhoras').attr('disabled', 'disabled');
+                $('#dacumulado').attr('disabled', 'disabled');
+                $('#btnguardarV').attr('disabled', 'disabled'); 
+
+                tdh = (dias + ' ' + 'dias' + ' ' + 'con' +' '+ horas +' '+ 'horas');
+                document.getElementById('dacumulado').value = tdh;
+                document.getElementById('tdias').value = dias;
+                document.getElementById('thoras').value = horas;
+                
+            });
+        });
 

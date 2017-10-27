@@ -46,7 +46,6 @@
     </div>
 </div>
 
-    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/medicamento/presentacion.js')}}"></script>
 <!-- Sweet alert -->
     <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>

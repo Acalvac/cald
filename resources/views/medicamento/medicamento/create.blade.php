@@ -1,12 +1,22 @@
-<div class="col-lg-12" id="modales">
-    <div class="modal fade" id="formModalUsuario" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="inputTitleUsuario" align="center"></h4>
-                </div>
+    <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" /> -->
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="ibox-content m-b-sm border-bottom">
+        <h4 class="box-title" align="center">Nuevo Medicamento</h4> 
+        <a href="javascript:void(0);" onclick="cargarindex(4);">
+            <button class="btn btn-primary btn-md btn-detalle-empleado" title="Listado Empleado"><i class="fa fa-arrow-circle-left"></i></button>
+        </a>
+        <hr style="border-color:black;"/>
+        <div class="panel-body">
+            <div class="row">
 
                 @include('medicamento.medicamento.modalcreate')
 

@@ -80,6 +80,27 @@
             $('.dataTables-principio').DataTable({
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "No hay datos disponibles en la tabla",
+                    "info":           "Mostrar _START_ a _END_ de _TOTAL_ registros por pagina",
+                    "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Mostrar _MENU_ registros",
+                    "loadingRecords": "Loading...",
+                    "processing":     "Processing...",
+                    "search":         "Buscar:",
+                    "total":          "total",          
+                    "zeroRecords":    "No matching records found",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                },
                 columns: [
                 null,
                 null,
@@ -93,7 +114,7 @@
                 buttons: [
                     
                 ]
-
+//No data available in table
             });
     </script>    
 
