@@ -77,6 +77,8 @@ class MedicamentoController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
+
             $this->validateRequest($request);
 
             //$today = Carbon::now();
@@ -105,8 +107,7 @@ class MedicamentoController extends Controller
 
                 $composicion->save();
             }
-
-
+            DB::commit();
         } catch (Exception $e) {
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nuevo medicamento'),404);

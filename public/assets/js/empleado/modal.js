@@ -56,17 +56,17 @@ function cargarmodal(arg){
 
 function cargarmodal4(arg){
     var urlraiz=$("#url_raiz_proyecto").val();
-    if(arg==8){var miurl=urlraiz+"/medicamento/principio/addp"; var titulo="Nuevo ingreso de una sustancia medica";}
+    if(arg==8){var miurl=urlraiz+"/medicamento/tipomedicamento/add"; var titulo="Nuevo ingreso de tipo medicamento";}
     var errHTML="";
 
     $.ajax({
       url: miurl
     }).done( function(resul) 
     {
-      console.log(resul);
       $("#modales3").html(resul);
-      $('#inputTitle').html(titulo);
-          $('#modales').modal('show');
+      $('#inputTitle3').html(titulo);
+      $('#formModales').modal('show');
+
     }).fail(function() 
     {
       $("#modales3").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
@@ -153,7 +153,6 @@ function detalle(arg,id)
    		$("#capa_modal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
    	});
 
-
 }
 
 function cargarbusqueda(arg){
@@ -204,7 +203,6 @@ function busqueda(arg,id){
     url: miurl
     }).done( function(resul) 
     {
-      console.log(resul);
 
       form.html(resul);
       $('#formModalBuscar').modal('hide');

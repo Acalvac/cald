@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Marca;
-
+use DB;
 class MarcaController extends Controller
 {
     public function __construct()
@@ -36,17 +36,40 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
+
             $this->validateRequest($request);
 
             $marca =new Marca;
             $marca-> marca =  $request->get('marca');
             $marca->save();
 
+            $marca = DB::table('marca')
+            ->select('idmarca','marca')
+            ->where('idmarca','=',$marca->idmarca)
+            ->first();
+
+            DB::commit();
+
         } catch (Exception $e) {
             DB::rollback();
-            return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nueva marca'),404);
+            return response()->json(array('error'=>'No se ha podido guardar el registro'),404);
         }
         return json_encode($marca);    
+    }
+
+    public function select($id)
+    {
+        $marcas = DB::table('marca')
+        ->select('idmarca','marca')
+        ->get();
+
+        $marca = DB::table('marca')
+        ->select('idmarca','marca')
+        ->where('idmarca','=',$id)
+        ->first();
+
+        return view('medicamento.marca.select',["marcas"=>$marcas,"marca"=>$marca]);
     }
 
      public function validateRequest($request){                

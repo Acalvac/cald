@@ -31,6 +31,19 @@ $(document).on('click','.btn-btnGuardarMarca',function(e){
                     type: "success"
                 });
                 */
+                var urlraiz=$("#url_raiz_proyecto").val();
+                var miurl=urlraiz+"/medicamento/marca/idmarca/"+data.idmarca;
+                $.ajax({
+                url: miurl
+                }).done( function(resul) 
+                {
+                    $("#marcaselect").html(resul);
+                }).fail( function() 
+                {
+                    $("#marcaselect").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                });
+
+
                 alert('Se registro una nueva marca');
 
                 $('#formAgregarMarca').trigger("reset");

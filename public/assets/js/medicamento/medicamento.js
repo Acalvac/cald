@@ -49,8 +49,6 @@ $(document).on('click','.btn-btnGuardarMedicamento',function(e){
         valor = new Array(id,expiration_date);
         itemsData.push(valor);
     });
-    
-    console.log(itemsData);   
  
     $.ajaxSetup({
         headers: {

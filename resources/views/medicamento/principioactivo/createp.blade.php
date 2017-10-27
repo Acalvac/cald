@@ -42,8 +42,11 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
+    
     $('.chosen-select').chosen({width: "100%"});
+
 </script>
 
 

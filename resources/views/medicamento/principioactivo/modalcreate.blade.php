@@ -11,7 +11,7 @@
              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div><br></div>
                 <label class="col-md-2">Tipo</label>
-                <div class="col-md-6">
+                <div class="col-md-6" id="tiposelect">
                     <select id="idtipo" class="chosen-select" data-live-search="true">
                     @if (isset($tipomedicamento))
                     @foreach($tipomedicamento as $tip)
@@ -29,4 +29,3 @@
             </div>
         </div>
     </form>
-

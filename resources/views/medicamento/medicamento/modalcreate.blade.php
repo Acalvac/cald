@@ -9,7 +9,7 @@
         <div class="modal-header">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <label for="marca" class="col-md-2 col-sm-2 control-label">Marca</label>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6" id="marcaselect">
                     <select id="idmarca" class="chosen-select" data-live-search="true">
                     @if (isset($marca))
                     @foreach($marca as $mar)
@@ -29,7 +29,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div><br></div>
                 <label class="col-md-2 col-sm-2">Presentaci&oacute;n</label>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6" id="presentacionselect">
                     <select id="idpresentacion" class="chosen-select" data-live-search="true">
                     @if (isset($presentacion))
                     @foreach($presentacion as $pre)
@@ -72,7 +72,7 @@
                     <input type="text" id="concentracion" class="form-control" placeholder="">
                 </div>
                 <div class="col-md-4 col-sm-4">
-                    <button type="button" id="addconcentracion" class="btn btn-info btn-addcon" title="Agregar"><i class="fa fa-plus-circle"></i></button>                    
+                    <button type="button" id="addconcentracion" class="btn btn-info btn-addcon" title="Añadir"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>                    
                 </div>
             </div>
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">

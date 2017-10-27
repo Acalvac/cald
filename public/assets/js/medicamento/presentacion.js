@@ -19,10 +19,19 @@ $(document).on('click','.btn-btnGuardarPresentacion',function(e){
         dataType: 'json',
             
         success: function (data) {
-            var cursos = $("#idpresentacion");
-            $(data).each(function(i, v){ // indice, valor
-                cursos.append('<option value="' + v.idmarca + '">' + v.marca + '</option>');
-            })
+           
+            var urlraiz=$("#url_raiz_proyecto").val();
+            var miurl=urlraiz+"/medicamento/presentacion/idpresentacion/"+data.idpresentacion;
+            console.log(miurl);
+            $.ajax({
+                url: miurl
+            }).done( function(resul) 
+            {
+                $("#presentacionselect").html(resul);
+            }).fail( function() 
+            {
+                    $("#presentacionselect").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+            });
                 /*
                 swal({
                     title:"Se registro una nueva marca",
@@ -30,6 +39,8 @@ $(document).on('click','.btn-btnGuardarPresentacion',function(e){
                     type: "success"
                 });
                 */
+
+
             alert('Se registro una nueva marca');
 
             $('#formAgregarPresentacion').trigger("reset");
@@ -72,17 +83,19 @@ $(document).on('click','.btn-btnGuardarPre',function(e){
         dataType: 'json',
             
         success: function (data) {
-            var cursos = $("#idpresentacion");
-            $(data).each(function(i, v){ // indice, valor
-                cursos.append('<option value="' + v.idpresentacion + '">' + v.nombre + '</option>');
-            })
-                /*                
-                swal({
-                    title:"Se registro una nueva marca",
-                    text: "Gracias",
-                    type: "success"
-                });
-                */
+            var urlraiz=$("#url_raiz_proyecto").val();
+            var miurl=urlraiz+"/medicamento/presentacion/idpresentacion/"+data.idpresentacion;
+            $.ajax({
+                url: miurl
+            }).done( function(resul) 
+            {
+                $("#presentacionselect").html(resul);
+            }).fail( function() 
+            {
+                    $("#presentacionselect").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+            });
+           
+
  
             $('#formAgregarPresentacion').trigger("reset");
             $('#formModal').modal('hide');

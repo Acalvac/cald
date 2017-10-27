@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipoMedicamento;
+use DB;
 
 class TipoMedicamentoController extends Controller
 {
@@ -23,7 +24,6 @@ class TipoMedicamentoController extends Controller
         return view('medicamento.medicamento.index',["medicamentos"=>$medicamentos]);
     }
 
-
     public function add(Request $request)
     {
         return view('medicamento.tipomedicamento.create');
@@ -38,16 +38,34 @@ class TipoMedicamentoController extends Controller
     {
         try {
             $this->validateRequest($request);
-
             $tipo =new TipoMedicamento;
             $tipo-> tipomedic =  $request->get('tipo_medicamento');
             $tipo->save();
 
+            $tipo = DB::table('tipo')
+            ->select('idtipo','tipomedic')
+            ->where('idtipo','=',$tipo->idtipo)
+            ->first();
+
         } catch (Exception $e) {
             DB::rollback();
-            return response()->json(array('error'=>'No se ha podido enviar la petición de agregar nueva marca'),404);
+            return response()->json(array('error'=>'No se ha podido guardar el registro'),404);
         }
-        return json_encode($tipo);    
+        return json_encode($tipo);
+    }
+
+    public function select($id)
+    {
+        $tipos = DB::table('tipo')
+        ->select('idtipo','tipomedic')
+        ->get();
+
+        $tipo = DB::table('tipo')
+        ->select('idtipo','tipomedic')
+        ->where('idtipo','=',$id)
+        ->first();
+
+        return view('medicamento.tipomedicamento.select',["tipos"=>$tipos,"tipo"=>$tipo]);
     }
 
      public function validateRequest($request){                

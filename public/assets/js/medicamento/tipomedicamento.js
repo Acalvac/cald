@@ -1,4 +1,7 @@
 $(document).on('click','.btn-btnGuardarTMedicamento',function(e){
+        
+                        $('#formModales').modal('hide');
+
         var urlraiz=$("#url_raiz_proyecto").val();
         var miurl = urlraiz+"/medicamento/tipomedicamento/store";
 
@@ -24,6 +27,19 @@ $(document).on('click','.btn-btnGuardarTMedicamento',function(e){
                     $(data).each(function(i, v){ // indice, valor
                         cursos.append('<option value="' + v.idtipo + '">' + v.tipomedic + '</option>');
                 })
+
+                var urlraiz=$("#url_raiz_proyecto").val();
+                var miurl=urlraiz+"/medicamento/tipomedicamento/idtipo/"+data.idtipo;
+                $.ajax({
+                url: miurl
+                }).done( function(resul) 
+                {
+                    $("#tiposelect").html(resul);
+                }).fail( function() 
+                {
+                    $("#tiposelect").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
+                });
+
                 /*
                 swal({
                     title:"Se registro una nueva marca",
@@ -34,7 +50,7 @@ $(document).on('click','.btn-btnGuardarTMedicamento',function(e){
                 alert('Se registro un nuevo tipo de medicamento');
 
                 $('#formAgregarTMedicamento').trigger("reset");
-                $('#formModal').modal('hide');
+                $('#formModales').modal('hide');
 
             },
             error: function (data) {

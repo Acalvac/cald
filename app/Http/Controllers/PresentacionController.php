@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Presentacion;
+use DB;
 class PresentacionController extends Controller
 {
     public function __construct()
@@ -41,11 +42,30 @@ class PresentacionController extends Controller
             $presentacion-> nombre =  $request->get('presentacion');
             $presentacion->save();
 
+            $presentacion = DB::table('presentacion')
+            ->select('idpresentacion','nombre')
+            ->where('idpresentacion','=',$presentacion->idpresentacion)
+            ->first();
+
         } catch (Exception $e) {
             DB::rollback();
             return response()->json(array('error'=>'No se ha podido enviar la petición de agregar una nueva presentación'),404);
         }
         return json_encode($presentacion);    
+    }
+
+    public function select($id)
+    {
+        $presentaciones = DB::table('presentacion')
+        ->select('idpresentacion','nombre')
+        ->get();
+
+        $presentacion = DB::table('presentacion')
+        ->select('idpresentacion','nombre')
+        ->where('idpresentacion','=',$id)
+        ->first();
+
+        return view('medicamento.presentacion.select',["presentaciones"=>$presentaciones,"presentacion"=>$presentacion]);
     }
 
      public function validateRequest($request){                
