@@ -72,7 +72,7 @@
                                                         @endif
                                                     </select>
                                                 </div> 
-                                                    <button id="btnaddlug" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddlug" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                             </div>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                             </div>
                                     </div>
                                     <div class="col-lg-1 col-md-1"><br>
-                                        <button id="addIdiofam" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                        <button id="addIdiofam" class="btn btn-success btn-md" title="Agregar nuevo registro"><i class="fa fa-window-restore"></i></button>
                                     </div>
                                     <div class="col-lg-2 col-md-6">
                                         <div class="form-group">
@@ -171,7 +171,7 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-1" id="divbtn" style="display: none;">
-                                            <button id="addAnofam" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                            <button id="addAnofam" class="btn btn-success btn-md" title="Agregar nuevo registro"><i class="fa fa-window-restore"></i></button>
                                         </div>
                                     </div>
                                     
@@ -229,7 +229,7 @@
                                             </div> 
                                             <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnaddinf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddinf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>  
                                     </div>
@@ -257,7 +257,7 @@
                                         </div> 
                                         <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnaddenf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddenf" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>  
                                     </div>
@@ -285,7 +285,7 @@
                                             </div>
                                             <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnaddanimal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddanimal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>    
                                     </div>
@@ -315,7 +315,7 @@
                                         </div> 
                                         <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnaddpersonal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddpersonal" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>   
                                     </div>
@@ -343,7 +343,7 @@
                                         </div>
                                         <div class="col-lg-1">
                                             <div class="form-group">
-                                                <button id="btnaddmedicina" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                <button id="btnaddmedicina" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                             </div>
                                         </div>   
                                     </div>
@@ -574,7 +574,7 @@
                                         </div>
                                         <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnadvac" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnadvac" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>  
                                     </div>   
@@ -625,7 +625,7 @@
                                         </div>
                                         <div class="col-lg-1">
                                                 <div class="form-group">
-                                                    <button id="btnaddenfh" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-plus-circle"></i></button>
+                                                    <button id="btnaddenfh" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                                 </div>
                                             </div>  
                                     </div>

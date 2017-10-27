@@ -23,13 +23,13 @@ class Paciente extends Model
         'lorigen',
     	'idresponsable',
     	'idmunicipio',
-    	'idusaurio',
+    	'idusuario',
         'idstatus',
     ];
 
     public function scopePaciente($query,$dato="")
     {
-        return $query->where('nombrepa','like','%'.$dato.'%');
+        return $query->where('paciente.nombrepa','like','%'.$dato.'%');
     }
 
 }

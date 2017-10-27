@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Persona;
 use App\Donacion;
+use App\TipoDonativo;
 use Illuminate\Support\Collection;
 use DB;
 use Validator;
@@ -90,7 +91,6 @@ class CBienhechor extends Controller
         $donacion=DB::table('tipodonacion as td')->get();
 
         return view('bienechor.detalles',["bienhechor"=>$bienhechor,"donaciones"=>$donaciones,"donacion"=>$donacion]);
-
     }
     public function pdfbienhechor ()
     {
@@ -112,7 +112,6 @@ class CBienhechor extends Controller
         ->first();
         return response()->json($bienhechor);
     }
-
     public function listarupdonativo(Request $request, $id)
     {
         $donativo=DB::table('donacion as d')
@@ -132,6 +131,14 @@ class CBienhechor extends Controller
         ->where('p.idpersona','=',$id1)
         ->first();
         return response()->json($bienhechorT);
+    }
+    public function instipodon(Request $request)
+    {
+        $this->validateRequestTD($request);
+        $infec = new TipoDonativo;
+        $infec-> donaciontipo=$request->get('tdonativo');
+        $infec->save();
+        return response()->json($infec);
     }
     public function nuevobienhechor(Request $request)
     {
@@ -246,5 +253,15 @@ class CBienhechor extends Controller
             'required' => 'Debe ingresar :attribute.',
         ];
         $this->validate($request, $rules,$messages);        
+    }
+    public function validateRequestTD($request){                
+        $rules=[
+            'tdonativo' => 'required',
+        ];
+
+        $messages=[
+            'tdonativo.required' => 'Debe ingresar el tipo de donativo.',
+        ];
+        $this->validate($request, $rules,$messages);         
     }
 }
