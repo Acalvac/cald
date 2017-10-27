@@ -379,7 +379,6 @@ $("#btnGuardar").click(function(e){
         miurl = 'paciente/addlugar';
     }
 
-
     $.ajax({
         type: "POST",
         url: miurl,

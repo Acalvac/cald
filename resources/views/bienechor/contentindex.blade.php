@@ -160,7 +160,7 @@
                                     <label class="control-label">Bienhechor</label>
                                     <input id="nombreD" type="text" class="form-control" aria-describedby="basic-addon1" disabled="disabled">   
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label">Fecha del donativo</label>
                                     <div class="input-group date">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="fechadona" type="text" class="form-control">
@@ -177,6 +177,10 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <br>    
+                                        <button type="button" id="btntd" class="btn btn-success btn-md btntd" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label">Cantidad</label>
@@ -198,8 +202,35 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-8">
+                <div class="modal fade" id="formModaltd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="inputTitletd"></h4>
+                            </div>
 
+                        <form role="form" id="formAgregartd">
+                            <div class="modal-header">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label class="control-label">Nombre del tipo de donación</label>
+                                        <input id="tdonativo" type="text" maxlength="39" class="form-control" aria-describedby="basic-addon1">   
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
 
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnGuardartd">Guardar</button>
+                            <input type="hidden" id="idbt" name="idbt" value="0"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
     </div>
     <div class="modal fade" id="erroresModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
       <div class="modal-dialog">

@@ -100,20 +100,7 @@
 	                                        <button type="button" id="btntd" class="btn btn-success btn-md btntd" title="Agregar"><i class="fa fa-window-restore"></i></button>
 	                                </div>
                                 </div>
-                                <div class="row"  style="display: none;">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label class="control-label">Fecha de ingreso</label>
-                                            <input type="text" id="fechain" maxlength="10" class="form-control"> 
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label class="control-label">Encargado</label>
-                                        <input id="encargado" type="text" class="form-control" maxlength="5" aria-describedby="basic-addon1" onkeypress="return valida(event);">   
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label class="control-label">Teléfono</label>
-                                        <input id="telefono" type="text" class="form-control" maxlength="5" aria-describedby="basic-addon1">   
-                                    </div>
-                                </div>
+                                
                             </div> 
                         </form>
 

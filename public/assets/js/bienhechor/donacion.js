@@ -1,3 +1,50 @@
+//$(document).on('click','.btntd',function(){
+$("#btntd").click(function(){
+    $('#inputTitletd').html("Nuevo tipo de donativo");
+    $('#formAgregartd').trigger("reset");
+    $('#formModaltd').modal('show');
+});
+
+$("#btnGuardartd").click(function(e){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    var miurl='bienhechor/instipodon';
+    var formData = {
+            tdonativo:$("#tdonativo").val(),
+        };
+
+
+    $.ajax({
+            type: 'POST',
+            url: miurl,
+            data: formData,
+            dataType: 'json',
+
+            success: function (data) {
+                $(data).each(function(i,v){
+                    $("#tipodonativo").append('<option selected value='+v.idtipodonacion+'">'+v.donaciontipo+'</option>');
+                });
+                $('#formModaltd').modal('hide');        
+            },
+            error: function (data) {
+                $('#loading').modal('hide');
+                var errHTML="";
+                if((typeof data.responseJSON != 'undefined')){
+                    for( var er in data.responseJSON){
+                        errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                    }
+                }else{
+                    errHTML+='<li>Error al intentar guardar un nuevo registro, intente mas tarde.</li>';
+                }
+                $("#erroresContent").html(errHTML); 
+                $('#erroresModal').modal('show');
+            }
+    });
+});
+
 $(document).on('click','.btn-addDB',function(){
     $("#fechadona").val("");
     $("#cantidad").val("");
@@ -29,25 +76,6 @@ $(document).on('click','.btneditdb',function(){
                 });
             });
 
-
-/*swal({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then(function () {
-  swal(
-    'Deleted!',
-    'Your file has been deleted.',
-    'success'
-  )
-})
-*/
-
-
 $(document).on('click','.btneliminardb',function(){
         var idco=$(this).val(); //obtenemo id de la fila que deceamos eliminar
         $.ajaxSetup({
@@ -55,22 +83,6 @@ $(document).on('click','.btneliminardb',function(){
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
-
-        /*swal({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then(function () {
-          swal(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        })*/
 
         swal({
             title: 'Are you sure?',

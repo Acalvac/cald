@@ -38,16 +38,28 @@ use Response;
 use PDF;
 class CPaciente extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
+		$dato=trim($request->get('dato_buscado'));
 		$paciente= DB::table('paciente as p')
 		->join('responsable as r','r.idresponsable','=','p.idresponsable')
 		->select('p.idpaciente','p.nombrepa','p.fechaingreso','r.nombre','r.telefono')
 		->where('p.idstatus','=','5')
 		->paginate(15);
-		
-		return view('pacientes.index',['paciente'=>$paciente]);
+		$origen = DB::table('municipio')->get();
+		return view('pacientes.index',['paciente'=>$paciente,'origen'=>$origen,"dato"=>$dato]);
 	}
+	public function indexbu($dato="",Request $request)
+    {
+        
+		$paciente= Paciente::Paciente($dato)
+		->join('responsable as r','r.idresponsable','=','paciente.idresponsable')
+		->select('paciente.idpaciente','paciente.nombrepa','paciente.fechaingreso','r.nombre','r.telefono')
+		->where('paciente.idstatus','=','5')
+		->paginate(15);
+		$origen = DB::table('municipio')->get();
+		return view('pacientes.indexbu',['paciente'=>$paciente,'origen'=>$origen,"dato"=>$dato]);
+    }
 	public function indexinc()
 	{
 		$paciente= DB::table('paciente as p')
@@ -72,6 +84,16 @@ class CPaciente extends Controller
 		$vacunas = DB::table('vacunas')->get();
 		$origen = DB::table('municipio')->get();
 		return view('pacientes.nuevop',['parentesco'=>$parentesco,'religion'=>$religion,'idioma'=>$idioma,'anomalia'=>$anomalia,'tipoinfeccion'=>$tipoinfeccion,'tipoenfermedad'=>$tipoenfermedad,'tipoanimal'=>$tipoanimal,'personalat'=>$personalat,'medicina'=>$medicina,'vacunas'=>$vacunas,'origen'=>$origen]);
+	}
+	public function listaruppas($id)
+	{
+		$paciente= DB::table('paciente as p')
+		->join('responsable as r','r.idresponsable','=','p.idresponsable')
+		->join('municipio as mun','mun.idmunicipio','=','p.idmunicipio')
+		->select('p.idpaciente','p.nombrepa',(DB::raw('DATE_FORMAT(p.fechanac,"%d/%m/%Y") as fechana')),'mun.municipio as lorigen','p.idmunicipio','p.procedencia','p.talla','p.peso','p.fechaingreso','r.nombre','r.telefono')
+		->where('p.idpaciente','=',$id)
+		->first();
+		return response()->json($paciente);
 	}
 	public function detallespaciente($id)
 	{	
@@ -344,6 +366,29 @@ class CPaciente extends Controller
 		$lo->save();
 		return response()->json($lo);
 	}
+	public function uppasdatos(Request $request,$id)
+	{
+		try {
+			DB::beginTransaction();
+			$fechadon=$request->get('fechanac');
+	        $fechadona=Carbon::createFromFormat('d/m/Y',$fechadon);
+	        $fecha=$fechadona->format('Y-m-d');
+
+			$paciente= Paciente::findOrFail($id);
+	        $paciente-> nombrepa=$request->get('nombrep');
+	        $paciente-> fechanac=$fecha;
+	        $paciente-> talla=$request->get('talla');
+	        $paciente-> peso=$request->get('peso');
+	        $paciente-> procedencia=$request->get('procedencia');
+	        $paciente-> idmunicipio=$request->get('origens');
+	        $paciente-> idusuario=Auth::user()->id;
+	        $paciente->save();
+			DB::commit();
+		} catch (Exception $e) {
+			
+		}
+		return response()->json($paciente);
+	}
 	public function addpaciente(Request $request)
 	{
 		try {
@@ -586,8 +631,8 @@ class CPaciente extends Controller
 
         $messages=[
             //'required' => 'Debe ingresar datos del :attribute.',
-        	'nino' => 'Debe ingresar almenos el nombre del Niño',
-        	'responsable' => 'Debe ingresar datos del Responsable',
+        	'nino.required' => 'Debe ingresar almenos el nombre del Niño.',
+        	'responsable.required' => 'Debe ingresar datos del Responsable.',
         ];
         $this->validate($request, $rules,$messages);         
     }
