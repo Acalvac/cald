@@ -132,7 +132,7 @@ $("#btndebaja").click(function(){
         });
 
         swal({
-            title: '¿Esta seguro de cambiar de status a esta persona?',
+            title: '¿Esta seguro de cambiar de estado a esta persona?',
             text: "Precione si para continuar, no para cerrar este mensaje.",
             type: 'question',
             showCancelButton: true,
@@ -176,7 +176,7 @@ $("#btndebaja").click(function(){
         });
 
         swal({
-            title: '¿Está seguro de cambiar a estatus activo a esta persona?',
+            title: '¿Está seguro de cambiar el estado a esta persona?',
             text: "Precione si para continuar, no para cerrar este mensaje.",
             type: 'question',
             showCancelButton: true,

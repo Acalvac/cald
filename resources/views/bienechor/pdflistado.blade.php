@@ -12,9 +12,9 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
+				<th>Correo</th>
 				<th>Dirección</th>
 				<th>Teléfono</th>
-				<th>Correo</th>
 			</tr>
 		</thead>
 		<tbody>

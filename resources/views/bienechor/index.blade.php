@@ -66,7 +66,7 @@
             <br/><div class='rechazado'><label style='color:#FA206A'>...No se ha encontrado ningun usuario...</label>  </div> 
             </div>
             -->
-
+    </div>
             <div class="col-lg-12">
                 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -204,8 +204,6 @@
             </div>
         </div>
 
-
-    </div>
     <div class="col-lg-8">
                 <div class="modal fade" id="formModaltd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -259,7 +257,6 @@
 <meta name="_token" content="{!! csrf_token() !!}" />
 
 <script src="{{asset('assets/js/bienhechor/bienhechor.js')}}"></script>
-<script src="{{asset('assets/js/bienhechor/donacion.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/sweetalert/dist/sweetalert2.js')}}"></script>

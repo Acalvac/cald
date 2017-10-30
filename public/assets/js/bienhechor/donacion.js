@@ -45,7 +45,7 @@ $("#btnGuardartd").click(function(e){
     });
 });
 
-$(document).on('click','.btn-addDB',function(){
+$(document).on('click','.btn-addDB1',function(){
     $("#fechadona").val("");
     $("#cantidad").val("");
     $("#observaciones").val("");
@@ -55,7 +55,7 @@ $(document).on('click','.btn-addDB',function(){
         $('#idbi').val(data.idpersona);
         $('#nombreD').val(data.nombre+' '+data.apellido);
         $('#inputTitleD').html("Nuevo Donativo");
-        $('#btnGuardarD').val('add');
+        $('#btnGuardarD1').val('add');
         $('#formModalD').modal('show');
     });
 });
@@ -63,7 +63,6 @@ $(document).on('click','.btn-addDB',function(){
 $(document).on('click','.btneditdb',function(){
                 var idb=$(this).val();
                 var miurl="/bienhechor/listardetallesb/listarupdonativo";
-                //  Route::put('listardetallesb/updonativo/{id}','CBienhechor@updonativo');
                 $.get(miurl+'/'+ idb,function(data){
                 	$('#iddona').val(data.idbienhechor);
                     $('#fechadona').val(data.fechadonacion);
@@ -71,7 +70,7 @@ $(document).on('click','.btneditdb',function(){
                     $('#observaciones').val(data.descripcion);
                     $('#nombreD').val(data.nombre+' '+data.apellido);
                     $('#inputTitleD').html("Modificar datos de donación");
-                    $('#btnGuardarD').val('upd');
+                    $('#btnGuardarD1').val('upd');
                     $('#formModalD').modal('show');                
                 });
             });
@@ -118,14 +117,15 @@ $(document).on('click','.btneliminardb',function(){
     });
 
 
-	$("#btnGuardarD").click(function(e){
+$("#btnGuardarD1").click(function(e){
+//$(document).on('click','#btnGuardarD',function(){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
         var miurl;
-        var state=$("#btnGuardarD").val();
+        var state=$("#btnGuardarD1").val();
         var idbd=$('#iddona').val();
         var type;
         var formData = {
@@ -138,7 +138,7 @@ $(document).on('click','.btneliminardb',function(){
         if (state == "add") 
             {
                 type="POST";
-                miurl = '/bienhechor/addonativo';
+                miurl = '/bienhechor/listardetallesb/addonativo';
             }
 
         if (state == "upd") 
@@ -158,13 +158,14 @@ $(document).on('click','.btneliminardb',function(){
                     item += '<td>'+data.idbienhechor+'</td>';
                     item += '<td>'+tipodonativo+'</td>'+'<td>'+data.monto+'</td>'+'<td>' +data.fechadonacion+ '</td>'+'<td>'+data.descripcion+'</td>';
                     item += '<td><button class="btn  btn-warning btn-md btneditdb" title="Editar" value="'+data.idbienhechor+'"><i class="fa fa-pencil"></i></button></td></tr>';
-                    //item += '<button class="btn btn-danger btn-md btneliminardb" value="'+data.idbienhechor+'" title="Eliminar" ><i class="fa fa-remove"></i></button></td></tr>';
                 if (state == "add")
-                    {
+                    {   
+                        swal("Gracias!","Se a guardado exitosamente el donativo!","success");
                         $('#donativos').append(item);
                     }
                 if (state == "upd")
                     {
+                        swal("Gracias!","Cambios guardados exitosamente","success");
                     	$("#donativo"+idbd).replaceWith(item);
                     }
                 $('#formModalD').modal('hide');        

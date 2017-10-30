@@ -25,11 +25,7 @@ class CBienhechor extends Controller
         	->join('status as sts','p.idstatus','=','sts.idstatus')
         	->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
         	->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo','sts.nombre as snombre')
-     		//->where('sts.nombre','=','Activo')
-     		//->where('tp.idtipopersona','=',2)
-            //->orwhere('p.nombre','LIKE','%'.$query.'%')
      		->where('p.idstatus','=',3)
-            //->where('p.nombre','LIKE','%'.$query.'%')
             ->paginate(15);
 
      		$tipop=DB::table('tipopersona as tp')->where('tp.tipopersona','=','Bienhechor')->get();
@@ -61,9 +57,6 @@ class CBienhechor extends Controller
             ->join('status as sts','p.idstatus','=','sts.idstatus')
             ->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
             ->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo','sts.nombre as snombre')
-            //->where('sts.nombre','=','Activo')
-            //->where('tp.idtipopersona','=',2)
-            //->orwhere('p.nombre','LIKE','%'.$query.'%')
             ->where('p.idstatus','=',4)
             ->where('p.nombre','LIKE','%'.$query.'%')
             ->paginate(15);
@@ -94,7 +87,6 @@ class CBienhechor extends Controller
     }
     public function pdfbienhechor ()
     {
-        //dd("mensaje");
         $bienhechor=DB::table('persona as p')
             ->join('tipopersona as tp','tp.idtipopersona','=','p.idtipopersona')
             ->select('p.idpersona','p.nombre','p.apellido','p.telefono','p.direccion','p.correo')
@@ -162,6 +154,7 @@ class CBienhechor extends Controller
 
     public function upbienhe(Request $request,$id)
     {
+        $this->validabienhechor($request);
         $bienhe= Persona::findOrFail($id);
         $bienhe-> nombre=$request->get('nombreb');
         $bienhe-> apellido=$request->get('apellidob');
@@ -238,19 +231,21 @@ class CBienhechor extends Controller
 
         ];
         $messages=[
-            'required' => 'Debe ingresar :attribute.',
+            'nombreb.required' => 'Debe ingresar el nombre del Bienhechor',
+            'telefono.required' => 'Debe ingresar el teléfono del Bienhechor',
+            'direccion.required' => 'Debe ingresar la dirección del Bienhechor',
         ];
         $this->validate($request, $rules,$messages);        
     }
     public function validadonativo($request){
         $rules=[
-            'cantidad' => 'required',
             'fechadona' => 'required',
             'observaciones' => 'required',
 
         ];
         $messages=[
-            'required' => 'Debe ingresar :attribute.',
+            'fechadona.required' => 'Debe ingresar la fecha del donativo',
+            'observaciones.required' => 'Debe ingresar una descripción de la donación.',
         ];
         $this->validate($request, $rules,$messages);        
     }

@@ -370,6 +370,7 @@ class CPaciente extends Controller
 	{
 		try {
 			DB::beginTransaction();
+			$this->validateRequestUP($request);
 			$fechadon=$request->get('fechanac');
 	        $fechadona=Carbon::createFromFormat('d/m/Y',$fechadon);
 	        $fecha=$fechadona->format('Y-m-d');
@@ -633,6 +634,21 @@ class CPaciente extends Controller
             //'required' => 'Debe ingresar datos del :attribute.',
         	'nino.required' => 'Debe ingresar almenos el nombre del Niño.',
         	'responsable.required' => 'Debe ingresar datos del Responsable.',
+        ];
+        $this->validate($request, $rules,$messages);         
+    }
+    public function validateRequestUP($request){                
+        $rules=[
+        	'nombrep' => 'required',
+            'fechanac' => 'required',
+            'procedencia' => 'required',
+        ];
+
+        $messages=[
+            //'required' => 'Debe ingresar datos del :attribute.',
+        	'nombrep.required' => 'Debe ingresar almenos el nombre del Niño.',
+        	'fechanac.required' => 'Debe ingresar la fecha de nacimiento del niño en formato DD/MM/YYYY.',
+        	'procedencia.required' => 'Debe ingresar la procedencia del Niño.',
         ];
         $this->validate($request, $rules,$messages);         
     }

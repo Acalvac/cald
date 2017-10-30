@@ -23,7 +23,7 @@
                     <a href="javascript:void(0);" onclick="cargarindex(20);">
                         <button class="btn btn-primary btn-md" title="Listado de Bienechor"><i class="fa fa-arrow-circle-left"></i></button>
                     </a>
-                    <button class="btn btn-primary btn-addDB" value="{{$bienhechor->idpersona}}" title="Nuevo Bienechor">Nueva Donación</button>
+                    <button class="btn btn-primary btn-addDB1" value="{{$bienhechor->idpersona}}" title="Nuevo Bienechor">Nueva Donación</button>
                 </div>
             <div><br></div>
         </div>
@@ -36,7 +36,7 @@
                         <th style="width: 2%">Id</th>
                         <th style="width: 10%">Tipo de donación</th>
                         <th style="width: 10%">Monto</th>
-                        <th style="width: 10%">fecha donativo</th>
+                        <th style="width: 10%">Fecha donativo</th>
                         <th style="width: 35%">Descripción</th>
                         <th style="width: 15%">Opciones</th>
                     </thead>
@@ -49,8 +49,7 @@
                                 <td>{{$don->fechadonacion}}</td>
                                 <td>{{$don->descripcion}}</td>
                                 <td>
-                                    <button class="btn  btn-warning btn-md btneditdb" value="{{$don->idbienhechor}}" title="Editar"><i class="fa fa-pencil"></i></button>
-                                    <!--button class="btn btn-danger btn-md btneliminardb" value="{{$don->idbienhechor}}" title="Eliminar" ><i class="fa fa-remove"></i></button--> 	
+                                    <button class="btn  btn-warning btn-md btneditdb" value="{{$don->idbienhechor}}" title="Editar"><i class="fa fa-pencil"></i></button> 	
                                 </td>
                             </tr>
                         @endforeach
@@ -113,7 +112,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" id="btnGuardarD">Guardar</button>
+                            <button type="button" class="btn btn-primary btnGuardarD1" id="btnGuardarD1">Guardar</button>
                             <input type="hidden" id="idbi" name="idbi" value="0"/>
                         </div>
                     </div>
@@ -150,7 +149,6 @@
                 </div>
             </div>
     </div>
-
 
     </div>
     <div class="modal fade" id="erroresModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">

@@ -159,7 +159,8 @@
         });
     });
 
-    $("#btnGuardarD").click(function(e){
+    //$("#btnGuardarD").click(function(e){
+    $(document).on('click','#btnGuardarD',function(){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -182,12 +183,7 @@
             dataType: 'json',
 
             success: function (data) {
-                swal({
-                    title: "Gracias!",
-                    text: "Se a guardado exitosamente el donativo!",
-                    type: "success"
-                });
-
+                swal("Gracias!","Se a guardado exitosamente el donativo!","success");
                 $('#formModalD').modal('hide');        
             },
             error: function (data) {
@@ -253,18 +249,6 @@
                 )
             }
         });
-
-        /*$.ajax({
-            type: "DELETE",
-            url: 'deletepad/' + idpad,
-            success: function (data) {
-                console.log(data);
-                $("#pad" + idpad).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });*/
 
         $("#erroresContent").html(errHTML); 
         $('#erroresModal').modal('show');
@@ -346,18 +330,54 @@
             }
         });
 
-        /*$.ajax({
-            type: "DELETE",
-            url: 'deletepad/' + idpad,
-            success: function (data) {
-                console.log(data);
-                $("#pad" + idpad).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });*/
-
         $("#erroresContent").html(errHTML); 
         $('#erroresModal').modal('show');
     });
+
+//nuevo tipo de donativo
+//$(document).on('click','.btntd',function(){
+$("#btntd").click(function(){
+    $('#inputTitletd').html("Nuevo tipo de donativo");
+    $('#formAgregartd').trigger("reset");
+    $('#formModaltd').modal('show');
+});
+
+$("#btnGuardartd").click(function(e){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    var miurl='bienhechor/instipodon';
+    var formData = {
+            tdonativo:$("#tdonativo").val(),
+        };
+
+
+    $.ajax({
+            type: 'POST',
+            url: miurl,
+            data: formData,
+            dataType: 'json',
+
+            success: function (data) {
+                $(data).each(function(i,v){
+                    $("#tipodonativo").append('<option selected value='+v.idtipodonacion+'">'+v.donaciontipo+'</option>');
+                });
+                $('#formModaltd').modal('hide');        
+            },
+            error: function (data) {
+                $('#loading').modal('hide');
+                var errHTML="";
+                if((typeof data.responseJSON != 'undefined')){
+                    for( var er in data.responseJSON){
+                        errHTML+="<li>"+data.responseJSON[er]+"</li>";
+                    }
+                }else{
+                    errHTML+='<li>Error al intentar guardar un nuevo registro, intente mas tarde.</li>';
+                }
+                $("#erroresContent").html(errHTML); 
+                $('#erroresModal').modal('show');
+            }
+    });
+});
