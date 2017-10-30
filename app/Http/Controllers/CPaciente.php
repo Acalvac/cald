@@ -29,6 +29,7 @@ use App\PersonalAtiende;
 use App\MedicinaP;
 use App\Vacunas;
 use App\LOrigen;
+use App\Religion;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -365,6 +366,14 @@ class CPaciente extends Controller
 		$lo-> municipio=$request->get('nombre');
 		$lo->save();
 		return response()->json($lo);
+	}
+	public function addrel(Request $request)
+	{
+		$this->validateRequest($request);
+		$rel = new Religion;
+		$rel-> religion=$request->get('nombre');
+		$rel->save();
+		return response()->json($rel);
 	}
 	public function uppasdatos(Request $request,$id)
 	{

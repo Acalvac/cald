@@ -59,10 +59,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="col-lg-3 col-md-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-3 col-md-4 col-sm-9 col-xs-12">
                                         <label>Lugar de origen</label>
-                                            <div class="card-box form-inline">
                                                 <div class="form-group">
                                                     <select id="origenp" class="form-control" >
                                                         @if (isset($origen))
@@ -71,9 +70,11 @@
                                                             @endforeach
                                                         @endif
                                                     </select>
-                                                </div> 
-                                                    <button id="btnaddlug" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
-                                            </div>
+                                                </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <br>
+                                        <button id="btnaddlug" class="btn btn-success btn-md" title="Agregar"><i class="fa fa-window-restore"></i></button>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
@@ -128,7 +129,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12">
 
-                                    <div class="col-lg-3 col-md-5 form-inline">
+                                    <div class="col-lg-3 col-md-5 col-sm-9 col-xs-12 form-inline">
                                     <label>Lenguaje</label>
                                             <div id="divlenguaje" >
                                                     <select id="idiomafam" class="chosen-select form-control"  multiple data-placeholder="Seleccione ...">
@@ -140,13 +141,13 @@
                                                     </select>
                                             </div>
                                     </div>
-                                    <div class="col-lg-1 col-md-1"><br>
+                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12"><br>
                                         <button id="addIdiofam" class="btn btn-success btn-md" title="Agregar nuevo registro"><i class="fa fa-window-restore"></i></button>
                                     </div>
-                                    <div class="col-lg-2 col-md-6">
+                                    <div class="col-lg-2 col-md-4 col-sm-9 col-xs-12">
+                                        <label>Religión</label>
                                         <div class="form-group">
-                                            <label>Religión</label>
-                                            <select id="religionfam" class="chosen-select"  tabindex="2" >
+                                            <select id="religionfam" class="form-control">
                                                 @if (isset($religion))
                                                     @foreach($religion as $rel)
                                                         <option value="{{$rel->idreligion}}">{{$rel->religion}}</option>
@@ -155,13 +156,17 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 ">
+                                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                                        <br>
+                                        <button id="btnaddrel" class="btn btn-success btn-md" title="Agregar una nueva religión"><i class="fa fa-window-restore"></i></button>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                         <label>Anomalias observadas</label>
                                         <div class="form-group">
                                             <label>Si<input type="radio" value="Si" onclick="Anofams(this)" id="an" name="an"></label>&nbsp;&nbsp;
                                             <label>Ninguna<input type="radio" value="No" onclick="Anofams(this)" id="an" name="an" checked=""></label>
                                         </div>
-                                        <div class="col-lg-10 col-md-10" id="divanomal" style="display: none;">
+                                        <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12" id="divanomal" style="display: none;">
                                             <select id="anomaliafam" class="chosen-select" style="width:350px;"  multiple data-placeholder="Seleccione ...">
                                                 @if (isset($anomalia))
                                                     @foreach($anomalia as $ano)
@@ -170,12 +175,12 @@
                                                 @endif
                                             </select>
                                         </div>
-                                        <div class="col-lg-1" id="divbtn" style="display: none;">
+                                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12" id="divbtn" style="display: none;">
                                             <button id="addAnofam" class="btn btn-success btn-md" title="Agregar nuevo registro"><i class="fa fa-window-restore"></i></button>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-lg-1 col-md-2"><br>
+                                    <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12"><br>
                                             <button id="addFam" class="btn btn-info btn-md" title="Agregar"><i class="fa fa-plus-circle"></i>&nbsp;Añadir</button>
                                     </div>
                                 </div>

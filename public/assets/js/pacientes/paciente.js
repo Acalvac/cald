@@ -313,6 +313,14 @@ $(document).ready(function(){
                 $('#formModal').modal('show');
             //});
     });
+    $("#btnaddrel").click(function(){
+        //$(document).on('click','.btn-addB',function(){
+                $('#inputTitle').html("Nuevo Religión ");
+                $('#formAgregar').trigger("reset");
+                $('#btnGuardar').val('addbrel');
+                $('#formModal').modal('show');
+            //});
+    });
     $('#fechanacp').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
@@ -377,6 +385,9 @@ $("#btnGuardar").click(function(e){
     }
     if (status == "addblug") {
         miurl = 'paciente/addlugar';
+    }
+    if (status == "addbrel") {
+        miurl = 'paciente/addrel';
     }
 
     $.ajax({
@@ -455,14 +466,15 @@ $("#btnGuardar").click(function(e){
                 {
                     $("#divanomal").html('<span>...Ha ocurrido un error, revise su conexión y vuelva a intentarlo...</span>');
                 });
-
-                /*$(data).each(function(i,v){
-                    $("#anomaliafam").append('<option selected multiple="multiple" value='+v.idanomalia+'">'+v.anomalia+'</option>');
-                });*/
             }
             if (status == "addblug") {
                 $(data).each(function(i,v){
                     $("#origenp").append('<option selected value='+v.idmunicipio+'">'+v.municipio+'</option>');
+                });
+            }
+            if (status == "addbrel") {
+                $(data).each(function(i,v){
+                    $("#religionfam").append('<option selected value='+v.idreligion+'">'+v.religion+'</option>');
                 });
             }
             $('#formModal').modal('hide');            
